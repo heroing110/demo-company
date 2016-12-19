@@ -5,7 +5,7 @@ const router = Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('login',{message:''});
+    res.send('asdfasfd');
 });
 
 router.get('/add', function (req, res, next) {

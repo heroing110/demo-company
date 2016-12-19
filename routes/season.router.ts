@@ -3,6 +3,16 @@ const router = Router();
 import {md5} from '../util/';
 import {User, userModel} from '../model/usrs.model';
 
+
+router.get('/:id' , function () {
+
+});
+
+router.get('/' , function (req , res) {
+    res.send('');
+});
+
+
 /* GET users listing. */
 router.post('/', function (req, res, next) {
     const username = req.param('username');

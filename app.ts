@@ -4,17 +4,15 @@ import logger = require('morgan');
 import cookieParser = require('cookie-parser');
 import {urlencoded, json} from "body-parser";
 const express = require("express");
-const ejsLayouts = require("express-ejs-layouts");
 
-import indexRouter from "./routes/index.router";
-import usersRouter from "./routes/users.router";
+import yearRouter from "./routes/year.router";
+import seasonRouter from "./routes/season.router";
 
 const app = express();
 
 // view engine setup
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use(ejsLayouts);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -22,16 +20,12 @@ app.use(logger('dev'));
 app.use(json());
 app.use(urlencoded({extended: false}));
 app.use(cookieParser());
-// app.use(express.static(join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    const err = new Error('Not Found');
-    err['status'] = 404;
-    next(err);
+app.use('/app/year', yearRouter);
+app.use('/app/season', seasonRouter);
+app.use(express.static(join(__dirname, 'web/dist')));
+app.use(function (req, res) {
+    res.sendfile('web/dist/index.html');
 });
 
 // error handler

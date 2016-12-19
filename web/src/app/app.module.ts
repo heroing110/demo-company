@@ -19,7 +19,7 @@ import {HttpModule} from "@angular/http";
     ReportModule,
     LoginModule,
     AppRoutingModule,
-    InMemoryWebApiModule.forRoot(InMemDataService, {delay: 200})
+    // InMemoryWebApiModule.forRoot(InMemDataService, {delay: 200})
   ],
   providers: [],
   bootstrap: [AppComponent]

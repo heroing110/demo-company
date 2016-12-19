@@ -6,7 +6,7 @@ import {createConnection} from "mysql";
 let connection;
 function connect() {
     if (!connection) {
-        connection = createConnection('mysql://root:@localhost/cms');
+        connection = createConnection('mysql://root:@192.168.31.239/cms');
         connection.connect();
     }
 }
