@@ -1,0 +1,17 @@
+<form name="form1" (submit)="login()" class="basic-grey">
+  <h1>
+    <span>管理员登录</span>
+  </h1>
+  <label>
+    <span>Your Name :</span>
+    <input type="text" [(ngModel)]="username" name="username" placeholder="Your Name"/>
+  </label>
+  <label>
+    <span>Your Password :</span>
+    <input type="password" [(ngModel)]="password" name="password" placeholder="Your Password"/>
+  </label>
+  <label>
+    <span>&nbsp;</span>
+    <button type="submit" class="button">登录</button>
+  </label>
+</form>

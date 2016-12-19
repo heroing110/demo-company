@@ -1,0 +1,223 @@
+<form #yearForm="ngForm">
+  <div class="form-inline margin-bottom margin-top">
+    <label>单位详细名称</label>
+    <input type="text" class="form-control" [(ngModel)]="yearObj.companyName" name="companyName" required>
+    <label style="width: 100px;"></label>
+    <label class="text-right">年度</label>
+    <input type="number" class="form-control" maxlength="4" [(ngModel)]="yearObj.year"
+           pattern="^2\d{3}$" required name="year">
+  </div>
+  <table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>序号</th>
+      <th>项目</th>
+      <th>内容</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td style="width:80px;">01</td>
+      <td style="width:350px;">法定代表人（单位负责人）</td>
+      <td>
+        <input type="text" class="form-control"
+               [(ngModel)]="yearObj.cell11"
+               name="cell11" required>
+      </td>
+    </tr>
+    <tr>
+      <td>02</td>
+      <td>联系方式</td>
+      <td><input type="text" class="form-control" [(ngModel)]="yearObj.cell21" name="cell21" #cell21="ngModel" required>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="8">03</td>
+      <td>单位详细地址</td>
+      <td><input type="text" class="form-control" [(ngModel)]="yearObj.cell31" name="cell31" #cell31="ngModel" required>
+      </td>
+    </tr>
+    <tr>
+      <td>邮政编码</td>
+      <td><input type="text" class="form-control" [(ngModel)]="yearObj.cell32" name="cell32" #cell32="ngModel" required>
+      </td>
+    </tr>
+    <tr>
+      <td>电话号码</td>
+      <td><input type="text" class="form-control" [(ngModel)]="yearObj.cell33" name="cell33" #cell33="ngModel" required>
+      </td>
+    </tr>
+    <tr>
+      <td>手机号码</td>
+      <td><input type="text" class="form-control" [(ngModel)]="yearObj.cell34" name="cell34" #cell34="ngModel" required>
+      </td>
+    </tr>
+    <tr>
+      <td>传真号码</td>
+      <td><input type="text" class="form-control" [(ngModel)]="yearObj.cell35" name="cell35" #cell35="ngModel" required>
+      </td>
+    </tr>
+    <tr>
+      <td>企业网站名称及网址</td>
+      <td><input type="text" class="form-control" [(ngModel)]="yearObj.cell36" name="cell36" #cell36="ngModel" required>
+      </td>
+    </tr>
+    <tr>
+      <td>自营电子商务平台名称及网址</td>
+      <td><input type="text" class="form-control" [(ngModel)]="yearObj.cell37" name="cell37" #cell37="ngModel" required>
+      </td>
+    </tr>
+    <tr>
+      <td>借助第三方交易平台名称及网址</td>
+      <td><input type="text" class="form-control" [(ngModel)]="yearObj.cell38" name="cell38" #cell38="ngModel" required>
+      </td>
+    </tr>
+    <tr>
+      <td>04</td>
+      <td>企业所在市</td>
+      <td>
+        <select appSelectpicker class="form-control" name="city" [(ngModel)]="yearObj.city">
+          <option value="沈阳">沈阳</option>
+          <option value="大连">大连</option>
+          <option value="鞍山">鞍山</option>
+          <option value="抚顺">抚顺</option>
+          <option value="本溪">本溪</option>
+          <option value="丹东">丹东</option>
+          <option value="锦州">锦州</option>
+          <option value="营口">营口</option>
+          <option value="阜新">阜新</option>
+          <option value="辽阳">辽阳</option>
+          <option value="盘锦">盘锦</option>
+          <option value="铁岭">铁岭</option>
+          <option value="朝阳">朝阳</option>
+          <option value="葫芦岛">葫芦岛</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>05</td>
+      <td>行业类别(可多选)</td>
+      <td>
+        <select appSelectpicker class="form-control" multiple name="industry" [(ngModel)]="yearObj.industry" required>
+          <option value="电子商务应用企业">电子商务应用企业</option>
+          <option value="电子商务服务企业">电子商务服务企业</option>
+          <option value="电子商务综合型企业">电子商务综合型企业</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>06</td>
+      <td>交易模式(可多选)</td>
+      <td>
+        <select appSelectpicker class="form-control" multiple name="sale" [(ngModel)]="yearObj.sale" required>
+          <option value="B2B">B2B</option>
+          <option value="B2C">B2C</option>
+          <option value="C2C">C2C</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="2">07</td>
+      <td rowspan="2">跨境电子商务经营情况</td>
+      <td>
+        <div class="text-left">开展跨境电子商务类型(可多选)</div>
+        <select appSelectpicker class="form-control" multiple name="crossContry" [(ngModel)]="yearObj.crossContry"
+                required>
+          <option value="进口">进口</option>
+          <option value="出口">出口</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="text-left">
+          开展跨境电子商务业务的主要交易平台：
+        </div>
+        <div class="form-inline text-left">
+          自营平台 <input type="checkbox" name="checkbox1" [(ngModel)]="checkbox1" value="span_41"/>
+          <span *ngIf="checkbox1">
+      				平台名称及网址
+      				<input type="text" class="form-control" style="width:60%;" [(ngModel)]="yearObj.cell41" name="cell41"
+                     required>
+      	</span>
+        </div>
+        <div class="form-inline text-left">
+          其他平台<input type="checkbox" name="checkbox2" [(ngModel)]="checkbox2" value="span_42"/>
+          <span *ngIf="checkbox2">
+      				平台名称及网址
+      				<input type="text" class="form-control" style="width:80%;" [(ngModel)]="yearObj.cell42" name="cell42"
+                     required>
+            </span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>08</td>
+      <td>期末从业人员情况</td>
+      <td>
+        <div class="form-inline text-left" style="margin-bottom:10px;">
+          期末从业人员合计
+          <input type="text" class="form-control" style="width:80%;" [(ngModel)]="yearObj.cell51" name="cell51"
+                 required>
+        </div>
+        <div class="form-inline text-left">
+          其中：研究生及以上<input type="text" class="form-control" [(ngModel)]="yearObj.cell52" name="cell52" placeholder="人"
+                          required>，
+          大学本（专）科<input type="text" class="form-control" [(ngModel)]="yearObj.cell53" name="cell53" placeholder="人"
+                        required>，
+          高中及以下 <input type="text" class="form-control" [(ngModel)]="yearObj.cell54" name="cell54" placeholder="人"
+                       required>；
+
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td>09</td>
+      <td>企业主要经济指标</td>
+      <td>
+        <div class="form-inline text-left" style="margin-bottom:10px;">
+          电子商务零售额
+          <input type="text" class="form-control" style="width:80%;" [(ngModel)]="yearObj.cell61" name="cell61"
+                 placeholder="万元" required>
+        </div>
+        <div class="form-inline text-left" style="margin-bottom:10px;">
+          其中：其中商品类<input type="text" class="form-control" [(ngModel)]="yearObj.cell62" name="cell62" placeholder="万元"
+                         required>，
+          服务类<input type="text" class="form-control" [(ngModel)]="yearObj.cell63" name="cell63" placeholder="万元"
+                    required>（注：电商应用/综合型企业填写）
+        </div>
+        <div class="form-inline text-left">
+          电子商务服务收入<input type="text" class="form-control" [(ngModel)]="yearObj.cell64" name="cell64" placeholder="万元"
+                         required>（注：电商服务/综合型企业填写）
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="form-inline">
+    <div class="form-group">
+      填表人：<input type="text" class="form-control" [(ngModel)]="yearObj.cell71" name="cell71" required>
+    </div>
+    <div class="form-group" style="margin-left:25px;">
+      职务：<input type="text" class="form-control" [(ngModel)]="yearObj.cell72" name="cell72" required>
+    </div>
+    <div class="form-group" style="margin-left:25px;">
+      联系电话：<input type="text" class="form-control" [(ngModel)]="yearObj.cell73" name="cell73" required>
+    </div>
+    <div class="form-group" style="margin-left:25px;">
+      手机：<input type="text" class="form-control" [(ngModel)]="yearObj.cell74" name="cell74" required>
+    </div>
+  </div>
+  <div class="form-inline  margin-top">
+    填报日期:
+    <input type="text" class="form-control" appDatepicker [(value)]="yearObj.cell75"
+           [option]="datePickerOption" required/>
+  </div>
+  <hr/>
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary" (click)="saveYear(yearForm)">提交</button>
+    <button type="button" class="btn btn-default" (click)="back()">返回</button>
+  </div>
+</form>
