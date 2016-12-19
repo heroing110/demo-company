@@ -4,3 +4,5 @@
 require('ts-node/register');
 
 require('./app');
+
+console.log('asdfa');
