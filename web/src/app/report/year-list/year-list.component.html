@@ -1,6 +1,11 @@
 <h4 class="page-header">
   年报表查看
 </h4>
+
+<input type="text" [(ngModel)]="params.id">
+
+<button class="btn" (click)="query()" >查询</button>
+
 <table class="table table-bordered table-hover table-condensed">
   <thead>
   <tr>

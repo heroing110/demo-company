@@ -4,11 +4,16 @@
 import {escape} from 'mysql';
 import {createHash} from 'crypto';
 
-export function transformBody(data, model: any[]) {
+export function transformBody(data, model: any[], arrayBean: string[] , splitKey:string) {
     const result = {};
     model.forEach(function (columnName) {
         result[columnName] = data[columnName] || null;
     });
+    if (arrayBean && arrayBean.length) {
+        arrayBean.forEach(columnName => {
+            result[columnName] = result[columnName].join(splitKey);
+        });
+    }
     return result;
 }
 

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ng serve",
     "build": "ng build --prod",
-    "dev-build" : "ng build --watch",
+    "dev-build": "ng build --watch",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
@@ -28,6 +28,7 @@
     "bootstrap-select": "^1.12.1",
     "core-js": "^2.4.1",
     "moment": "^2.17.1",
+    "ng2-charts": "^1.4.4",
     "ng2-daterangepicker": "^1.0.2",
     "rxjs": "5.0.0-beta.12",
     "ts-helpers": "^1.1.1",

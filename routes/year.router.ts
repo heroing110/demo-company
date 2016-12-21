@@ -1,11 +1,17 @@
 import {Router} from "express";
-import {mediaModel, Media} from "../model/media.model";
+import {yearModel} from "../model/year.model";
 import {Response, Request} from "express-serve-static-core";
+import {Year} from "../web/src/app/report/year";
 const router = Router();
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-    res.send('asdfasfd');
+
+
+router.get('', function (req: Request, res, next) {
+    console.log('req',req);
+    yearModel.queryAll(req.params, function (rows: Year[]) {
+        res.send(rows);
+    });
 });
 
 router.get('/add', function (req, res, next) {
@@ -21,15 +27,13 @@ router.get('/menu', function (req, res, next) {
 });
 
 router.post('/doAdd', function (req, res, next) {
-    mediaModel.insert(req.body, function () {
+    yearModel.insert(req.body, function () {
         res.redirect('/list');
     });
 });
 
-router.get('/list', function (req: Request, res: Response) {
-    mediaModel.queryAll(null, function (rows: Media[]) {
-        res.render('list', {rows});
-    });
+router.get('/seaso', function (req: Request, res: Response) {
+
 });
 
 export default router;

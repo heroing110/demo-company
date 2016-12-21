@@ -2,45 +2,43 @@ import {Injectable} from "@angular/core";
 import {UserInfo} from "./user-info";
 import {Http, URLSearchParams} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
+import {responseHandler,md5} from "../util";
+import {createHash} from "crypto";
 /**
  * Created by Administrator on 2016/12/13 0013.
  */
 
 @Injectable()
 export class UserService {
-  private loginState = false;
-  private userInfo: UserInfo = null;
-  private url = 'app/users';
+    private loginState = false;
+    private userInfo: UserInfo = null;
+    private url = 'app/users';
 
-  constructor(private http: Http) {
+    constructor(private http: Http) {
+    }
 
-  }
+    login(username, password) {
+        return this.http.post(this.url, {username, password}).toPromise()
+            .then(responseHandler)
+            .then((userList: UserInfo[]) => {
+                this.loginState = userList.length > 0;
+            });
+    }
 
-  login(username, password) {
-    const search = new URLSearchParams();
-    search.set('username', username);
-    search.set('password', password);
+    logout() {
+        this.loginState = false;
+    }
 
-    return this.http.get(this.url, {search}).toPromise().then((res) => {
-      return res.json().data;
-    }).then((userList: UserInfo[]) => {
-      this.loginState = userList.length > 0;
-    });
-  }
+    setUserInfo(userInfo: UserInfo) {
+        this.userInfo = userInfo;
+    }
 
-  logout() {
-    this.loginState = false;
-  }
+    getUserInfo() {
+        return this.userInfo;
+    }
 
-  setUserInfo(userInfo: UserInfo) {
-    this.userInfo = userInfo;
-  }
+    isLogin() {
+        return this.loginState;
+    }
 
-  getUserInfo() {
-    return this.userInfo;
-  }
-
-  isLogin() {
-    return this.loginState;
-  }
 }

@@ -7,6 +7,7 @@ const express = require("express");
 
 import yearRouter from "./routes/year.router";
 import seasonRouter from "./routes/season.router";
+import userRouter from "./routes/user.router";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(cookieParser());
 
 app.use('/app/year', yearRouter);
 app.use('/app/season', seasonRouter);
+app.use('/app/users', userRouter);
 app.use(express.static(join(__dirname, 'web/dist')));
 app.use(function (req, res) {
     res.sendfile('web/dist/index.html');

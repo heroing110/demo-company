@@ -17,7 +17,7 @@ export class YearDetailComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params
-      .switchMap((params: Params) => this.yearService.getSeasonByParam(params))
+      .switchMap((params: Params) => this.yearService.getYearByParam(params))
       .subscribe((year: Year[]) => this.yearObj = year[0]);
   }
 

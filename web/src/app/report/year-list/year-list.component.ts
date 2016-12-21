@@ -11,11 +11,21 @@ export class YearListComponent implements OnInit {
 
   yearList: Year[];
 
+  params = {};
+
   constructor(private yearService: YearService) {
   }
 
   ngOnInit() {
     this.yearService.getYearList().then((years: Year[]) => {
+      this.yearList = years;
+    });
+  }
+
+  query(){
+    console.log('params',this.params);
+    this.yearService.getYearByParam(this.params).then((years:Year[])=>{
+      console.log('years',years);
       this.yearList = years;
     });
   }
