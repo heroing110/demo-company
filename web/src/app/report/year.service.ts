@@ -32,6 +32,6 @@ export class YearService {
             search.append(key, query[key]);
         }
         console.log('search',search);
-        return this.http.get(this.url,query).toPromise().then(responseHandler);
+        return this.http.get(this.url,search).toPromise().then(responseHandler);
     }
 }
