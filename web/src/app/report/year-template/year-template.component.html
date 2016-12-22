@@ -98,7 +98,7 @@
       <td>05</td>
       <td>行业类别(可多选)</td>
       <td>
-        <select appSelectpicker class="form-control" multiple name="industry" [(ngModel)]="yearObj.industry" required>
+        <select appSelectpicker class="form-control" multiple name="industry" [(ngModel)]="yearObj.industry" >
           <option value="电子商务应用企业">电子商务应用企业</option>
           <option value="电子商务服务企业">电子商务服务企业</option>
           <option value="电子商务综合型企业">电子商务综合型企业</option>
@@ -109,7 +109,7 @@
       <td>06</td>
       <td>交易模式(可多选)</td>
       <td>
-        <select appSelectpicker class="form-control" multiple name="sale" [(ngModel)]="yearObj.sale" required>
+        <select appSelectpicker class="form-control" multiple name="sale" [(ngModel)]="yearObj.sale" >
           <option value="B2B">B2B</option>
           <option value="B2C">B2C</option>
           <option value="C2C">C2C</option>
@@ -122,7 +122,7 @@
       <td>
         <div class="text-left">开展跨境电子商务类型(可多选)</div>
         <select appSelectpicker class="form-control" multiple name="crossCountry" [(ngModel)]="yearObj.crossCountry"
-                required>
+                >
           <option value="进口">进口</option>
           <option value="出口">出口</option>
         </select>

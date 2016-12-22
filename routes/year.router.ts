@@ -14,7 +14,7 @@ router.get('', function (req: Request, res, next) {
 });
 
 router.post('', function (req, res, next) {
-    console.log('req',req);
+    console.log('req,query',req.query);
     // yearModel.insert(req.body, function () {
     //     res.end('ok');
     // });

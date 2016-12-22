@@ -16,7 +16,7 @@ export class YearService {
     }
 
     addYear(year: Year) {
-        return this.http.post(this.url+'?insert', year).toPromise().then(responseHandler);
+        return this.http.post(this.url, year).toPromise().then(responseHandler);
     }
 
     updateYear(year: Year) {
