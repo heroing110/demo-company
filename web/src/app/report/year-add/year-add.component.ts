@@ -16,7 +16,6 @@ export class YearAddComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.yearObj.id = Math.random();
   }
 
   save() {

@@ -7,7 +7,7 @@ import {Year} from "../web/src/app/report/year";
 
 class YearModel extends DbModel<Year> {
     public bean = Object.keys(new Year);
-    public arrayBean = ['industry', 'sale', 'crossContry'];
+    public arrayBean = ['industry', 'sale', 'crossCountry'];
     public name = 'year_message';
 
     constructor() {

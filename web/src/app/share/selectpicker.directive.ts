@@ -1,4 +1,4 @@
-import {Directive, ElementRef, OnInit} from '@angular/core';
+import {Directive, ElementRef, OnInit, Input} from '@angular/core';
 
 const plugin = 'selectpicker';
 
@@ -6,6 +6,10 @@ const plugin = 'selectpicker';
   selector: '[appSelectpicker]'
 })
 export class SelectpickerDirective implements OnInit {
+
+  @Input() set ngModel(val) {
+    val && $(this.element.nativeElement).val(val);
+  };
 
   constructor(private element: ElementRef) {
   }

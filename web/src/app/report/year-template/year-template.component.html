@@ -121,12 +121,11 @@
       <td rowspan="2">跨境电子商务经营情况</td>
       <td>
         <div class="text-left">开展跨境电子商务类型(可多选)</div>
-        <select appSelectpicker class="form-control" multiple name="crossContry" [(ngModel)]="yearObj.crossContry"
+        <select appSelectpicker class="form-control" multiple name="crossCountry" [(ngModel)]="yearObj.crossCountry"
                 required>
           <option value="进口">进口</option>
           <option value="出口">出口</option>
         </select>
-        crossCountry={{yearObj.crossCountry|json}}
       </td>
     </tr>
     <tr>

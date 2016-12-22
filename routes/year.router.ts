@@ -13,23 +13,14 @@ router.get('', function (req: Request, res, next) {
     });
 });
 
-router.get('/add', function (req, res, next) {
-    res.render('add');
+router.post('', function (req, res, next) {
+    console.log('req',req);
+    // yearModel.insert(req.body, function () {
+    //     res.end('ok');
+    // });
 });
 
-router.get('/top', function (req, res, next) {
-    res.render('top');
-});
 
-router.get('/menu', function (req, res, next) {
-    res.render('menu');
-});
-
-router.post('/doAdd', function (req, res, next) {
-    yearModel.insert(req.body, function () {
-        res.redirect('/list');
-    });
-});
 
 router.get('/seaso', function (req: Request, res: Response) {
 
