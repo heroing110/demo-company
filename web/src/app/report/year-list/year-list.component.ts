@@ -23,9 +23,7 @@ export class YearListComponent implements OnInit {
   }
 
   query(){
-    console.log('params',this.params);
     this.yearService.getYearByParam(this.params).then((years:Year[])=>{
-      console.log('years',years);
       this.yearList = years;
     });
   }

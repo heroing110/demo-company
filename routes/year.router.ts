@@ -8,8 +8,7 @@ const router = Router();
 
 
 router.get('', function (req: Request, res, next) {
-    console.log('req',req);
-    yearModel.queryAll(req.params, function (rows: Year[]) {
+    yearModel.queryAll(req.query, function (rows: Year[]) {
         res.send(rows);
     });
 });

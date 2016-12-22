@@ -26,12 +26,10 @@ export class YearService {
     }
 
     getYearByParam(query: Object = {}) {
-        console.log('query',query);
         const search = new URLSearchParams();
         for (const key in query) {
             search.append(key, query[key]);
         }
-        console.log('search',search);
-        return this.http.get(this.url,search).toPromise().then(responseHandler);
+        return this.http.get(this.url,{search}).toPromise().then(responseHandler);
     }
 }

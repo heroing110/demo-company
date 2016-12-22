@@ -22,7 +22,7 @@ export abstract class DbModel<T> {
     queryAll(params: any, callback: (rows: T[], fields: any[]) => any) {
         let sql = `select * from ${this.name}`;
         if (params && Object.keys(params).length) {
-            sql += ` where ${toSqlWhere(params)}`;
+            sql += ` ${toSqlWhere(params)}`;
         }
         query(sql, null, (rows: T[], fields) => {
             if (this.arrayBean && this.arrayBean.length) {

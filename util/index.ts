@@ -21,9 +21,12 @@ export function transformBody(data, model: any[], arrayBean: string[] , splitKey
 export function toSqlWhere(param) {
     let where = [];
     for (const key in param) {
-        where.push(key + '=' + escape(param[key]));
+        if(param[key]) {
+            where.push(key + '=' + escape(param[key]));
+        }
     }
-    return where.join(' and ');
+    if(where.length==0) return '';
+    return 'where '+where.join(' and ');
 }
 
 export function md5(str) {
