@@ -32,12 +32,12 @@
     <tbody>
     <tr>
       <td>电子商务交易额</td>
-      <td [class.danger]="cell11.invalid">
+      <td>
         <input type="number" class="form-control"
                [(ngModel)]="season.report.cell11" name="cell11"
                appEqualSum #cell11="ngModel"
                appTooltip
-               title="请设置"
+               title="请确保分组值与总值相等"
                [equalSum]="[
                   [cell12 , cell13, cell14, cell15],
                   [cell21 , cell31]
@@ -45,7 +45,9 @@
       </td>
       <td><input type="number" class="form-control" [(ngModel)]="season.report.cell12"
                  name="cell12" #cell12="ngModel"
-                 appEqualSum [trigger]="cell11"
+                 appEqualSum
+                 [equalSum]="[cell22 , cell32]"
+                 [trigger]="cell11"
                  data-toggle="tooltip" data-placement="left" title="Tooltip on left">
       </td>
       <td><input type="number" class="form-control" [(ngModel)]="season.report.cell13"
@@ -75,10 +77,12 @@
                  appEqualSum [trigger]="cell11"
                  #cell21="ngModel">
       </td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell22" name="cell22"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell23" name="cell23"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell24" name="cell24"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell25" name="cell25"></td>
+      <td><input type="number" class="form-control" [(ngModel)]="season.report.cell22" name="cell22"
+                 appEqualSum [trigger]="cell12"
+                 #cell22="ngModel"></td>
+      <td><input type="number" class="form-control" [(ngModel)]="season.report.cell23" name="cell23"></td>
+      <td><input type="number" class="form-control" [(ngModel)]="season.report.cell24" name="cell24"></td>
+      <td><input type="number" class="form-control" [(ngModel)]="season.report.cell25" name="cell25"></td>
     </tr>
     <tr>
       <td>2.通过第三方电子商务平台</td>
@@ -86,7 +90,9 @@
                  appEqualSum [trigger]="cell11"
                  #cell31="ngModel">
       </td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell32" name="cell32"></td>
+      <td><input type="number" class="form-control" [(ngModel)]="season.report.cell32" name="cell32"
+                 appEqualSum [trigger]="cell12"
+                 #cell32="ngModel"></td>
       <td><input type="text" class="form-control" [(ngModel)]="season.report.cell33" name="cell33"></td>
       <td><input type="text" class="form-control" [(ngModel)]="season.report.cell34" name="cell34"></td>
       <td><input type="text" class="form-control" [(ngModel)]="season.report.cell35" name="cell35"></td>
@@ -172,7 +178,7 @@
           2.跨境电子商务交易数<input type="text" class="form-control" [(ngModel)]="season.cell112" name="cell112"
                             placeholder="(件) ">：
           其中，进口<input type="text" class="form-control" [(ngModel)]="season.cell113" name="cell113" placeholder="(件) ">，出口<input
-          type="text" class="form-control" [(ngModel)]="season.cell114" name="cell114" placeholder="(件) ">；
+                type="text" class="form-control" [(ngModel)]="season.cell114" name="cell114" placeholder="(件) ">；
         </div>
       </td>
     </tr>
@@ -184,9 +190,11 @@
         <div class="form-group">
           是否开展O2O业务：
           <input type="radio" value="1" name="o2oRadio" [(ngModel)]="season.o2oRadio">是
+          <span *ngIf="season.o2oRadio == '1'">
           占电子商务总交易额比重<input type="text" class="form-control" [(ngModel)]="season.cell121" name="cell121"
                             placeholder="%">
-          <input type="radio" value="2" name="o2oRadio" [(ngModel)]="season.o2oRadio">否
+          </span>
+            <input type="radio" value="2" name="o2oRadio" [(ngModel)]="season.o2oRadio">否
         </div>
       </td>
     </tr>
@@ -195,8 +203,10 @@
         <div class="form-group">
           是否开展移动电子商务业务：
           <input type="radio" value="1" name="mobileRadio" [(ngModel)]="season.mobileRadio">是
+          <span *ngIf="season.mobileRadio == '1'">
           占电子商务总交易额比重<input type="text" class="form-control" [(ngModel)]="season.cell131" name="cell131"
                             placeholder="%">
+          </span>
           <input type="radio" value="2" name="mobileRadio" [(ngModel)]="season.mobileRadio">否
         </div>
       </td>

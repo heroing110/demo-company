@@ -7,9 +7,9 @@ const router = Router();
 // post  app/users
 router.post('/', function (req, res) {
     req.body['password'] = md5(req.body['password']);
-    res.send([{}]);
-    /*userModel.queryAll(req.body, function (rows: UserInfo[]) {
-     });*/
+    userModel.queryAll(req.body, function (rows: UserInfo[]) {
+        res.send(rows);
+    });
 });
 
 

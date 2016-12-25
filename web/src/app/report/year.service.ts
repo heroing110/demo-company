@@ -16,13 +16,13 @@ export class YearService {
     }
 
     addYear(year: Year) {
-        return this.http.post(this.url, year).toPromise().then(responseHandler);
+        return this.http.post(this.url + '/insert', year).toPromise().then(responseHandler);
     }
 
     updateYear(year: Year) {
         // app/year/:id
         // app/year/1
-        return this.http.put(this.url + '/' + year.id, year).toPromise().then(responseHandler);
+        return this.http.put(this.url + '/'+year.id, year).toPromise().then(responseHandler);
     }
 
     getYearByParam(query: Object = {}) {
@@ -30,6 +30,6 @@ export class YearService {
         for (const key in query) {
             search.append(key, query[key]);
         }
-        return this.http.get(this.url,{search}).toPromise().then(responseHandler);
+        return this.http.get(this.url, {search}).toPromise().then(responseHandler);
     }
 }

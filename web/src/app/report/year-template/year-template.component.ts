@@ -13,7 +13,7 @@ export class YearTemplateComponent implements OnInit {
 
   @Output() save = new EventEmitter<Year>();
 
-  private hideErr: boolean = true;
+  private showError: boolean = false;
 
   datePickerOption = {
     singleDatePicker: true,
@@ -45,7 +45,7 @@ export class YearTemplateComponent implements OnInit {
 
   saveYear(yearForm: NgForm) {
     if (yearForm.form.invalid) {
-      this.hideErr = false;
+      this.showError = true;
       return;
     }
     this.save.next(this.yearObj);

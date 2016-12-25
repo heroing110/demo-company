@@ -10,9 +10,10 @@ import {NgForm, Validator, Validators} from "@angular/forms";
   styleUrls: ['./year-add.component.css']
 })
 export class YearAddComponent implements OnInit {
-  yearObj: Year = new Year();
+  private yearObj: Year;
 
   constructor(private yearService: YearService, private router: Router) {
+      this.yearObj  = new Year();
   }
 
   ngOnInit() {

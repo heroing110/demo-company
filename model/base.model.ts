@@ -19,6 +19,11 @@ export abstract class DbModel<T> {
         query(`INSERT INTO ${this.name} SET ?`, insertData, callback);
     }
 
+    update(body: T,where:any, callback: (result: any) => any) {
+        const updateData = transformBody(body, this.bean, this.arrayBean, this.splitKey);
+        query(`UPDATE  ${this.name} SET ? WHERE ?`, [updateData, where], callback);
+    }
+
     queryAll(params: any, callback: (rows: T[], fields: any[]) => any) {
         let sql = `select * from ${this.name}`;
         if (params && Object.keys(params).length) {

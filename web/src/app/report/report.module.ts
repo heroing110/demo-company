@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {ShareModule} from "../share/share.module";
-import {ChartsModule} from "ng2-charts";
 import {ReportRoutingModule} from "./report-routing.module";
 
 import {SeasonService} from "./season.service";
@@ -16,10 +15,11 @@ import {SeasonDetailComponent} from './season-detail/season-detail.component';
 import {SeasonTemplateComponent} from './season-template/season-template.component';
 import {YearTemplateComponent} from "./year-template/year-template.component";
 import {YearDetailComponent} from "./year-detail/year-detail.component";
+import {SeasonChartComponent} from "./season-chart/season-chart.component";
+import {SeasonChartService} from "./season-chart.service";
 
 @NgModule({
     imports: [
-        ChartsModule,
         ShareModule,
         ReportRoutingModule
     ],
@@ -33,10 +33,12 @@ import {YearDetailComponent} from "./year-detail/year-detail.component";
         SeasonDetailComponent,
         YearDetailComponent,
         SeasonTemplateComponent,
-        YearTemplateComponent
+        YearTemplateComponent,
+        SeasonChartComponent
     ],
     providers: [
         SeasonService,
+        SeasonChartService,
         YearService
     ]
 })

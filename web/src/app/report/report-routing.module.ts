@@ -8,6 +8,7 @@ import {YearAddComponent} from "./year-add/year-add.component";
 import {YearListComponent} from "./year-list/year-list.component";
 import {SeasonDetailComponent} from "./season-detail/season-detail.component";
 import {YearDetailComponent} from "./year-detail/year-detail.component";
+import {SeasonChartComponent} from "./season-chart/season-chart.component";
 
 const routes: Routes = [
   {
@@ -19,9 +20,10 @@ const routes: Routes = [
       {path: 'season/add', component: SeasonAddComponent},
       {path: 'season/list', component: SeasonListComponent},
       {path: 'season/detail/:id', component: SeasonDetailComponent},
+      {path: 'season/chart', component: SeasonChartComponent},
       {path: 'year/detail/:id', component: YearDetailComponent},
       {path: 'year/add', component: YearAddComponent},
-      {path: 'year/list', component: YearListComponent},
+      {path: 'year/list', component: YearListComponent}
     ]
   }
 ];

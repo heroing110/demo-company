@@ -21,6 +21,5 @@ export class Season {
   companyName: string = '';
   year: string = '';
   season: string = '';
-  sid: number = 0;
-  report: Report = new Report();
+  report: Report | number = new Report();
 }

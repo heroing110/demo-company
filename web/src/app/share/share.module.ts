@@ -8,6 +8,7 @@ import {DatepickerDirective} from './datepicker.directive';
 import {SelectpickerDirective} from './selectpicker.directive';
 import {EqualSumDirective} from './equal-sum.directive';
 import {TooltipDirective} from './tooltip.directive';
+import {EchartsDirective} from "./echarts.directive";
 
 
 @NgModule({
@@ -26,9 +27,10 @@ import {TooltipDirective} from './tooltip.directive';
     DatepickerDirective,
     EqualSumDirective,
     SelectpickerDirective,
-    TooltipDirective
+    TooltipDirective,
+    EchartsDirective
   ],
-  declarations: [DatepickerDirective, SelectpickerDirective, EqualSumDirective, TooltipDirective]
+  declarations: [DatepickerDirective , EchartsDirective, SelectpickerDirective, EqualSumDirective, TooltipDirective]
 })
 export class ShareModule {
 }

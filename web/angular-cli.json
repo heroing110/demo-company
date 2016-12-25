@@ -28,7 +28,8 @@
         "../node_modules/bootstrap-daterangepicker/moment.js",
         "../node_modules/bootstrap-daterangepicker/daterangepicker.js",
         "../node_modules/bootstrap/dist/js/bootstrap.js",
-        "../node_modules/bootstrap-select/dist/js/bootstrap-select.js"
+        "../node_modules/bootstrap-select/dist/js/bootstrap-select.js",
+        "../node_modules/echarts/dist/echarts.min.js"
       ],
       "environments": {
         "source": "environments/environment.ts",
