@@ -3,6 +3,7 @@ import favicon = require('serve-favicon');
 import logger = require('morgan');
 import cookieParser = require('cookie-parser');
 import {urlencoded, json} from "body-parser";
+const cookieSession = require('cookie-session');
 const express = require("express");
 
 import yearRouter from "./routes/year.router";
@@ -20,7 +21,14 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(json());
 app.use(urlencoded({extended: false}));
-app.use(cookieParser());
+
+app.set('trust proxy', 1); // trust first proxy
+
+app.use(cookieSession({
+    name: 'session',
+    secret: 'key',
+    maxAge: 24 * 60 * 60 * 1000
+}));
 
 app.use('/app/year', yearRouter);
 app.use('/app/season', seasonRouter);

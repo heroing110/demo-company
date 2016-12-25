@@ -25,8 +25,12 @@ router
             }
         });
     })
-    .get('/chart',function (req:Request,res) {
-        seasonChartModel.queryChart(req.query,function (rows) {
+    .get('/chart', function (req, res) {
+        const session: any = req['session'];
+        session.view = (session.view || 0) + 1;
+
+        console.log('session.view', session.view);
+        seasonChartModel.queryChart(req.query, function (rows) {
             res.send(rows);
         })
     })
