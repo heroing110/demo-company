@@ -8,6 +8,7 @@ import {LoginModule} from "./login/login.module";
 import {InMemoryWebApiModule} from "angular-in-memory-web-api";
 import {InMemDataService} from "./in-mem-data-service";
 import {HttpModule} from "@angular/http";
+import {AuthGuard} from "./share/auth-guard.service";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import {HttpModule} from "@angular/http";
     AppRoutingModule,
     // InMemoryWebApiModule.forRoot(InMemDataService, {delay: 200})
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

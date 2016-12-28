@@ -16,12 +16,15 @@ export class LoginComponent {
     }
 
     login() {
-        this.userService.login(this.username, this.password) .then(() => {
-            if (this.userService.isLogin()) {
-                this.router.navigate(['/report']);
-            } else {
-                alert('登录失败');
-            }
-        });
+        this.userService
+            .login(this.username, this.password)
+            .then(() => this.userService.isLogin())
+            .then(login => {
+                if (login) {
+                    this.router.navigate(['/report']);
+                } else {
+                    alert('登录失败');
+                }
+            });
     }
 }

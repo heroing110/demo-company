@@ -3,7 +3,7 @@
     <label>单位详细名称</label>
     <input type="text" class="form-control" [(ngModel)]="season.companyName" name="companyName" placeholder="单位详细名称">
     <label class="text-right">年度</label>
-    <input type="text" class="form-control" [(ngModel)]="season.year" name="year">
+    <input type="text" class="form-control" [(ngModel)]="season.year" name="year" placeholder="2016">
     <label style="width: 100px;"></label>
     <label class="text-left">季度</label>
     <input type="radio" value="1" name="season" [(ngModel)]="season.season">第一季度
@@ -40,26 +40,26 @@
                title="请确保分组值与总值相等"
                [equalSum]="[
                   [cell12 , cell13, cell14, cell15],
-                  [cell21 , cell31]
+                  [cell21 , cell31],[cell41,cell51,cell61],[cell71,cell81]
                ]">
       </td>
       <td><input type="number" class="form-control" [(ngModel)]="season.report.cell12"
                  name="cell12" #cell12="ngModel"
                  appEqualSum
-                 [equalSum]="[cell22 , cell32]"
+                 [equalSum]="[cell22 , cell32],[cell42,cell52,cell62],[cell72,cell82]"
                  [trigger]="cell11"
                  data-toggle="tooltip" data-placement="left" title="Tooltip on left">
       </td>
       <td><input type="number" class="form-control" [(ngModel)]="season.report.cell13"
-                 name="cell13" #cell13="ngModel"
+                 name="cell13" #cell13="ngModel" [equalSum]="[cell23 , cell33],[cell43,cell53,cell63],[cell73,cell83]"
                  appEqualSum [trigger]="cell11">
       </td>
       <td><input type="number" class="form-control" [(ngModel)]="season.report.cell14"
-                 name="cell14" #cell14="ngModel"
+                 name="cell14" #cell14="ngModel" [equalSum]="[cell24 , cell34],[cell44,cell54,cell64],[cell74,cell84]"
                  appEqualSum [trigger]="cell11">
       </td>
       <td><input type="number" class="form-control" [(ngModel)]="season.report.cell15"
-                 name="cell15" #cell15="ngModel"
+                 name="cell15" #cell15="ngModel" [equalSum]="[cell25 , cell35],[cell45,cell55,cell65],[cell73,cell85]"
                  appEqualSum [trigger]="cell11">
       </td>
     </tr>
@@ -74,7 +74,7 @@
     <tr>
       <td>1.通过自营电子商务平台</td>
       <td><input type="number" class="form-control" [(ngModel)]="season.report.cell21" name="cell21"
-                 appEqualSum [trigger]="cell11"
+                 appEqualSum [trigger]="cell11" [equalSum]="[cell22 , cell23, cell24, cell25]"
                  #cell21="ngModel">
       </td>
       <td><input type="number" class="form-control" [(ngModel)]="season.report.cell22" name="cell22"

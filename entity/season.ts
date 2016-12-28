@@ -22,4 +22,5 @@ export class Season {
   year: string = '';
   season: string = '';
   report: Report | number = new Report();
+  userid:string='';
 }

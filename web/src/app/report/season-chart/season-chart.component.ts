@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SeasonChartService} from "../season-chart.service";
-import {Season} from "../season";
-import {Report} from "../report";
+import {Season} from "../../../../../entity/season";
+import {Report} from "../../../../../entity/report";
 
 @Component({
     selector: 'app-season-chart',

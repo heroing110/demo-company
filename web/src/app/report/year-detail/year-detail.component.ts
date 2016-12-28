@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {YearService} from "../year.service";
-import {Year} from "../year";
+import {Year} from "../../../../../entity/year";
 
 @Component({
   selector: 'app-year-detail',

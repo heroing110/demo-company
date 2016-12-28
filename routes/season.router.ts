@@ -3,17 +3,20 @@ import {Request} from "express-serve-static-core";
 import {seasonMessageModel} from "../model/season-message.model";
 import {seasonReportModel} from "../model/season-report.model";
 import {seasonChartModel} from "../model/season-chart.model";
-import {Season} from "../web/src/app/report/season";
-import {Report} from "../web/src/app/report/report";
+import {Season} from "../entity/season";
+import {Report} from "../entity/report";
+import {setUserId} from "../util/index";
 const router = Router();
 
 router
     .get('/', function (req: Request, res) {
+        setUserId(req,req.query);
         seasonMessageModel.queryAll(req.query, function (rows: Season[]) {
             res.send(rows);
         });
     })
     .get('/detail', function (req: Request, res) {
+        setUserId(req,req.query);
         seasonMessageModel.queryAll(req.query, function (seasons: Season[]) {
             if (seasons.length > 0) {
                 seasonReportModel.queryAll({id: seasons[0].report}, function (reports: Report[]) {
@@ -26,15 +29,13 @@ router
         });
     })
     .get('/chart', function (req, res) {
-        const session: any = req['session'];
-        session.view = (session.view || 0) + 1;
-
-        console.log('session.view', session.view);
+        setUserId(req,req.query);
         seasonChartModel.queryChart(req.query, function (rows) {
             res.send(rows);
         })
     })
     .post('/insert', function (req: Request, res) {
+        setUserId(req,req.body);
         const season: Season = <Season>req.body;
         const report: Report = <Report>season['report'];
 
@@ -47,6 +48,7 @@ router
         });
     })
     .put('/:id', function (req: Request, res) {
+        setUserId(req,req.body);
         const season: Season = <Season>req.body;
         const report: Report = <Report>season['report'];
 

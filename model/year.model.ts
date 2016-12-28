@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/12/12 0012.
  */
 import {DbModel} from "./base.model";
-import {Year} from "../web/src/app/report/year";
+import {Year} from "../entity/year";
 
 
 class YearModel extends DbModel<Year> {

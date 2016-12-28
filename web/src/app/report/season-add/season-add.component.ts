@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Season} from "../season";
+import {Season} from "../../../../../entity/season";
 import {SeasonService} from "../season.service";
 import {Router} from "@angular/router";
-import {Report} from "../report";
+import {Report} from "../../../../../entity/report";
 
 @Component({
     selector: 'app-season-add',

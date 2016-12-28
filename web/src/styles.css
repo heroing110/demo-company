@@ -19,3 +19,7 @@
 form.showError input.ng-invalid {
     outline: 1px solid #9E3F3F;
 }
+
+form{
+    background-color: #F7F7F7;
+}

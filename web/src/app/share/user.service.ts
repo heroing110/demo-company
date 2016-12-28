@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {UserInfo} from "./user-info";
 import {Http, URLSearchParams} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
-import {responseHandler,md5} from "../util";
+import {responseHandler, md5} from "../util";
 import {createHash} from "crypto";
 /**
  * Created by Administrator on 2016/12/13 0013.
@@ -10,7 +10,6 @@ import {createHash} from "crypto";
 
 @Injectable()
 export class UserService {
-    private loginState = false;
     private userInfo: UserInfo = null;
     private url = 'app/users';
 
@@ -20,13 +19,17 @@ export class UserService {
     login(username, password) {
         return this.http.post(this.url, {username, password}).toPromise()
             .then(responseHandler)
-            .then((userList: UserInfo[]) => {
-                this.loginState = userList.length > 0;
+            .then((data) => {
+                if (data['login']) {
+                    this.setUserInfo(data['user']);
+                }
             });
     }
 
     logout() {
-        this.loginState = false;
+        return this.http.get(this.url + '/logout')
+            .toPromise()
+            .then(responseHandler);
     }
 
     setUserInfo(userInfo: UserInfo) {
@@ -37,8 +40,21 @@ export class UserService {
         return this.userInfo;
     }
 
-    isLogin() {
-        return this.loginState;
+    isLogin(): Promise<boolean> {
+        if (this.userInfo) {
+            return Promise.resolve(true);
+        } else {
+            return this.http.get(this.url + '/userInfo')
+                .toPromise()
+                .then(responseHandler)
+                .then(data => {
+                    if (data['user']) {
+                        this.setUserInfo(data['user']);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+        }
     }
-
 }

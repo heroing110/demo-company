@@ -4,7 +4,7 @@
 import {escape} from 'mysql';
 import {createHash} from 'crypto';
 
-export function transformBody(data, model: any[], arrayBean: string[] , splitKey:string) {
+export function transformBody(data, model: any[], arrayBean: string[], splitKey: string) {
     const result = {};
     model.forEach(function (columnName) {
         result[columnName] = data[columnName] || null;
@@ -21,12 +21,12 @@ export function transformBody(data, model: any[], arrayBean: string[] , splitKey
 export function toSqlWhere(param) {
     let where = [];
     for (const key in param) {
-        if(param[key]) {
+        if (param[key]) {
             where.push(key + '=' + escape(param[key]));
         }
     }
-    if(where.length==0) return '';
-    return 'where '+where.join(' and ');
+    if (where.length == 0) return '';
+    return 'where ' + where.join(' and ');
 }
 
 export function md5(str) {
@@ -34,3 +34,13 @@ export function md5(str) {
     md5sum.update(str);
     return md5sum.digest('hex');
 };
+
+export function setUserId(req, param) {
+    const userid = req['session'].user.id;
+
+    console.info('req.session', req['session']);
+
+    if (userid != '1') {
+        param['userid'] = userid;
+    }
+}

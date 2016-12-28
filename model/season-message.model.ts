@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/12/12 0012.
  */
 import {DbModel} from "./base.model";
-import {Season} from "../web/src/app/report/season";
+import {Season} from "../entity/season";
 
 
 class SeasonMessageModel extends DbModel<Season> {

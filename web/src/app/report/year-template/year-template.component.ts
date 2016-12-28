@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {Year} from "../year";
+import {Year} from "../../../../../entity/year";
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
 
