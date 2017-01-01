@@ -16,6 +16,7 @@ export abstract class DbModel<T> {
 
     insert(body: T, callback: (result: any) => any) {
         const insertData = transformBody(body, this.bean, this.arrayBean, this.splitKey);
+        console.log('insertData',insertData);
         query(`INSERT INTO ${this.name} SET ?`, insertData, callback);
     }
 

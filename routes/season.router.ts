@@ -39,12 +39,23 @@ router
         const season: Season = <Season>req.body;
         const report: Report = <Report>season['report'];
 
-        seasonReportModel.insert(report, function (result) {
-            season['report'] = result['insertId'];
+        const season_param = {
+            year:season.year,
+            season:season.season,
+            userid:season.userid
+        };
 
-            seasonMessageModel.insert(season, function (result) {
-                res.send(result);
-            });
+        seasonMessageModel.queryAll(season_param, function (rows: Season[]) {
+            if(rows.length>0){
+                res.send({exist:1});
+            }else {
+                seasonReportModel.insert(report, function (result) {
+                    season['report'] = result['insertId'];
+                    seasonMessageModel.insert(season, function (result) {
+                        res.send(result);
+                    });
+                });
+            }
         });
     })
     .put('/:id', function (req: Request, res) {

@@ -21,7 +21,13 @@ export class YearAddComponent implements OnInit {
 
   save() {
     this.yearService.addYear(this.yearObj).then((result) => {
-      this.router.navigate(['report/year/list']);
+      if(result && result['insertId']){
+          this.router.navigate(['report/year/list']);
+      }else if(result['exist']){
+          alert('已存在本年度数据');
+      }else{
+          alert('添加失败');
+      }
     });
   }
 

@@ -10,7 +10,7 @@ function handleDisconnect() {
         return;
     }
 
-    connection = createConnection('mysql://root:@localhost/cms'); // Recreate the connection, since
+    connection = createConnection('mysql://root:@127.0.0.1/cms'); // Recreate the connection, since
     // the old one cannot be reused.
     connection.connect(function (err) {              // The server is either down
         if (err) {

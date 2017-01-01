@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import "rxjs/add/operator/switchMap";
 import {SeasonService} from "../season.service";
@@ -21,6 +21,7 @@ export class SeasonDetailComponent implements OnInit {
     this.activatedRoute.params
       .switchMap((params: Params) => this.seasonService.getSeasonDetailByParam(params))
       .subscribe((season: Season[]) => this.season = season[0]);
+    this
   }
 
   save() {

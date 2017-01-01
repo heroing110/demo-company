@@ -1,332 +1,355 @@
-<form #seasonForm="ngForm">
-  <div class="form-inline">
-    <label>单位详细名称</label>
-    <input type="text" class="form-control" [(ngModel)]="season.companyName" name="companyName" placeholder="单位详细名称">
-    <label class="text-right">年度</label>
-    <input type="text" class="form-control" [(ngModel)]="season.year" name="year" placeholder="2016">
-    <label style="width: 100px;"></label>
-    <label class="text-left">季度</label>
-    <input type="radio" value="1" name="season" [(ngModel)]="season.season">第一季度
-    <input type="radio" value="2" name="season" [(ngModel)]="season.season">第二季度
-    <input type="radio" value="3" name="season" [(ngModel)]="season.season">第三季度
-    <input type="radio" value="4" name="season" [(ngModel)]="season.season">第四季度
-  </div>
+<form #seasonForm="ngForm" [class.showError]="showError">
+    <div class="form-inline">
+        <label>单位详细名称</label>
+        <input type="text" class="form-control" [(ngModel)]="season.companyName" name="companyName" placeholder="单位详细名称"
+               required>
+        <label class="text-right">年度</label>
+        <input type="text" class="form-control" [(ngModel)]="season.year" name="year" pattern="^2\d{3}$"
+               placeholder="2016" #year="ngModel" [readonly]="editFlag" required>
+        <span class="text-danger" *ngIf="year.invalid && ((year.touched || year.dirty) || showError)">*请输入正确的年份</span>
+        <label style="width: 100px;"></label>
+        <label class="text-left">季度</label>
+        <span *ngIf="!editFlag">
+          <input type="radio" value="1" name="season" [(ngModel)]="season.season" required>第一季度
+          <input type="radio" value="2" name="season" [(ngModel)]="season.season" required>第二季度
+          <input type="radio" value="3" name="season" [(ngModel)]="season.season" required>第三季度
+          <input type="radio" value="4" name="season" [(ngModel)]="season.season" required>第四季度
+          <span class="text-danger" *ngIf="!season.season && showError">请选择季度</span>
+        </span>
+        <span *ngIf="editFlag">
+            <input type="hidden" class="form-control" [(ngModel)]="season.season" name="season">
+            <label>第{{season.season}}季度</label>
+        </span>
+    </div>
 
-  <table class="table table-bordered table-hover margin-top">
-    <thead>
-    <tr>
-      <th colspan="6">一、电子商务交易情况</th>
-    </tr>
-    <tr>
-      <th rowspan="2">类别</th>
-      <th rowspan="2">总额(万元)</th>
-      <th colspan="2">商品类交易额(万元)</th>
-      <th rowspan="2">服务类交易额(万元)（应用/综合企业填</th>
-      <th rowspan="2">电子商务服务收入（万元）（服务/综合企业填，即第三方）</th>
-    </tr>
-    <tr>
-      <th>其中：销售额（应用/综合企业填）</th>
-      <th>其中：采购额（应用/综合企业填）</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>电子商务交易额</td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.report.cell11" name="cell11"
-               appEqualSum #cell11="ngModel"
-               appTooltip
-               title="请确保分组值与总值相等"
-               [equalSum]="[
+    <table class="table table-bordered table-hover margin-top">
+        <thead>
+        <tr>
+            <th colspan="6">一、电子商务交易情况</th>
+        </tr>
+        <tr>
+            <th rowspan="2">类别</th>
+            <th rowspan="2">总额(万元)</th>
+            <th colspan="2">商品类交易额(万元)</th>
+            <th rowspan="2">服务类交易额(万元)（应用/综合企业填</th>
+            <th rowspan="2">电子商务服务收入（万元）（服务/综合企业填，即第三方）</th>
+        </tr>
+        <tr>
+            <th>其中：销售额（应用/综合企业填）</th>
+            <th>其中：采购额（应用/综合企业填）</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>电子商务交易额</td>
+            <td>
+                <input type="number" class="form-control"
+                       [(ngModel)]="season.report.cell11" name="cell11"
+                       appEqualSum #cell11="ngModel"
+                       [equalSum]="[
                   [cell12 , cell13, cell14, cell15],
                   [cell21 , cell31],[cell41,cell51,cell61],[cell71,cell81]
                ]">
-      </td>
-      <td><input type="number" class="form-control" [(ngModel)]="season.report.cell12"
-                 name="cell12" #cell12="ngModel"
-                 appEqualSum
-                 [equalSum]="[cell22 , cell32],[cell42,cell52,cell62],[cell72,cell82]"
-                 [trigger]="cell11"
-                 data-toggle="tooltip" data-placement="left" title="Tooltip on left">
-      </td>
-      <td><input type="number" class="form-control" [(ngModel)]="season.report.cell13"
-                 name="cell13" #cell13="ngModel" [equalSum]="[cell23 , cell33],[cell43,cell53,cell63],[cell73,cell83]"
-                 appEqualSum [trigger]="cell11">
-      </td>
-      <td><input type="number" class="form-control" [(ngModel)]="season.report.cell14"
-                 name="cell14" #cell14="ngModel" [equalSum]="[cell24 , cell34],[cell44,cell54,cell64],[cell74,cell84]"
-                 appEqualSum [trigger]="cell11">
-      </td>
-      <td><input type="number" class="form-control" [(ngModel)]="season.report.cell15"
-                 name="cell15" #cell15="ngModel" [equalSum]="[cell25 , cell35],[cell45,cell55,cell65],[cell73,cell85]"
-                 appEqualSum [trigger]="cell11">
-      </td>
-    </tr>
-    <tr>
-      <td>一、按交易平台分</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>1.通过自营电子商务平台</td>
-      <td><input type="number" class="form-control" [(ngModel)]="season.report.cell21" name="cell21"
-                 appEqualSum [trigger]="cell11" [equalSum]="[cell22 , cell23, cell24, cell25]"
-                 #cell21="ngModel">
-      </td>
-      <td><input type="number" class="form-control" [(ngModel)]="season.report.cell22" name="cell22"
-                 appEqualSum [trigger]="cell21"
-                 #cell22="ngModel"></td>
-      <td><input type="number" class="form-control" [(ngModel)]="season.report.cell23" name="cell23"
-                 appEqualSum [trigger]="cell21"
-                 #cell23="ngModel"></td>
-      <td><input type="number" class="form-control" [(ngModel)]="season.report.cell24" name="cell24"
-                 appEqualSum [trigger]="cell21"
-                 #cell24="ngModel"></td>
-      <td><input type="number" class="form-control" [(ngModel)]="season.report.cell25" name="cell25"
-                 appEqualSum [trigger]="cell21"
-                 #cell25="ngModel"></td>
-    </tr>
-    <tr>
-      <td>2.通过第三方电子商务平台</td>
-      <td><input type="number" class="form-control" [(ngModel)]="season.report.cell31" name="cell31"
-                 appEqualSum [trigger]="cell11"
-                 #cell31="ngModel">
-      </td>
-      <td><input type="number" class="form-control" [(ngModel)]="season.report.cell32" name="cell32"
-                 appEqualSum [trigger]="cell31"
-                 #cell32="ngModel"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell33" name="cell33"
-                 appEqualSum [trigger]="cell31"
-                 #cell33="ngModel"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell34" name="cell34"
-                 appEqualSum [trigger]="cell31"
-                 #cell34="ngModel"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell35" name="cell35"
-                 appEqualSum [trigger]="cell31"
-                 #cell35="ngModel"></td>
-    </tr>
-    <tr>
-      <td>二、按交易方式分</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>1.B2B</td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell41" name="cell41"
-                 appEqualSum [trigger]="cell11" [equalSum]="[cell42,cell43,cell44,cell45]"
-                 #cell41="ngModel"
-      ></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell42" name="cell42"
-                 appEqualSum [trigger]="cell41"
-                 #cell42="ngModel"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell43" name="cell43"
-                 appEqualSum [trigger]="cell41"
-                 #cell43="ngModel"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell44" name="cell44"
-                 appEqualSum [trigger]="cell41"
-                 #cell44="ngModel"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell45" name="cell45"
-                 appEqualSum [trigger]="cell41"
-                 #cell45="ngModel"></td>
-    </tr>
-    <tr>
-      <td>2.B2C</td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell51" name="cell51"
-                 appEqualSum [trigger]="cell11" [equalSum]="[cell52,cell53,cell54,cell55]"
-                 #cell51="ngModel"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell52" name="cell52"
-                 appEqualSum [trigger]="cell51"
-                 #cell52="ngModel"></td>>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell53" name="cell53"
-                 appEqualSum [trigger]="cell51"
-                 #cell53="ngModel"></td>>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell54" name="cell54"
-                 appEqualSum [trigger]="cell51"
-                 #cell54="ngModel"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell55" name="cell55"
-                 appEqualSum [trigger]="cell51"
-                 #cell55="ngModel"></td>
-    </tr>
-    <tr>
-      <td>3.C2C</td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell61" name="cell61"
-                 appEqualSum [trigger]="cell11" [equalSum]="[cell62,cell63,cell64,cell65]"
-                 #cell61="ngModel"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell62" name="cell62"
-                 appEqualSum [trigger]="cell61"
-                 #cell62="ngModel"></td>>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell63" name="cell63"
-                 appEqualSum [trigger]="cell61"
-                 #cell63="ngModel"></td>>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell64" name="cell64"
-                 appEqualSum [trigger]="cell61"
-                 #cell64="ngModel"></td>>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell65" name="cell65"
-                 appEqualSum [trigger]="cell61"
-                 #cell65="ngModel"></td>>
-    </tr>
-    <tr>
-      <td>三、按地域分</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>1.境内</td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell71" name="cell71"
-                 appEqualSum [trigger]="cell11" [equalSum]="[cell72,cell73,cell74,cell75]"
-                 #cell71="ngModel"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell72" name="cell72"
-                 appEqualSum [trigger]="cell71"
-                 #cell72="ngModel"></td>>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell73" name="cell73"
-                 appEqualSum [trigger]="cell71"
-                 #cell73="ngModel"></td>>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell74" name="cell74"
-                 appEqualSum [trigger]="cell71"
-                 #cell74="ngModel"></td>>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell75" name="cell75"
-                 appEqualSum [trigger]="cell71"
-                 #cell75="ngModel"></td>
-    </tr>
-    <tr>
-      <td>2.境外（跨境电子商务交易）</td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell81" name="cell81"
-                 appEqualSum [trigger]="cell11" [equalSum]="[cell82,cell83,cell84,cell85]"
-                 #cell81="ngModel"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell82" name="cell82"
-                 appEqualSum [trigger]="cell81"
-                 #cell82="ngModel"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell83" name="cell83"
-                 appEqualSum [trigger]="cell81"
-                 #cell83="ngModel"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell84" name="cell84"
-                 appEqualSum [trigger]="cell81"
-                 #cell84="ngModel"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell85" name="cell85"
-                 appEqualSum [trigger]="cell81"
-                 #cell85="ngModel"></td>
-    </tr>
-    <tr>
-      <td>进口</td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell91" name="cell91"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell92" name="cell92"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell93" name="cell93"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell94" name="cell94"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell95" name="cell95"></td>
-    </tr>
-    <tr>
-      <td>出口</td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell101" name="cell101"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell102" name="cell102"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell103" name="cell103"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell104" name="cell104"></td>
-      <td><input type="text" class="form-control" [(ngModel)]="season.report.cell105" name="cell105"></td>
-    </tr>
-    <tr>
-      <td colspan="6" style="text-align:left;">
-        <div class="form-group">
-          <p>补充资料：</p>
-          1.电子商务交易商品数<input type="text" class="form-control" [(ngModel)]="season.cell111" name="cell111"
-                            placeholder="(件) "><br/>
-          2.跨境电子商务交易数<input type="text" class="form-control" [(ngModel)]="season.cell112" name="cell112"
-                            placeholder="(件) ">：
-          其中，进口<input type="text" class="form-control" [(ngModel)]="season.cell113" name="cell113" placeholder="(件) ">，出口<input
-                type="text" class="form-control" [(ngModel)]="season.cell114" name="cell114" placeholder="(件) ">；
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th colspan="6">二、其它电子商务交易模式</th>
-    </tr>
-    <tr>
-      <td colspan="6" style="text-align:left;">
-        <div class="form-group">
-          是否开展O2O业务：
-          <input type="radio" value="1" name="o2oRadio" [(ngModel)]="season.o2oRadio">是
-          <span *ngIf="season.o2oRadio == '1'">
-          占电子商务总交易额比重<input type="text" class="form-control" [(ngModel)]="season.cell121" name="cell121"
-                            placeholder="%">
+            </td>
+            <td>
+                <input type="number" class="form-control" [(ngModel)]="season.report.cell12" name="cell12"
+                       appEqualSum [trigger]="[cell11]" #cell12="ngModel"
+                       [equalSum]="[[cell22,cell32],[cell42,cell52,cell62],[cell72,cell82]]">
+            </td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell13"
+                       name="cell13" #cell13="ngModel"
+                       [equalSum]="[[cell23 , cell33],[cell43,cell53,cell63],[cell73,cell83]]"
+                       appEqualSum [trigger]="[cell11]">
+            </td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell14"
+                       name="cell14" #cell14="ngModel"
+                       [equalSum]="[[cell24 , cell34],[cell44,cell54,cell64],[cell74,cell84]]"
+                       appEqualSum [trigger]="[cell11]">
+            </td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell15"
+                       name="cell15" #cell15="ngModel"
+                       [equalSum]="[[cell25 , cell35],[cell45,cell55,cell65],[cell75,cell85]]"
+                       appEqualSum [trigger]="[cell11]">
+            </td>
+        </tr>
+        <tr>
+            <td>一、按交易平台分</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td>1.通过自营电子商务平台</td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell21" name="cell21"
+                       appEqualSum [trigger]="[cell11]" [equalSum]="[cell22 , cell23, cell24, cell25]"
+                       #cell21="ngModel">
+            </td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell22" name="cell22"
+                       appEqualSum [trigger]="[cell21,cell12]"
+                       #cell22="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell23" name="cell23"
+                       appEqualSum [trigger]="[cell21,cell13]"
+                       #cell23="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell24" name="cell24"
+                       appEqualSum [trigger]="[cell21,cell14]"
+                       #cell24="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell25" name="cell25"
+                       appEqualSum [trigger]="[cell21,cell15]"
+                       #cell25="ngModel"></td>
+        </tr>
+        <tr>
+            <td>2.通过第三方电子商务平台</td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell31" name="cell31"
+                       appEqualSum [trigger]="[cell11]" [equalSum]="[cell32 , cell33, cell34, cell35]"
+                       #cell31="ngModel">
+            </td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell32" name="cell32"
+                       appEqualSum [trigger]="[cell31,cell12]"
+                       #cell32="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell33" name="cell33"
+                       appEqualSum [trigger]="[cell31,cell13]"
+                       #cell33="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell34" name="cell34"
+                       appEqualSum [trigger]="[cell31,cell14]"
+                       #cell34="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell35" name="cell35"
+                       appEqualSum [trigger]="[cell31,cell15]"
+                       #cell35="ngModel"></td>
+        </tr>
+        <tr>
+            <td>二、按交易方式分</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td>1.B2B</td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell41" name="cell41"
+                       appEqualSum [trigger]="[cell11]" [equalSum]="[cell42,cell43,cell44,cell45]"
+                       #cell41="ngModel"
+            ></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell42" name="cell42"
+                       appEqualSum [trigger]="[cell41,cell12]"
+                       #cell42="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell43" name="cell43"
+                       appEqualSum [trigger]="[cell41,cell13]"
+                       #cell43="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell44" name="cell44"
+                       appEqualSum [trigger]="[cell41,cell14]"
+                       #cell44="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell45" name="cell45"
+                       appEqualSum [trigger]="[cell41,cell15]"
+                       #cell45="ngModel"></td>
+        </tr>
+        <tr>
+            <td>2.B2C</td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell51" name="cell51"
+                       appEqualSum [trigger]="[cell11]" [equalSum]="[cell52,cell53,cell54,cell55]"
+                       #cell51="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell52" name="cell52"
+                       appEqualSum [trigger]="[cell51,cell12]"
+                       #cell52="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell53" name="cell53"
+                       appEqualSum [trigger]="[cell51,cell13]"
+                       #cell53="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell54" name="cell54"
+                       appEqualSum [trigger]="[cell51,cell14]"
+                       #cell54="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell55" name="cell55"
+                       appEqualSum [trigger]="[cell51,cell15]"
+                       #cell55="ngModel"></td>
+        </tr>
+        <tr>
+            <td>3.C2C</td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell61" name="cell61"
+                       appEqualSum [trigger]="[cell11]" [equalSum]="[cell62,cell63,cell64,cell65]"
+                       #cell61="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell62" name="cell62"
+                       appEqualSum [trigger]="[cell61,cell12]"
+                       #cell62="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell63" name="cell63"
+                       appEqualSum [trigger]="[cell61,cell13]"
+                       #cell63="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell64" name="cell64"
+                       appEqualSum [trigger]="[cell61,cell14]"
+                       #cell64="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell65" name="cell65"
+                       appEqualSum [trigger]="[cell61,cell15]"
+                       #cell65="ngModel"></td>
+        </tr>
+        <tr>
+            <td>三、按地域分</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td>1.境内</td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell71" name="cell71"
+                       appEqualSum [trigger]="[cell11]" [equalSum]="[cell72,cell73,cell74,cell75]"
+                       #cell71="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell72" name="cell72"
+                       appEqualSum [trigger]="[cell71,cell12]"
+                       #cell72="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell73" name="cell73"
+                       appEqualSum [trigger]="[cell71,cell13]"
+                       #cell73="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell74" name="cell74"
+                       appEqualSum [trigger]="[cell71,cell14]"
+                       #cell74="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell75" name="cell75"
+                       appEqualSum [trigger]="[cell71,cell15]"
+                       #cell75="ngModel"></td>
+        </tr>
+        <tr>
+            <td>2.境外（跨境电子商务交易）</td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell81" name="cell81"
+                       appEqualSum [trigger]="[cell11]" [equalSum]="[[cell82,cell83,cell84,cell85],[cell91,cell101]]"
+                       #cell81="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell82" name="cell82"
+                       appEqualSum [trigger]="[cell81,cell12]" [equalSum]="[cell92,cell102]"
+                       #cell82="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell83" name="cell83"
+                       appEqualSum [trigger]="[cell81,cell13]" [equalSum]="[cell93,cell103]"
+                       #cell83="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell84" name="cell84"
+                       appEqualSum [trigger]="[cell81,cell14]" [equalSum]="[cell94,cell104]"
+                       #cell84="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell85" name="cell85"
+                       appEqualSum [trigger]="[cell81,cell15]" [equalSum]="[cell95,cell105]"
+                       #cell85="ngModel"></td>
+        </tr>
+        <tr>
+            <td>进口</td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell91" name="cell91"
+                       #cell91="ngModel" appEqualSum [trigger]="[cell81]" [equalSum]="[cell92,cell93,cell94,cell95]">
+            </td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell92" name="cell92"
+                       #cell92="ngModel" appEqualSum [trigger]="[cell82,cell91]"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell93" name="cell93"
+                       #cell93="ngModel" appEqualSum [trigger]="[cell83,cell91]"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell94" name="cell94"
+                       #cell94="ngModel" appEqualSum [trigger]="[cell84,cell91]"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell95" name="cell95"
+                       #cell95="ngModel" appEqualSum [trigger]="[cell85,cell91]"></td>
+        </tr>
+        <tr>
+            <td>出口</td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell101" name="cell101"
+                       #cell101="ngModel" appEqualSum [trigger]="[cell81]" [equalSum]="[cell102,cell103,cell94,cell95]">
+            </td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell102" name="cell102"
+                       #cell102="ngModel" appEqualSum [trigger]="[cell82,cell101]"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell103" name="cell103"
+                       #cell103="ngModel" appEqualSum [trigger]="[cell83,cell101]"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell104" name="cell104"
+                       #cell104="ngModel" appEqualSum [trigger]="[cell84,cell101]"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="season.report.cell105" name="cell105"
+                       #cell105="ngModel" appEqualSum [trigger]="[cell85,cell101]"></td>
+        </tr>
+        <tr>
+            <td colspan="6" style="text-align:left;">
+                <div class="form-group">
+                    <p>补充资料：</p>
+                    1.电子商务交易商品数<input type="number" class="form-control" [(ngModel)]="season.cell111" name="cell111"
+                                      placeholder="(件)" required><br/>
+                    2.跨境电子商务交易数<input type="number" class="form-control" [(ngModel)]="season.cell112" name="cell112"
+                                      placeholder="(件)" required>：
+                    其中，进口<input type="number" class="form-control" [(ngModel)]="season.cell113" name="cell113"
+                                placeholder="(件)" required>，出口<input
+                        type="number" class="form-control" [(ngModel)]="season.cell114" name="cell114" placeholder="(件)"
+                        required>；
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="6">二、其它电子商务交易模式</th>
+        </tr>
+        <tr>
+            <td colspan="6" style="text-align:left;">
+                <div class="form-group">
+                    是否开展O2O业务：
+                    <input type="radio" value="1" name="o2oRadio" [(ngModel)]="season.o2oRadio" required>是
+                    <span *ngIf="season.o2oRadio == '1'">
+          占电子商务总交易额比重<input type="number" class="form-control" [(ngModel)]="season.cell121" name="cell121"
+                            placeholder="%" required>
           </span>
-            <input type="radio" value="2" name="o2oRadio" [(ngModel)]="season.o2oRadio">否
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="6" style="text-align:left;">
-        <div class="form-group">
-          是否开展移动电子商务业务：
-          <input type="radio" value="1" name="mobileRadio" [(ngModel)]="season.mobileRadio">是
-          <span *ngIf="season.mobileRadio == '1'">
-          占电子商务总交易额比重<input type="text" class="form-control" [(ngModel)]="season.cell131" name="cell131"
-                            placeholder="%">
+                    <input type="radio" value="2" name="o2oRadio" [(ngModel)]="season.o2oRadio" required>否
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6" style="text-align:left;">
+                <div class="form-group">
+                    是否开展移动电子商务业务：
+                    <input type="radio" value="1" name="mobileRadio" [(ngModel)]="season.mobileRadio" required>是
+                    <span *ngIf="season.mobileRadio == '1'">
+          占电子商务总交易额比重<input type="number" class="form-control" [(ngModel)]="season.cell131" name="cell131"
+                            placeholder="%" required>
           </span>
-          <input type="radio" value="2" name="mobileRadio" [(ngModel)]="season.mobileRadio">否
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th colspan="6">三、支付情况</th>
-    </tr>
-    <tr>
-      <td colspan="6" style="text-align:left;">
-        <div class="form-group">
-          网络支付额占公司总交易额比<input type="text" class="form-control" [(ngModel)]="season.cell141" name="cell141"
-                              placeholder="%">,
-          其中移动支付额占网络支付额比<input type="text" class="form-control" [(ngModel)]="season.cell142" name="cell142"
-                               placeholder="%">;
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th colspan="6">四、物流情况</th>
-    </tr>
-    <tr>
-      <td colspan="6" style="text-align:left;">
-        <div class="form-group">
-          电子商务物流配送情况：
-          <input type="radio" value="1" name="logisticsRadio">自营
-          占物流配送总额比重<input type="text" class="form-control" [(ngModel)]="season.cell151" name="cell151" placeholder="%">
-          <input type="radio" value="2" name="logisticsRadio">外包
-          占物流配送总额比重<input type="text" class="form-control" [(ngModel)]="season.cell152" name="cell152" placeholder="%">
-        </div>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+                    <input type="radio" value="2" name="mobileRadio" [(ngModel)]="season.mobileRadio" required>否
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="6">三、支付情况</th>
+        </tr>
+        <tr>
+            <td colspan="6" style="text-align:left;">
+                <div class="form-group">
+                    网络支付额占公司总交易额比<input type="number" class="form-control" [(ngModel)]="season.cell141" name="cell141"
+                                        placeholder="%" required>
+                    其中移动支付额占网络支付额比<input type="number" class="form-control" [(ngModel)]="season.cell142" name="cell142"
+                                         placeholder="%" required>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="6">四、物流情况</th>
+        </tr>
+        <tr>
+            <td colspan="6" style="text-align:left;">
+                <div class="form-group">
+                    电子商务物流配送情况：<br/>
+                    自营 占物流配送总额比重<input type="number" class="form-control" [(ngModel)]="season.cell151" name="cell151"
+                                       placeholder="%" required>
+                    外包 占物流配送总额比重<input type="number" class="form-control" [(ngModel)]="season.cell152" name="cell152"
+                                       placeholder="%" required>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
 
-  <div class="form-inline">
-    <div class="form-group" style="margin-left:25px;">
-      填表人：<input type="text" class="form-control" [(ngModel)]="season.cell161" name="cell161">
+    <div class="form-inline">
+        <div class="form-group" style="margin-left:25px;">
+            填表人：<input type="text" class="form-control" [(ngModel)]="season.cell161" name="cell161" required>
+        </div>
+        <div class="form-group" style="margin-left:25px;">
+            职务：<input type="text" class="form-control" [(ngModel)]="season.cell162" name="cell162" required>
+        </div>
+        <div class="form-group" style="margin-left:25px;">
+            联系电话：<input type="number" class="form-control" [(ngModel)]="season.cell163" name="cell163">
+        </div>
+        <div class="form-group" style="margin-left:25px;">
+            手机：<input type="number" class="form-control" [(ngModel)]="season.cell164" name="cell164">
+        </div>
+        <div class="form-group margin-top" style="margin-left:25px;">
+            填报日期:
+            <input type="text" class="form-control" [(value)]="season.cell165" name="cell165" appDatepicker
+                   [option]="datePickerOption" required>
+        </div>
     </div>
-    <div class="form-group" style="margin-left:25px;">
-      职务：<input type="text" class="form-control" [(ngModel)]="season.cell162" name="cell162">
+    <hr/>
+    <div class="row" style="width:1000px; margin:10px auto; text-align:center">
+        <button type="submit" class="btn btn-primary" (click)="saveSeason(seasonForm)">提交</button>
+        <button type="button" class="btn btn-default" (click)="back()">返回</button>
     </div>
-    <div class="form-group" style="margin-left:25px;">
-      联系电话：<input type="text" class="form-control" [(ngModel)]="season.cell163" name="cell163">
-    </div>
-    <div class="form-group" style="margin-left:25px;">
-      手机：<input type="text" class="form-control" [(ngModel)]="season.cell164" name="cell164">
-    </div>
-    <div class="form-group margin-top" style="margin-left:25px;">
-      填报日期:
-      <input type="text" class="form-control" [(value)]="season.cell165" name="cell165" appDatepicker
-             [option]="datePickerOption">
-    </div>
-  </div>
-  <hr/>
-  <div class="row" style="width:1000px; margin:10px auto; text-align:center">
-    <button type="submit" class="btn btn-primary" (click)="saveSeason(seasonForm)" *ngIf="!notEdit">提交</button>
-    <button type="button" class="btn btn-default" (click)="back()">返回</button>
-  </div>
 </form>

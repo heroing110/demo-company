@@ -6,8 +6,11 @@ import {createHash} from 'crypto';
 
 export function transformBody(data, model: any[], arrayBean: string[], splitKey: string) {
     const result = {};
+    console.log('data',data);
+    console.log('model',model);
     model.forEach(function (columnName) {
-        result[columnName] = data[columnName] || null;
+        console.log('data['+columnName+']',data[columnName]);
+        result[columnName] = data[columnName];
     });
     if (arrayBean && arrayBean.length) {
         arrayBean.forEach(columnName => {

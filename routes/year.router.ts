@@ -15,9 +15,22 @@ yearRouter
     })
     .post('/insert', function (req: Request, res) {
         setUserId(req,req.body);
-        yearModel.insert(req.body, function (result) {
-            res.send(result);
-        })
+        const yearObj : Year = <Year>req.body;
+        console.log('yearObj',yearObj);
+        const year_param = {
+            userid : yearObj.userid,
+            year : yearObj.year
+        }
+
+        yearModel.queryAll(year_param, function (rows: Year[]) {
+            if (rows.length>0) {
+                res.send({exist:true});
+            }else{
+                yearModel.insert(yearObj, function (result) {
+                    res.send(result);
+                })
+            }
+        });
     })
     .put('/:id', function (req: Request, res) {
         setUserId(req,req.body);

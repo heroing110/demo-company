@@ -15,9 +15,12 @@ export function equalSumValidator(ctrls: any[]): ValidatorFn {
     }
 }
 
-function equalSumTriggerParent(parent: NgModel) {
+function equalSumTriggerParent(parent :NgModel[]) {
     return (control: AbstractControl): {[key: string]: any} => {
-        parent.control.updateValueAndValidity();
+        parent.forEach(function (item) {
+            item.control.updateValueAndValidity();
+        });
+
         return null;
     };
 }

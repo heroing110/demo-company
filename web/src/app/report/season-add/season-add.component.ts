@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {Season} from "../../../../../entity/season";
 import {SeasonService} from "../season.service";
 import {Router} from "@angular/router";
@@ -21,9 +21,12 @@ export class SeasonAddComponent implements OnInit {
 
     save() {
         this.seasonService.addSeason(this.season).then((result) => {
+            console.log('result',result);
             if (result && result['insertId']) {
                 this.router.navigate(['report/season/list']);
-            } else {
+            } else if(result['exist']){
+                alert('本年度已存在该季度数据');
+            } else{
                 alert('添加失败');
             }
         });

@@ -32,31 +32,30 @@
                 <input type="number" class="form-control"
                        [(ngModel)]="yearObj.r_cell11" name="r_cell11"
                        appEqualSum #r_cell11="ngModel"
-                       appTooltip
-                       title="请确保分组值与总值相等"
                        [equalSum]="[
                   [r_cell12 , r_cell13, r_cell14, r_cell15],
-                  [r_cell21 , r_cell31]
+                  [r_cell21 , r_cell31],[r_cell41,r_cell51,r_cell61],[r_cell71,r_cell81]
                ]">
             </td>
-            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell12"
-                       name="r_cell12" #r_cell12="ngModel"
-                       appEqualSum
-                       [equalSum]="[r_cell22 , r_cell32]"
-                       [trigger]="r_cell11"
-                       data-toggle="tooltip" data-placement="left" title="Tooltip on left">
+            <td>
+                <input type="number" class="form-control" [(ngModel)]="yearObj.r_cell12" name="r_cell12"
+                       appEqualSum [trigger]="[r_cell11]" #r_cell12="ngModel"
+                       [equalSum]="[[r_cell22,r_cell32],[r_cell42,r_cell52,r_cell62],[r_cell72,r_cell82]]">
             </td>
             <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell13"
                        name="r_cell13" #r_cell13="ngModel"
-                       appEqualSum [trigger]="r_cell11">
+                       [equalSum]="[[r_cell23 , r_cell33],[r_cell43,r_cell53,r_cell63],[r_cell73,r_cell83]]"
+                       appEqualSum [trigger]="[r_cell11]">
             </td>
             <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell14"
                        name="r_cell14" #r_cell14="ngModel"
-                       appEqualSum [trigger]="r_cell11">
+                       [equalSum]="[[r_cell24 , r_cell34],[r_cell44,r_cell54,r_cell64],[r_cell74,r_cell84]]"
+                       appEqualSum [trigger]="[r_cell11]">
             </td>
             <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell15"
                        name="r_cell15" #r_cell15="ngModel"
-                       appEqualSum [trigger]="r_cell11">
+                       [equalSum]="[[r_cell25 , r_cell35],[r_cell45,r_cell55,r_cell65],[r_cell75,r_cell85]]"
+                       appEqualSum [trigger]="[r_cell11]">
             </td>
         </tr>
         <tr>
@@ -70,28 +69,40 @@
         <tr>
             <td>1.通过自营电子商务平台</td>
             <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell21" name="r_cell21"
-                       appEqualSum [trigger]="r_cell11"
+                       appEqualSum [trigger]="[r_cell11]" [equalSum]="[r_cell22 , r_cell23, r_cell24, r_cell25]"
                        #r_cell21="ngModel">
             </td>
             <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell22" name="r_cell22"
-                       appEqualSum [trigger]="r_cell12"
+                       appEqualSum [trigger]="[r_cell21,r_cell12]"
                        #r_cell22="ngModel"></td>
-            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell23" name="r_cell23"></td>
-            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell24" name="r_cell24"></td>
-            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell25" name="r_cell25"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell23" name="r_cell23"
+                       appEqualSum [trigger]="[r_cell21,r_cell13]"
+                       #r_cell23="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell24" name="r_cell24"
+                       appEqualSum [trigger]="[r_cell21,r_cell14]"
+                       #r_cell24="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell25" name="r_cell25"
+                       appEqualSum [trigger]="[r_cell21,r_cell15]"
+                       #r_cell25="ngModel"></td>
         </tr>
         <tr>
             <td>2.通过第三方电子商务平台</td>
             <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell31" name="r_cell31"
-                       appEqualSum [trigger]="r_cell11"
+                       appEqualSum [trigger]="[r_cell11]" [equalSum]="[r_cell32 , r_cell33, r_cell34, r_cell35]"
                        #r_cell31="ngModel">
             </td>
             <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell32" name="r_cell32"
-                       appEqualSum [trigger]="r_cell12"
+                       appEqualSum [trigger]="[r_cell31,r_cell12]"
                        #r_cell32="ngModel"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell33" name="r_cell33"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell34" name="r_cell34"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell35" name="r_cell35"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell33" name="r_cell33"
+                       appEqualSum [trigger]="[r_cell31,r_cell13]"
+                       #r_cell33="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell34" name="r_cell34"
+                       appEqualSum [trigger]="[r_cell31,r_cell14]"
+                       #r_cell34="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell35" name="r_cell35"
+                       appEqualSum [trigger]="[r_cell31,r_cell15]"
+                       #r_cell35="ngModel"></td>
         </tr>
         <tr>
             <td>二、按交易方式分</td>
@@ -103,27 +114,58 @@
         </tr>
         <tr>
             <td>1.B2B</td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell41" name="r_cell41"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell42" name="r_cell42"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell43" name="r_cell43"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell44" name="r_cell44"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell45" name="r_cell45"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell41" name="r_cell41"
+                       appEqualSum [trigger]="[r_cell11]" [equalSum]="[r_cell42,r_cell43,r_cell44,r_cell45]"
+                       #r_cell41="ngModel"
+            ></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell42" name="r_cell42"
+                       appEqualSum [trigger]="[r_cell41,r_cell12]"
+                       #r_cell42="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell43" name="r_cell43"
+                       appEqualSum [trigger]="[r_cell41,r_cell13]"
+                       #r_cell43="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell44" name="r_cell44"
+                       appEqualSum [trigger]="[r_cell41,r_cell14]"
+                       #r_cell44="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell45" name="r_cell45"
+                       appEqualSum [trigger]="[r_cell41,r_cell15]"
+                       #r_cell45="ngModel"></td>
         </tr>
         <tr>
             <td>2.B2C</td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell51" name="r_cell51"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell52" name="r_cell52"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell53" name="r_cell53"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell54" name="r_cell54"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell55" name="r_cell55"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell51" name="r_cell51"
+                       appEqualSum [trigger]="[r_cell11]" [equalSum]="[r_cell52,r_cell53,r_cell54,r_cell55]"
+                       #r_cell51="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell52" name="r_cell52"
+                       appEqualSum [trigger]="[r_cell51,r_cell12]"
+                       #r_cell52="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell53" name="r_cell53"
+                       appEqualSum [trigger]="[r_cell51,r_cell13]"
+                       #r_cell53="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell54" name="r_cell54"
+                       appEqualSum [trigger]="[r_cell51,r_cell14]"
+                       #r_cell54="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell55" name="r_cell55"
+                       appEqualSum [trigger]="[r_cell51,r_cell15]"
+                       #r_cell55="ngModel"></td>
         </tr>
         <tr>
             <td>3.C2C</td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell61" name="r_cell61"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell62" name="r_cell62"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell63" name="r_cell63"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell64" name="r_cell64"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell65" name="r_cell65"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell61" name="r_cell61"
+                       appEqualSum [trigger]="[r_cell11]" [equalSum]="[r_cell62,r_cell63,r_cell64,r_cell65]"
+                       #r_cell61="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell62" name="r_cell62"
+                       appEqualSum [trigger]="[r_cell61,r_cell12]"
+                       #r_cell62="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell63" name="r_cell63"
+                       appEqualSum [trigger]="[r_cell61,r_cell13]"
+                       #r_cell63="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell64" name="r_cell64"
+                       appEqualSum [trigger]="[r_cell61,r_cell14]"
+                       #r_cell64="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell65" name="r_cell65"
+                       appEqualSum [trigger]="[r_cell61,r_cell15]"
+                       #r_cell65="ngModel"></td>
         </tr>
         <tr>
             <td>三、按地域分</td>
@@ -135,35 +177,68 @@
         </tr>
         <tr>
             <td>1.境内</td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell71" name="r_cell71"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell72" name="r_cell72"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell73" name="r_cell73"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell74" name="r_cell74"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell75" name="r_cell75"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell71" name="r_cell71"
+                       appEqualSum [trigger]="[r_cell11]" [equalSum]="[r_cell72,r_cell73,r_cell74,r_cell75]"
+                       #r_cell71="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell72" name="r_cell72"
+                       appEqualSum [trigger]="[r_cell71,r_cell12]"
+                       #r_cell72="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell73" name="r_cell73"
+                       appEqualSum [trigger]="[r_cell71,r_cell13]"
+                       #r_cell73="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell74" name="r_cell74"
+                       appEqualSum [trigger]="[r_cell71,r_cell14]"
+                       #r_cell74="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell75" name="r_cell75"
+                       appEqualSum [trigger]="[r_cell71,r_cell15]"
+                       #r_cell75="ngModel"></td>
         </tr>
         <tr>
             <td>2.境外（跨境电子商务交易）</td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell81" name="r_cell81"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell82" name="r_cell82"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell83" name="r_cell83"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell84" name="r_cell84"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell85" name="r_cell85"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell81" name="r_cell81"
+                       appEqualSum [trigger]="[r_cell11]"
+                       [equalSum]="[[r_cell82,r_cell83,r_cell84,r_cell85],[r_cell91,r_cell101]]"
+                       #r_cell81="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell82" name="r_cell82"
+                       appEqualSum [trigger]="[r_cell81,r_cell12]" [equalSum]="[r_cell92,r_cell102]"
+                       #r_cell82="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell83" name="r_cell83"
+                       appEqualSum [trigger]="[r_cell81,r_cell13]" [equalSum]="[r_cell93,r_cell103]"
+                       #r_cell83="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell84" name="r_cell84"
+                       appEqualSum [trigger]="[r_cell81,r_cell14]" [equalSum]="[r_cell94,r_cell104]"
+                       #r_cell84="ngModel"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell85" name="r_cell85"
+                       appEqualSum [trigger]="[r_cell81,r_cell15]" [equalSum]="[r_cell95,r_cell105]"
+                       #r_cell85="ngModel"></td>
         </tr>
         <tr>
             <td>进口</td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell91" name="r_cell91"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell92" name="r_cell92"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell93" name="r_cell93"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell94" name="r_cell94"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell95" name="r_cell95"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell91" name="r_cell91"
+                       #r_cell91="ngModel" appEqualSum [trigger]="[r_cell81]"
+                       [equalSum]="[r_cell92,r_cell93,r_cell94,r_cell95]"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell92" name="r_cell92"
+                       #r_cell92="ngModel" appEqualSum [trigger]="[r_cell82,r_cell91]"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell93" name="r_cell93"
+                       #r_cell93="ngModel" appEqualSum [trigger]="[r_cell83,r_cell91]"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell94" name="r_cell94"
+                       #r_cell94="ngModel" appEqualSum [trigger]="[r_cell84,r_cell91]"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell95" name="r_cell95"
+                       #r_cell95="ngModel" appEqualSum [trigger]="[r_cell85,r_cell91]"></td>
         </tr>
         <tr>
             <td>出口</td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell101" name="r_cell101"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell102" name="r_cell102"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell103" name="r_cell103"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell104" name="r_cell104"></td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.r_cell105" name="r_cell105"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell101" name="r_cell101"
+                       #r_cell101="ngModel" appEqualSum [trigger]="[r_cell81]"
+                       [equalSum]="[r_cell102,r_cell103,r_cell94,r_cell95]"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell102" name="r_cell102"
+                       #r_cell102="ngModel" appEqualSum [trigger]="[r_cell82,r_cell101]"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell103" name="r_cell103"
+                       #r_cell103="ngModel" appEqualSum [trigger]="[r_cell83,r_cell101]"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell104" name="r_cell104"
+                       #r_cell104="ngModel" appEqualSum [trigger]="[r_cell84,r_cell101]"></td>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.r_cell105" name="r_cell105"
+                       #r_cell105="ngModel" appEqualSum [trigger]="[r_cell85,r_cell101]"></td>
         </tr>
         </tbody>
     </table>

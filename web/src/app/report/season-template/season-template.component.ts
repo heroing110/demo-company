@@ -15,19 +15,17 @@ export class SeasonTemplateComponent {
   };
 
   @Input() season: Season;
-
-  @Input() notEdit: boolean;
-
+  @Input() editFlag: boolean;
   @Output() save = new EventEmitter<Season>();
 
-  private hideErr = true;
+  private showError: boolean = false;
 
   constructor( private router: Router) {
   }
 
   saveSeason(seasonForm: NgForm) {
     if (seasonForm.form.invalid) {
-      this.hideErr = false;
+      this.showError = true;
       return;
     }
     this.save.next(this.season);
