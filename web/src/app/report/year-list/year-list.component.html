@@ -2,26 +2,27 @@
   年报表查看
 </h4>
 
-<input type="text" [(ngModel)]="params.id">
+单位详细名称:
+<input type="text" [(ngModel)]="params.companyName">
 
 <button class="btn" (click)="query()" >查询</button>
 
 <table class="table table-bordered table-hover table-condensed">
   <thead>
   <tr>
-    <th>id</th>
-    <th>商品类</th>
-    <th>服务类</th>
-    <th>填报日期</th>
+    <th>序号</th>
+    <th>年度</th>
+    <th>单位详细名称</th>
+    <th>填报人</th>
     <th>操作</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let year of yearList">
-    <td>{{year.id}}</td>
-    <td>{{year.cell62}}</td>
-    <td>{{year.cell63}}</td>
-    <td>{{year.cell75}}</td>
+  <tr *ngFor="let year of yearList;let i = index">
+    <td>{{i+1}}</td>
+    <td>{{year.year}}</td>
+    <td>{{year.companyName}}</td>
+    <td>{{year.companyName}}</td>
     <td>
       <button type="button" class="btn btn-default btn-sm"
               [routerLink]="['../detail' , year.id]">查看

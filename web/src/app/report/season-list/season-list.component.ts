@@ -11,6 +11,8 @@ export class SeasonListComponent implements OnInit {
 
   seasonList: Season[];
 
+  params = {};
+
   constructor(private seasonService: SeasonService) {
   }
 
@@ -20,5 +22,10 @@ export class SeasonListComponent implements OnInit {
     });
   }
 
+  query(){
+    this.seasonService.getSeasonByParam(this.params).then((seasons:Season[])=>{
+      this.seasonList = seasons;
+    });
+  }
 
 }
