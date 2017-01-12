@@ -67,188 +67,122 @@ export class SeasonChartComponent implements OnInit {
     }
 
     initChartOption(params) {
+        const tooltip = {
+            trigger: 'axis',
+            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+        };
+        const grid = {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        };
+        const xAxis = [{
+            type: 'category',
+            data: params.years
+        }];
+        const yAxis = [{
+            type: 'value'
+        }];
 
         this.chartOption1 = {
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                }
-            },
+            tooltip, grid, xAxis, yAxis,
             legend: {
                 data: ['商品类交易额', '服务类交易额', '电子商务服务收入']
             },
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: [
-                {
-                    type: 'category',
-                    data: params.years
-                }
-            ],
-            yAxis: [{
-                type: 'value'
-            }],
             series: params.series
         };
 
         this.chartOption2 = {
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                }
-            },
+            tooltip, grid, xAxis, yAxis,
             legend: {
                 data: ['通过自营电子商务平台', '通过第三方电子商务平台']
             },
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: [
-                {
-                    type: 'category',
-                    data: params.years
-                }
-            ],
-            yAxis: [{
-                type: 'value'
-            }],
             series: params.series2
         };
 
         this.chartOption3 = {
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                }
-            },
+            tooltip, grid, xAxis, yAxis,
             legend: {
-                data: ['B2B', 'B2C','C2C']
+                data: ['B2B', 'B2C', 'C2C']
             },
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: [
-                {
-                    type: 'category',
-                    data: params.years
-                }
-            ],
-            yAxis: [{
-                type: 'value'
-            }],
             series: params.series3
         };
 
         this.chartOption4 = {
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                }
-            },
+            tooltip, grid, xAxis, yAxis,
             legend: {
                 data: ['境内', '境外']
             },
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: [
-                {
-                    type: 'category',
-                    data: params.years
-                }
-            ],
-            yAxis: [{
-                type: 'value'
-            }],
             series: params.series4
         };
 
     }
 
     getSeries() {
-        return [
-            {
-                name: '商品类交易额',
-                type: 'bar',
-                stack: '1',
-                data: []
-            }, {
-                name: '服务类交易额',
-                type: 'bar',
-                stack: '1',
-                data: []
-            }, {
-                name: '电子商务服务收入',
-                type: 'bar',
-                stack: '1',
-                data: []
-            },
-            {
-                name: '商品类交易额',
-                type: 'bar',
-                stack: '2',
-                data: []
-            }, {
-                name: '服务类交易额',
-                type: 'bar',
-                stack: '2',
-                data: []
-            }, {
-                name: '电子商务服务收入',
-                type: 'bar',
-                stack: '2',
-                data: []
-            },
-            {
-                name: '商品类交易额',
-                type: 'bar',
-                stack: '3',
-                data: []
-            }, {
-                name: '服务类交易额',
-                type: 'bar',
-                stack: '3',
-                data: []
-            }, {
-                name: '电子商务服务收入',
-                type: 'bar',
-                stack: '3',
-                data: []
-            },
-            {
-                name: '商品类交易额',
-                type: 'bar',
-                stack: '4',
-                data: []
-            }, {
-                name: '服务类交易额',
-                type: 'bar',
-                stack: '4',
-                data: []
-            }, {
-                name: '电子商务服务收入',
-                type: 'bar',
-                stack: '4',
-                data: []
-            }
-        ]
+        return [{
+            name: '商品类交易额',
+            type: 'bar',
+            stack: '1',
+            data: []
+        }, {
+            name: '服务类交易额',
+            type: 'bar',
+            stack: '1',
+            data: []
+        }, {
+            name: '电子商务服务收入',
+            type: 'bar',
+            stack: '1',
+            data: []
+        }, {
+            name: '商品类交易额',
+            type: 'bar',
+            stack: '2',
+            data: []
+        }, {
+            name: '服务类交易额',
+            type: 'bar',
+            stack: '2',
+            data: []
+        }, {
+            name: '电子商务服务收入',
+            type: 'bar',
+            stack: '2',
+            data: []
+        }, {
+            name: '商品类交易额',
+            type: 'bar',
+            stack: '3',
+            data: []
+        }, {
+            name: '服务类交易额',
+            type: 'bar',
+            stack: '3',
+            data: []
+        }, {
+            name: '电子商务服务收入',
+            type: 'bar',
+            stack: '3',
+            data: []
+        }, {
+            name: '商品类交易额',
+            type: 'bar',
+            stack: '4',
+            data: []
+        }, {
+            name: '服务类交易额',
+            type: 'bar',
+            stack: '4',
+            data: []
+        }, {
+            name: '电子商务服务收入',
+            type: 'bar',
+            stack: '4',
+            data: []
+        }]
     }
 
     getSeries2() {
@@ -263,7 +197,7 @@ export class SeasonChartComponent implements OnInit {
                 type: 'bar',
                 stack: '1',
                 data: []
-            },            {
+            }, {
                 name: '通过自营电子商务平台',
                 type: 'bar',
                 stack: '2',
@@ -273,7 +207,7 @@ export class SeasonChartComponent implements OnInit {
                 type: 'bar',
                 stack: '2',
                 data: []
-            },            {
+            }, {
                 name: '通过自营电子商务平台',
                 type: 'bar',
                 stack: '3',
@@ -283,7 +217,7 @@ export class SeasonChartComponent implements OnInit {
                 type: 'bar',
                 stack: '3',
                 data: []
-            },            {
+            }, {
                 name: '通过自营电子商务平台',
                 type: 'bar',
                 stack: '4',
@@ -378,7 +312,7 @@ export class SeasonChartComponent implements OnInit {
                 type: 'bar',
                 stack: '1',
                 data: []
-            },            {
+            }, {
                 name: '境内',
                 type: 'bar',
                 stack: '2',
@@ -388,7 +322,7 @@ export class SeasonChartComponent implements OnInit {
                 type: 'bar',
                 stack: '2',
                 data: []
-            },            {
+            }, {
                 name: '境内',
                 type: 'bar',
                 stack: '3',
@@ -398,7 +332,7 @@ export class SeasonChartComponent implements OnInit {
                 type: 'bar',
                 stack: '3',
                 data: []
-            },            {
+            }, {
                 name: '境内',
                 type: 'bar',
                 stack: '4',
