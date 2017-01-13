@@ -257,14 +257,15 @@
             <td>
                 <input type="text" class="form-control"
                        [(ngModel)]="yearObj.cell11"
-                       name="cell11" required>
+                       name="cell11" required pattern="^[\u4E00-\u9FFF]+$" #cell11="ngModel" maxlength="10">
+                <span class="text-danger" *ngIf="cell11.invalid && ((cell11.touched || cell11.dirty) || showError)">法人只能填写汉字</span>
             </td>
         </tr>
         <tr>
             <td>02</td>
-            <td>联系方式</td>
-            <td><input type="text" class="form-control" [(ngModel)]="yearObj.cell21" name="cell21" #cell21="ngModel"
-                       required>
+            <td>联系方式（单位负责人）</td>
+            <td>
+                <input type="number" class="form-control" [(ngModel)]="yearObj.cell21" name="cell21" #cell21="ngModel">
             </td>
         </tr>
         <tr>
@@ -282,14 +283,14 @@
         </tr>
         <tr>
             <td>电话号码</td>
-            <td><input type="number" class="form-control" [(ngModel)]="yearObj.cell33" name="cell33" #cell33="ngModel"
-                       required>
+            <td><input type="number" class="form-control" [(ngModel)]="yearObj.cell33" name="cell33" #cell33="ngModel">
             </td>
         </tr>
         <tr>
             <td>手机号码</td>
-            <td><input type="number" class="form-control" [(ngModel)]="yearObj.cell34" name="cell34" #cell34="ngModel"
-                       required>
+            <td><input type="text" class="form-control" [(ngModel)]="yearObj.cell34" name="cell34" #cell34="ngModel"
+                       pattern="\d{11}" required maxlength="11">
+                <span class="text-danger" *ngIf="cell34.invalid && ((cell34.touched || cell34.dirty) || showError)">手机号为11位数字</span>
             </td>
         </tr>
         <tr>
@@ -343,7 +344,7 @@
             <td>05</td>
             <td>行业类别(可多选)</td>
             <td>
-                <select appSelectpicker class="form-control" multiple name="industry" [(ngModel)]="yearObj.industry"
+                <select appSelectpicker class="form-control" name="industry" [(ngModel)]="yearObj.industry"
                         required title="请选择行业">
                     <option value="电子商务应用企业">电子商务应用企业</option>
                     <option value="电子商务服务企业">电子商务服务企业</option>
@@ -364,40 +365,39 @@
             </td>
         </tr>
         <tr>
-            <td rowspan="2">07</td>
-            <td rowspan="2">跨境电子商务经营情况</td>
+            <td>07</td>
+            <td>跨境电子商务经营情况</td>
             <td>
-                <div class="text-left">开展跨境电子商务类型(可多选)</div>
-                <select appSelectpicker class="form-control" multiple name="crossCountry"
-                        [(ngModel)]="yearObj.crossCountry"
-                        required title="请选择商务类型">
-                    <option value="进口">进口</option>
-                    <option value="出口">出口</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="text-left">
-                    开展跨境电子商务业务的主要交易平台：
+                <div class="text-left"><input type="checkbox" name="checkbox3" [(ngModel)]="checkbox3" value="span_41"/>开展跨境电子商务类型(可多选)
                 </div>
-                <div class="form-inline text-left">
-                    自营平台 <input type="checkbox" name="checkbox1" [(ngModel)]="checkbox1" value="span_41"/>
-                    <span *ngIf="checkbox1">
+                <div class="text-left" *ngIf="checkbox3">
+                    <select appSelectpicker class="form-control" multiple name="crossCountry"
+                            [(ngModel)]="yearObj.crossCountry"
+                            required title="请选择商务类型">
+                        <option value="进口">进口</option>
+                        <option value="出口">出口</option>
+                    </select>
+                    <div class="text-left">
+                        开展跨境电子商务业务的主要交易平台：
+                    </div>
+                    <div class="form-inline text-left">
+                        自营平台 <input type="checkbox" name="checkbox1" [(ngModel)]="checkbox1" value="span_41"/>
+                        <span *ngIf="checkbox1">
       				平台名称及网址
       				<input type="text" class="form-control" style="width:60%;" [(ngModel)]="yearObj.cell41"
                            name="cell41"
                            required>
-      	</span>
-                </div>
-                <div class="form-inline text-left">
-                    其他平台<input type="checkbox" name="checkbox2" [(ngModel)]="checkbox2" value="span_42"/>
-                    <span *ngIf="checkbox2">
+      	            </span>
+                    </div>
+                    <div class="form-inline text-left">
+                        其他平台 <input type="checkbox" name="checkbox2" [(ngModel)]="checkbox2" value="span_42"/>
+                        <span *ngIf="checkbox2">
       				平台名称及网址
-      				<input type="text" class="form-control" style="width:80%;" [(ngModel)]="yearObj.cell42"
+      				<input type="text" class="form-control" style="width:60%;" [(ngModel)]="yearObj.cell42"
                            name="cell42"
                            required>
-            </span>
+                    </span>
+                    </div>
                 </div>
             </td>
         </tr>
@@ -407,20 +407,18 @@
             <td>
                 <div class="form-inline text-left" style="margin-bottom:10px;">
                     期末从业人员合计
-                    <input type="number" class="form-control" style="width:80%;" [(ngModel)]="yearObj.cell51"
-                           name="cell51"
-                           required>
-                </div>
-                <div class="form-inline text-left">
+                    <input type="number" class="form-control" [(ngModel)]="yearObj.cell51"
+                           name="cell51" #cell51="ngModel" style="margin-bottom: 5px;"
+                           required appEqualSum [equalSum]="[cell52,cell53,cell54]">
                     其中：研究生及以上<input type="number" class="form-control" [(ngModel)]="yearObj.cell52" name="cell52"
-                                    placeholder="人"
-                                    required>，
+                                    placeholder="人" #cell52="ngModel" appEqualSum [trigger]="[cell51]"
+                                    required>
                     大学本（专）科<input type="number" class="form-control" [(ngModel)]="yearObj.cell53" name="cell53"
-                                  placeholder="人"
-                                  required>，
+                                  placeholder="人" #cell53="ngModel" appEqualSum [trigger]="[cell51]"
+                                  required>
                     高中及以下 <input type="number" class="form-control" [(ngModel)]="yearObj.cell54" name="cell54"
-                                 placeholder="人"
-                                 required>；
+                                 placeholder="人" #cell54="ngModel" appEqualSum [trigger]="[cell51]"
+                                 required>
 
                 </div>
 

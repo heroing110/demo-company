@@ -30,6 +30,7 @@ export class YearTemplateComponent implements OnInit {
 
   checkbox1 = false;
   checkbox2 = false;
+  checkbox3 = false;
 
   constructor(private router: Router) {
   }
@@ -40,6 +41,10 @@ export class YearTemplateComponent implements OnInit {
     }
     if (this.yearObj.cell42) {
       this.checkbox2 = true;
+    }
+
+    if (this.yearObj.crossCountry.length>0) {
+      this.checkbox3 = true;
     }
   }
 

@@ -18,9 +18,16 @@ export class SeasonTemplateComponent {
   @Input() editFlag: boolean;
   @Output() save = new EventEmitter<Season>();
 
+  checkbox1 = false;
   private showError: boolean = false;
 
   constructor( private router: Router) {
+  }
+
+  ngOnInit(){
+    if (this.season.cell151) {
+       this.checkbox1 = true;
+    }
   }
 
   saveSeason(seasonForm: NgForm) {
