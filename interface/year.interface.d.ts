@@ -1,6 +1,4 @@
 // Created by baihuibo on 2017/1/31.
-
-// path = '/api/season'
 import {Year} from "../src/entity/year";
 
 // path = '/api/year'

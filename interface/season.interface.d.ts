@@ -1,7 +1,7 @@
 // Created by baihuibo on 2017/1/31.
+import {Season} from "../src/entity/season";
 
 // path = '/api/season'
-import {Season} from "../src/entity/season";
 export interface SeasonServiceInterface {
     // GET
     queryAll(userId: string, permission: string): Season[]
