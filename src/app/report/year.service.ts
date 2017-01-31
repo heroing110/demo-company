@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Http, URLSearchParams} from "@angular/http";
-import {Year} from "../../../../entity/year";
+import {Year} from "../../entity/year";
 import {responseHandler} from "../util";
 
 @Injectable()

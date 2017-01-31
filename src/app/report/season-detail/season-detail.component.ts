@@ -2,7 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import "rxjs/add/operator/switchMap";
 import {SeasonService} from "../season.service";
-import {Season} from "../../../../../entity/season";
+import {Season} from "../../../entity/season";
 
 @Component({
   templateUrl: './season-detail.component.html',

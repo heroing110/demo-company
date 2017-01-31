@@ -1,9 +1,8 @@
 import {Injectable} from "@angular/core";
 import {UserInfo} from "../../entity/user-info";
-import {Http, URLSearchParams} from "@angular/http";
+import {Http} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
-import {responseHandler, md5} from "../util";
-import {createHash} from "crypto";
+import {responseHandler} from "../util";
 /**
  * Created by Administrator on 2016/12/13 0013.
  */

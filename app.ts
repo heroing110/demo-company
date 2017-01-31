@@ -5,10 +5,8 @@ import cookieParser = require('cookie-parser');
 import {urlencoded, json} from "body-parser";
 const cookieSession = require('cookie-session');
 const express = require("express");
-
-import yearRouter from "./routes/year.router";
-import seasonRouter from "./routes/season.router";
-import userRouter from "./routes/user.router";
+const httpRequest = require('request-promise');
+const host = 'http://192.168.31.239';
 
 const app = express();
 
@@ -18,8 +16,6 @@ app.use(logger('dev'));
 app.use(json());
 app.use(urlencoded({extended: false}));
 
-app.set('trust proxy', 1); // trust first proxy
-
 app.use(cookieSession({
     name: 'session',
     secret: 'key',
@@ -27,19 +23,23 @@ app.use(cookieSession({
 }));
 
 app.use(express.static(join(__dirname, 'dist')));
-app.use(function (req, res) {
-    res.sendfile('web/dist/index.html');
+app.use(function (req, res, next) {
+    if (req.path.startsWith('/api')) {
+        next();
+    } else {
+        res.sendfile('dist/index.html');
+    }
 });
 
-// error handler
-app.use(function (err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
+app.use(function (req, res) {
+    // 后天请求代理
+    httpRequest({
+        method: req.method,
+        body: req.body,
+        qs: req.query,
+        uri: host + req.path,
+        json: true
+    }).then(result => res.send(result), error => res.send(error));
 });
 
 const port = process.env.PORT || '3000';

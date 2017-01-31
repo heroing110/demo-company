@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {Season} from "../../../../../entity/season";
+import {Season} from "../../../entity/season";
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
 

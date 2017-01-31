@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Year} from "../../../../../entity/year";
+import {Year} from "../../../entity/year";
 import {YearService} from "../year.service";
 
 @Component({

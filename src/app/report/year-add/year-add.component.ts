@@ -1,5 +1,5 @@
 import {Component, OnInit, PlatformRef} from '@angular/core';
-import {Year} from "../../../../../entity/year";
+import {Year} from "../../../entity/year";
 import {YearService} from "../year.service";
 import {Router} from "@angular/router";
 import {NgForm, Validator, Validators} from "@angular/forms";
