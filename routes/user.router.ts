@@ -7,13 +7,11 @@ const router = Router();
 // post  app/users
 router.post('/', function (req, res) {
     req.body['password'] = md5(req.body['password']);
-    userModel.queryAll(req.body, function (rows: UserInfo[]) {
+
+    proxy('POST', '/users/login', {}, req.body).then(function (result) {
         const session: any = req['session'];
-        session.user = rows[0] || {};
-        res.send({
-            login: rows.length > 0,
-            user: rows[0]
-        });
+        session.user = result.user || {};
+        res.send(result);
     });
 });
 
@@ -30,5 +28,16 @@ router.get('/logout', function (req, res) {
     res.send({logout: true});
 });
 
+
+const http = require('request-promise');
+const host = 'http://192.168.31.239';
+
+function proxy(method: string, path: string, qs = {}, body?) {
+    return http({
+        method, body, qs,
+        uri: host + path,
+        json: true
+    });
+}
 
 export default router;

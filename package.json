@@ -16,6 +16,8 @@
     "forever-monitor": "^1.7.1",
     "morgan": "~1.7.0",
     "mysql": "^2.12.0",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1",
     "serve-favicon": "~2.3.0",
     "ts-node": "^1.7.2",
     "typescript": "^2.2.0-dev.20161212"

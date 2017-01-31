@@ -33,6 +33,7 @@ export class UserService {
     }
 
     setUserInfo(userInfo: UserInfo) {
+        console.log('userinfo', userInfo);
         this.userInfo = userInfo;
     }
 
@@ -41,15 +42,16 @@ export class UserService {
     }
 
     isLogin(): Promise<boolean> {
-        if (this.userInfo) {
+        if (this.userInfo && this.userInfo.id) {
             return Promise.resolve(true);
         } else {
             return this.http.get(this.url + '/userInfo')
                 .toPromise()
                 .then(responseHandler)
                 .then(data => {
-                    if (data['user']) {
-                        this.setUserInfo(data['user']);
+                    const user = <UserInfo>data['user'];
+                    if (user && user.id) {
+                        this.setUserInfo(user);
                         return true;
                     } else {
                         return false;
