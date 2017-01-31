@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../share/user.service";
-import {UserInfo} from "../share/user-info";
+import {UserInfo} from "../../entity/user-info";
 import {Router} from "@angular/router";
 
 @Component({

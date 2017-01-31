@@ -12,10 +12,6 @@ import userRouter from "./routes/user.router";
 
 const app = express();
 
-// view engine setup
-app.set('views', join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -30,10 +26,7 @@ app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000
 }));
 
-app.use('/app/year', yearRouter);
-app.use('/app/season', seasonRouter);
-app.use('/app/users', userRouter);
-app.use(express.static(join(__dirname, 'web/dist')));
+app.use(express.static(join(__dirname, 'dist')));
 app.use(function (req, res) {
     res.sendfile('web/dist/index.html');
 });

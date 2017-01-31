@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {UserInfo} from "./user-info";
+import {UserInfo} from "../../entity/user-info";
 import {Http, URLSearchParams} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
 import {responseHandler, md5} from "../util";

@@ -3,8 +3,8 @@ import {Request} from "express-serve-static-core";
 import {seasonMessageModel} from "../model/season-message.model";
 import {seasonReportModel} from "../model/season-report.model";
 import {seasonChartModel} from "../model/season-chart.model";
-import {Season} from "../entity/season";
-import {Report} from "../entity/report";
+import {Season} from "../src/entity/season";
+import {Report} from "../src/entity/report";
 import {setUserId} from "../util/index";
 const router = Router();
 

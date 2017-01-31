@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http, URLSearchParams} from "@angular/http";
-import {Season} from "../../../../entity/season";
 import {responseHandler} from "../util";
+import {Season} from "../../entity/season";
 
 @Injectable()
 export class SeasonService {
