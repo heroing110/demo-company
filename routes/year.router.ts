@@ -1,8 +1,6 @@
 import {Router} from "express";
-import {yearModel} from "../model/year.model";
 import {Request} from "express-serve-static-core";
 import {Year} from "../src/entity/year";
-import {setUserId} from "../util/index";
 const yearRouter = Router();
 
 
