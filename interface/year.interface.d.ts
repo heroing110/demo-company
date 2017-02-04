@@ -7,15 +7,19 @@ export interface YearServiceInterface {
    * GET
    * 通过 cityid和userid查询
    * permission 表示权限下，如果是超级管理员，则查询全部
+   * companyName 单位名称，根据单位名称来查询，如果为 null 表示忽略此条件
    */
-  queryAll(cityId: string, userId: string, permission: string): Year[]
+  queryAll(cityId: string,
+           userId: string,
+           permission: string,
+           companyName: string): Year[]
 
   // GET path = '/detail'
   queryDetail(yearId: string): Year
 
   // POST path = '/insert'
-  insert(year: Year): Year
+  insert(year: Year): {/* 是否存在本年度报表 */exist: boolean, /* 创建完成情况 */inserted: boolean}
 
   // PUT path = '/update', params='yearId'
-  update(year: Year): Year
+  update(year: Year): {/* 更新完成情况 */updated: boolean}
 }
