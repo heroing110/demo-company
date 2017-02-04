@@ -3,9 +3,9 @@
 </h4>
 
 单位详细名称:
-<input type="text" [(ngModel)]="params.companyName">
+<input type="text" [(ngModel)]="companyNameQueryParams">
 
-<button class="btn" (click)="query()" >查询</button>
+<button class="btn" (click)="query(companyNameQueryParams)" >查询</button>
 
 <table class="table table-bordered table-hover table-condensed">
   <thead>

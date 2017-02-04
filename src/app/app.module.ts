@@ -5,10 +5,8 @@ import {ReportModule} from "./report/report.module";
 import {ShareModule} from "./share/share.module";
 import {AppRoutingModule} from "./app-routing.module";
 import {LoginModule} from "./login/login.module";
-import {InMemoryWebApiModule} from "angular-in-memory-web-api";
-import {InMemDataService} from "./in-mem-data-service";
 import {HttpModule} from "@angular/http";
-import {AuthGuard} from "./share/auth-guard.service";
+import {AuthGuard} from "./auth-guard.service";
 
 @NgModule({
   declarations: [
@@ -19,8 +17,7 @@ import {AuthGuard} from "./share/auth-guard.service";
     ShareModule,
     ReportModule,
     LoginModule,
-    AppRoutingModule,
-    // InMemoryWebApiModule.forRoot(InMemDataService, {delay: 200})
+    AppRoutingModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

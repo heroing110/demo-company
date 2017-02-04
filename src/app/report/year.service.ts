@@ -2,34 +2,40 @@ import {Injectable} from "@angular/core";
 import {Http, URLSearchParams} from "@angular/http";
 import {Year} from "../../entity/year";
 import {responseHandler} from "../util";
+import {UserService} from "../share/user.service";
+import {UserInfo} from "../../entity/user-info";
 
 @Injectable()
 export class YearService {
-    private url = 'app/year';
+  private url = '/api/year';
 
-    constructor(private http: Http) {
+  constructor(private http: Http, private userService: UserService) {
 
-    }
+  }
 
-    getYearList() {
-        return this.http.get(this.url).toPromise().then(responseHandler);
-    }
+  getYearList(companyName: string) {
+    const search = new URLSearchParams();
+    const user: UserInfo = this.userService.getUserInfo();
 
-    addYear(year: Year) {
-        return this.http.post(this.url + '/insert', year).toPromise().then(responseHandler);
-    }
+    search.append('cityId', user.cityid);
+    search.append('userId', user.id);
+    search.append('permission', user.permission);
+    search.append('companyName', companyName);
 
-    updateYear(year: Year) {
-        // app/year/:id
-        // app/year/1
-        return this.http.put(this.url + '/'+year.id, year).toPromise().then(responseHandler);
-    }
+    return this.http.get('/api/year', {search}).toPromise().then(responseHandler);
+  }
 
-    getYearByParam(query: Object = {}) {
-        const search = new URLSearchParams();
-        for (const key in query) {
-            search.append(key, query[key]);
-        }
-        return this.http.get(this.url, {search}).toPromise().then(responseHandler);
-    }
+  getYear(yearId: string) {
+    const search = new URLSearchParams();
+    search.append('yearId', yearId);
+    return this.http.get('/api/year/detail', {search}).toPromise().then(responseHandler);
+  }
+
+  addYear(year: Year) {
+    return this.http.post('/api/year/insert', year).toPromise().then(responseHandler);
+  }
+
+  updateYear(year: Year) {
+    return this.http.put('/api/year/update', year).toPromise().then(responseHandler);
+  }
 }

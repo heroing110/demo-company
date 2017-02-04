@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Year} from "../../../entity/year";
 import {YearService} from "../year.service";
 
@@ -11,19 +11,17 @@ export class YearListComponent implements OnInit {
 
   yearList: Year[];
 
-  params = {};
+  companyNameQueryParams: string;
 
   constructor(private yearService: YearService) {
   }
 
   ngOnInit() {
-    this.yearService.getYearList().then((years: Year[]) => {
-      this.yearList = years;
-    });
+    this.query(null);
   }
 
-  query(){
-    this.yearService.getYearByParam(this.params).then((years:Year[])=>{
+  query(companyName:string) {
+    this.yearService.getYearList(companyName).then((years: Year[]) => {
       this.yearList = years;
     });
   }

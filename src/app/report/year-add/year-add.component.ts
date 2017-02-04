@@ -13,7 +13,7 @@ export class YearAddComponent implements OnInit {
   private yearObj: Year;
 
   constructor(private yearService: YearService, private router: Router) {
-      this.yearObj  = new Year();
+    this.yearObj = new Year();
   }
 
   ngOnInit() {
@@ -21,12 +21,12 @@ export class YearAddComponent implements OnInit {
 
   save() {
     this.yearService.addYear(this.yearObj).then((result) => {
-      if(result && result['insertId']){
-          this.router.navigate(['report/year/list']);
-      }else if(result['exist']){
-          alert('已存在本年度数据');
-      }else{
-          alert('添加失败');
+      if (result && result.inserted) {
+        this.router.navigate(['report/year/list']);
+      } else if (result && result.exist) {
+        alert('已存在本年度数据');
+      } else {
+        alert('添加失败');
       }
     });
   }

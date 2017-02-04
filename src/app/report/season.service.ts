@@ -5,7 +5,7 @@ import {Season} from "../../entity/season";
 
 @Injectable()
 export class SeasonService {
-    private url = 'app/season';
+    private url = '/api/season';
 
     constructor(private http: Http) {
 

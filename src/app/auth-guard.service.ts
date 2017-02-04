@@ -1,9 +1,9 @@
 /**
- * Created by Administrator on 2016/12/25 0025.
+ * Created by baihuibo on 2016/12/25 0025.
  */
 import {Injectable}     from '@angular/core';
 import {CanActivate, Router, CanActivateChild}    from '@angular/router';
-import {UserService} from "./user.service";
+import {UserService} from "./share/user.service";
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {

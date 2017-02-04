@@ -3,59 +3,54 @@ import {UserInfo} from "../../entity/user-info";
 import {Http} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
 import {responseHandler} from "../util";
-/**
- * Created by Administrator on 2016/12/13 0013.
- */
 
 @Injectable()
 export class UserService {
-    private userInfo: UserInfo = null;
-    private url = 'app/users';
+  private userInfo: UserInfo = null;
 
-    constructor(private http: Http) {
-    }
+  constructor(private http: Http) {
+  }
 
-    login(username, password) {
-        return this.http.post(this.url, {username, password}).toPromise()
-            .then(responseHandler)
-            .then((data) => {
-                if (data['login']) {
-                    this.setUserInfo(data['user']);
-                }
-            });
-    }
-
-    logout() {
-        return this.http.get(this.url + '/logout')
-            .toPromise()
-            .then(responseHandler);
-    }
-
-    setUserInfo(userInfo: UserInfo) {
-        console.log('userinfo', userInfo);
-        this.userInfo = userInfo;
-    }
-
-    getUserInfo() {
-        return this.userInfo;
-    }
-
-    isLogin(): Promise<boolean> {
-        if (this.userInfo && this.userInfo.id) {
-            return Promise.resolve(true);
-        } else {
-            return this.http.get(this.url + '/userInfo')
-                .toPromise()
-                .then(responseHandler)
-                .then(data => {
-                    const user = <UserInfo>data['user'];
-                    if (user && user.id) {
-                        this.setUserInfo(user);
-                        return true;
-                    } else {
-                        return false;
-                    }
-                });
+  login(username, password) {
+    return this.http.post('/api/users/login', {username, password}).toPromise()
+      .then(responseHandler)
+      .then((data) => {
+        if (data['login']) {
+          this.setUserInfo(data['user']);
         }
+      });
+  }
+
+  logout() {
+    return this.http.get('/api/destroyUser')
+      .toPromise()
+      .then(responseHandler);
+  }
+
+  setUserInfo(userInfo: UserInfo) {
+    this.userInfo = userInfo;
+  }
+
+  getUserInfo() {
+    return this.userInfo;
+  }
+
+  isLogin(): Promise<boolean> {
+    if (this.userInfo && this.userInfo.id) {
+      return Promise.resolve(true);
+    } else {
+      return this.http.get('/api/getCurrentUser')
+        .toPromise()
+        .then(responseHandler)
+        .then(data => {
+          const user = <UserInfo>data['user'];
+          if (user && user.id) {
+            this.setUserInfo(user);
+            return true;
+          } else {
+            return false;
+          }
+        });
     }
+  }
 }

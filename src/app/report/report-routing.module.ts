@@ -9,7 +9,7 @@ import {YearListComponent} from "./year-list/year-list.component";
 import {SeasonDetailComponent} from "./season-detail/season-detail.component";
 import {YearDetailComponent} from "./year-detail/year-detail.component";
 import {SeasonChartComponent} from "./season-chart/season-chart.component";
-import {AuthGuard} from "../share/auth-guard.service";
+import {AuthGuard} from "../auth-guard.service";
 
 const routes: Routes = [
     {
@@ -26,7 +26,7 @@ const routes: Routes = [
                     {path: 'season/list', component: SeasonListComponent},
                     {path: 'season/detail/:id', component: SeasonDetailComponent},
                     {path: 'season/chart', component: SeasonChartComponent},
-                    {path: 'year/detail/:id', component: YearDetailComponent},
+                    {path: 'year/detail/:yearId', component: YearDetailComponent},
                     {path: 'year/add', component: YearAddComponent},
                     {path: 'year/list', component: YearListComponent},
                     {path: '', redirectTo: 'welcome', pathMatch: 'full'},
