@@ -4,7 +4,10 @@ import {Season} from "../src/entity/season";
 // path = '/api/season'
 export interface SeasonServiceInterface {
     // GET
-    queryAll(userId: string, permission: string): Season[]
+    queryAll(cityId: string,
+             userId: string,
+             permission: string,
+             companyName: string): Season[]
 
     // GET path = '/detail'
     queryDetail(seasonId: string): Season
@@ -13,8 +16,8 @@ export interface SeasonServiceInterface {
     queryChart(): Season[]
 
     // POST path = '/insert'
-    insert(userId: string, season: Season): Season
+    insert(season: Season): {/* 是否存在本年度报表 */exist: boolean, /* 创建完成情况 */inserted: boolean}
 
     // PUT path = '/update', params='seasonId'
-    update(seasonId: string, season: Season): Season
+    update(season: Season): {/* 更新完成情况 */updated: boolean}
 }
