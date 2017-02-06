@@ -34,16 +34,17 @@ app.use(function (req, res, next) {
 app.use(function (req, res) {
   const path = req.path;
 
-  if (path.includes('destroyUser')) {
+  if (path.includes('/destroyUser')) {
     console.log('****** call destroyUser');
     req.session.user = null;
     res.send({logout: true});
-  } else if (path.includes('getCurrentUser')) {
+  } else if (path.includes('/getCurrentUser')) {
     console.log('****** call getCurrentUser');
     res.send({
       user: req.session.user
     });
   } else if (path.includes('/users/login')) {
+    console.log('****** call /users/login');
     proxy(req, res, function (promise) {
       promise.then(result => {
         req.session.user = result.user;
@@ -76,5 +77,5 @@ const port = process.env.PORT || 4000;
 app.set('port', port);
 
 app.listen(port, function () {
-  console.info('starting serve http://localhost:' + port);
+  console.info('starting serve for http://localhost:' + port);
 });

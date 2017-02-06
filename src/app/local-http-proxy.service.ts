@@ -1,6 +1,4 @@
 // Created by baihuibo on 2017/2/4.
-
-
 import {Injectable} from "@angular/core";
 import {XHRBackend, Http, RequestOptions, RequestOptionsArgs} from "@angular/http";
 
@@ -27,6 +25,6 @@ export class LocalHttpProxyService extends Http {
   }
 
   private proxy(url, body, options) {
-    return super.get('/local-resource/' + url + '.json', options);
+    return super.get('/assets/api-resource/' + url + '.json', options);
   }
 }
