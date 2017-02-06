@@ -35,14 +35,19 @@ export class UserService {
     return this.userInfo;
   }
 
+  private loginPromise: Promise<boolean>;
+
   isLogin(): Promise<boolean> {
     if (this.userInfo && this.userInfo.id) {
       return Promise.resolve(true);
+    } else if (this.loginPromise) {
+      return this.loginPromise;
     } else {
-      return this.http.get('/api/getCurrentUser')
+      this.loginPromise = this.http.get('/api/getCurrentUser')
         .toPromise()
         .then(responseHandler)
         .then(data => {
+          this.loginPromise = null;
           const user = <UserInfo>data['user'];
           if (user && user.id) {
             this.setUserInfo(user);
@@ -51,6 +56,7 @@ export class UserService {
             return false;
           }
         });
+      return this.loginPromise;
     }
   }
 }

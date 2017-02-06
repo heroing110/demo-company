@@ -1,0 +1,10 @@
+{
+  "login": true,
+  "user": {
+    "id": "123",
+    "username": "abc",
+    "password": "123",
+    "permission": "1",
+    "usernamecn": ""
+  }
+}

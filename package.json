@@ -9,9 +9,11 @@
     "test": "ng test",
     "pree2e": "webdriver-manager update --standalone false --gecko false",
     "e2e": "protractor",
-    "build": "ng build --prod",
-    "dev-build": "ng build --watch",
-    "start": "node bootstrap.js"
+    "static-prod-build": "ng build --prod",
+    "static-build-serve": "ng build --watch",
+    "static-prod-build-serve": "ng build --prod --watch",
+    "local-serve": "ng serve",
+    "nodejs-serve": "node bootstrap.js"
   },
   "dependencies": {
     "@angular/common": "^2.3.1",

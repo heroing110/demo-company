@@ -3,6 +3,6 @@
  */
 
 export function responseHandler(response) {
-  const json = response.json() || {};
+  const json = response.json();
   return json.data || json;
 }
