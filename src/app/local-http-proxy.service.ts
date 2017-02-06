@@ -9,22 +9,25 @@ export class LocalHttpProxyService extends Http {
   }
 
   get(url: string, options?: RequestOptionsArgs) {
-    return this.proxy(url, {}, options);
+    return this.proxy(url, options);
   }
 
   post(url: string, body: any, options?: RequestOptionsArgs) {
-    return this.proxy(url, body, options);
+    return this.proxy(url, options, body);
   }
 
   put(url: string, body: any, options?: RequestOptionsArgs) {
-    return this.proxy(url, body, options);
+    return this.proxy(url, options, body);
   }
 
   delete(url: string, options?: RequestOptionsArgs) {
-    return this.proxy(url, {}, options);
+    return this.proxy(url, options);
   }
 
-  private proxy(url, body, options) {
+  private proxy(url, options, body?) {
+    if (body) {
+      console.debug('URL : ', url, 'BODY : ', body);
+    }
     return super.get('/assets/api-resource/' + url + '.json', options);
   }
 }

@@ -16,7 +16,6 @@ import {SeasonTemplateComponent} from './season-template/season-template.compone
 import {YearTemplateComponent} from "./year-template/year-template.component";
 import {YearDetailComponent} from "./year-detail/year-detail.component";
 import {SeasonChartComponent} from "./season-chart/season-chart.component";
-import {SeasonChartService} from "./season-chart.service";
 import {Ng2PaginationModule} from "ng2-pagination";
 
 @NgModule({
@@ -40,7 +39,6 @@ import {Ng2PaginationModule} from "ng2-pagination";
     ],
     providers: [
         SeasonService,
-        SeasonChartService,
         YearService
     ]
 })

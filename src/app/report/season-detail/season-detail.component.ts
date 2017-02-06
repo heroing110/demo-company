@@ -19,9 +19,8 @@ export class SeasonDetailComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params
-      .switchMap((params: Params) => this.seasonService.getSeasonDetailByParam(params))
-      .subscribe((season: Season[]) => this.season = season[0]);
-    this
+      .switchMap((params: Params) => this.seasonService.getSeasonDetail(params['seasonId']))
+      .subscribe((season: Season) => this.season = season);
   }
 
   save() {

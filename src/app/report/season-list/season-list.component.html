@@ -2,9 +2,9 @@
     季报表查看
 </h4>
 单位详细名称:
-<input type="text" [(ngModel)]="params.companyName">
+<input type="text" [(ngModel)]="companyName">
 
-<button class="btn" (click)="query()">查询</button>
+<button class="btn" (click)="query(companyName)">查询</button>
 <table class="table table-bordered table-hover table-condensed">
     <thead>
     <tr>

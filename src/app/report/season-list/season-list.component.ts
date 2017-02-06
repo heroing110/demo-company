@@ -11,19 +11,17 @@ export class SeasonListComponent implements OnInit {
 
   seasonList: Season[];
 
-  params = {};
+  companyName:string;
 
   constructor(private seasonService: SeasonService) {
   }
 
   ngOnInit() {
-    this.seasonService.getSeasonByParam().then((seasons: Season[]) => {
-      this.seasonList = seasons;
-    });
+    this.query();
   }
 
-  query(){
-    this.seasonService.getSeasonByParam(this.params).then((seasons:Season[])=>{
+  query(companyName?) {
+    this.seasonService.getSeasonList(companyName).then((seasons: Season[]) => {
       this.seasonList = seasons;
     });
   }

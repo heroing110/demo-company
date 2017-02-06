@@ -20,10 +20,9 @@ export class SeasonAddComponent implements OnInit {
 
     save() {
         this.seasonService.addSeason(this.season).then((result) => {
-            console.log('result',result);
-            if (result && result['insertId']) {
+            if (result && result.inserted) {
                 this.router.navigate(['report/season/list']);
-            } else if(result['exist']){
+            } else if(result && result.exist){
                 alert('本年度已存在该季度数据');
             } else{
                 alert('添加失败');

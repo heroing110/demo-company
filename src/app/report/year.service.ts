@@ -7,10 +7,7 @@ import {UserInfo} from "../../entity/user-info";
 
 @Injectable()
 export class YearService {
-  private url = '/api/year';
-
   constructor(private http: Http, private userService: UserService) {
-
   }
 
   getYearList(companyName: string) {
