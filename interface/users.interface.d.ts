@@ -18,14 +18,14 @@ export interface UsersServiceInterface {
 
   /**
    * 查询全部用户
-   * @param userId 必须参数
-   * @param permission 必须参数
-   * @param params 可选，如果有查询参数，则根据参数过滤查询
+   * @param usernamecn 可选，根据用户中文名，过滤查询结果
+   * @param permission 可选，根据用户类型，过滤查询结果
    *
    * method = GET
    * path = '/queryAll'
    */
-  queryAll(userId: string, permission: string, params: Object): UserInfo[]
+  queryAll(usernamecn: string,
+           permission: string): UserInfo[]
 
   /**
    * 新增用户
