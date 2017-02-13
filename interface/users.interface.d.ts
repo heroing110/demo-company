@@ -33,7 +33,7 @@ export interface UsersServiceInterface {
    * method = PUT
    * path = '/insert'
    */
-  insert(user: UserInfo): {/* 创建完成情况 */inserted: boolean}
+  insert(user: UserInfo): {/* 是否存在用户 */exist: boolean,/* 创建完成情况 */inserted: boolean}
 
   /**
    * 删除用户
@@ -51,7 +51,6 @@ export interface UsersServiceInterface {
    *
    * method = POST
    * path = '/update'
-   * params = 'userId'
    */
-  update(userId: string, user: UserInfo): {/* 更新完成情况 */updated: boolean}
+  update(user: UserInfo): {/* 更新完成情况 */updated: boolean}
 }
