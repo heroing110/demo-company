@@ -18,8 +18,8 @@ export interface YearServiceInterface {
   queryDetail(yearId: string): Year
 
   // POST path = '/insert'
-  insert(year: Year): {/* 是否存在本年度报表 */exist: boolean, /* 创建完成情况 */inserted: boolean}
+  insert(year: Year): {/* 错误描述 */message: string, /* 创建完成情况 */inserted: boolean}
 
   // PUT path = '/update', params='yearId'
-  update(year: Year): {/* 更新完成情况 */updated: boolean}
+  update(year: Year): {/* 错误描述 */message: string, /* 更新完成情况 */updated: boolean}
 }

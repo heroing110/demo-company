@@ -33,16 +33,16 @@ export interface UsersServiceInterface {
    * method = PUT
    * path = '/insert'
    */
-  insert(user: UserInfo): {/* 是否存在用户 */exist: boolean,/* 创建完成情况 */inserted: boolean}
+  insert(user: UserInfo): {/* 错误描述 */message: string, /* 创建完成情况 */inserted: boolean}
 
   /**
    * 删除用户
    * @param userId
    *
-   * method = delete
+   * method = DELETE
    * path = '/delete'
    */
-  delete(userId: string): {/* 删除情况 */removed: boolean}
+  delete(userId: string): {/* 错误描述 */message: string, /* 删除情况 */removed: boolean}
 
   /**
    * 修改用户信息
@@ -52,5 +52,15 @@ export interface UsersServiceInterface {
    * method = POST
    * path = '/update'
    */
-  update(user: UserInfo): {/* 更新完成情况 */updated: boolean}
+  update(user: UserInfo): {/* 错误描述 */message: string, /* 更新完成情况 */updated: boolean}
+
+  /**
+   * 修改密码
+   * @param userId
+   * @param update
+   *
+   * method = PUT
+   * path = '/changePwd'
+   */
+  changePwd(userId: string, update: {oldPwd: string, newPwd: string}): {/* 错误描述 */message: string, /* 更新完成情况 */updated: boolean}
 }
