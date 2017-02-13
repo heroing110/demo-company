@@ -13,8 +13,7 @@ export interface UsersServiceInterface {
    * method = POST
    * path = '/login'
    */
-  login(username: string,
-        password: string): {login: boolean, user: UserInfo};
+  login(user: UserInfo): {login: boolean, user: UserInfo};
 
   /**
    * 查询全部用户
