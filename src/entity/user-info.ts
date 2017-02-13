@@ -6,6 +6,6 @@ export class UserInfo {
   cityid: string = '';
   username: string = '';
   password: string = '';
-  permission: string = '';
+  permission: string = ''; // 0省管理员，1市管理员，2企业用户
   usernamecn: string = '';
 }

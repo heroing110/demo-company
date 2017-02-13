@@ -28,11 +28,11 @@ export class YearService {
     return this.http.get('/api/year/detail', {search}).toPromise().then(responseHandler);
   }
 
-  addYear(year: Year) {
+  addYear(year: Year): Promise<{inserted, message}> {
     return this.http.post('/api/year/insert', year).toPromise().then(responseHandler);
   }
 
-  updateYear(year: Year) {
+  updateYear(year: Year): Promise<{updated, message}> {
     return this.http.put('/api/year/update', year).toPromise().then(responseHandler);
   }
 }

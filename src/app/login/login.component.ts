@@ -17,9 +17,8 @@ export class LoginComponent {
   login() {
     this.userService
       .login(this.username, this.password)
-      .then(() => this.userService.isLogin())
-      .then(login => {
-        if (login) {
+      .then(result => {
+        if (result.login && result.user) {
           this.router.navigate(['/report']);
         } else {
           alert('登录失败');

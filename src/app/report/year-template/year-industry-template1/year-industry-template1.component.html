@@ -1,0 +1,298 @@
+<table class="table table-bordered table-hover small">
+  <thead>
+  <tr>
+    <th colspan="6">一、电子商务交易情况</th>
+  </tr>
+  <tr>
+    <th rowspan="2">类别</th>
+    <th rowspan="2">总额(万元)</th>
+    <th colspan="3">商品类交易额(万元)</th>
+    <th rowspan="2">服务类交易额(万元)（应用/综合企业填</th>
+  </tr>
+  <tr>
+    <th>总额(万元)</th>
+    <th>其中：销售额（应用/综合企业填）</th>
+    <th>其中：采购额（应用/综合企业填）</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>电子商务交易额</td>
+    <td>
+      <!-- 总额 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell12,r_cell13,r_cell14)">
+    </td>
+    <td>
+      <!-- 商品类总额2 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell12,r_cell13)">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell12" name="r_cell12" #r_cell12="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell13" name="r_cell13" #r_cell13="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell14" name="r_cell14" #r_cell14="ngModel">
+    </td>
+  </tr>
+  <tr>
+    <td>一、按交易平台分</td>
+    <td>—</td>
+    <td>—</td>
+    <td>—</td>
+    <td>—</td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td>1.通过自营电子商务平台</td>
+    <td>
+      <!-- 总额 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell22,r_cell23,r_cell24)">
+    </td>
+    <td>
+      <!-- 商品类总额2 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell22,r_cell23)">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell22" name="r_cell22" #r_cell22="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell23" name="r_cell23" #r_cell23="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell24" name="r_cell24" #r_cell24="ngModel">
+    </td>
+  </tr>
+  <tr>
+    <td>2.通过第三方电子商务平台</td>
+    <td>
+      <!-- 总额 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell32,r_cell33,r_cell34)">
+    </td>
+    <td>
+      <!-- 商品类总额2 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell32,r_cell33)">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell32" name="r_cell32" #r_cell32="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell33" name="r_cell33" #r_cell33="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell34" name="r_cell34" #r_cell34="ngModel">
+    </td>
+  </tr>
+  <tr>
+    <td>二、按交易方式分</td>
+    <td>—</td>
+    <td>—</td>
+    <td>—</td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td>1.B2B</td>
+    <td>
+      <!-- 总额 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell42,r_cell43,r_cell44)">
+    </td>
+    <td>
+      <!-- 商品类总额2 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell42,r_cell43)">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell42" name="r_cell42" #r_cell42="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell43" name="r_cell43" #r_cell43="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell44" name="r_cell44" #r_cell44="ngModel">
+    </td>
+  </tr>
+  <tr>
+    <td>2.B2C</td>
+    <td>
+      <!-- 总额 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell52,r_cell53,r_cell54)">
+    </td>
+    <td>
+      <!-- 商品类总额2 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell52,r_cell53)">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell52" name="r_cell52" #r_cell52="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell53" name="r_cell53" #r_cell53="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell54" name="r_cell54" #r_cell54="ngModel">
+    </td>
+  </tr>
+  <tr>
+    <td>3.C2C</td>
+    <td>
+      <!-- 总额 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell62,r_cell63,r_cell64)">
+    </td>
+    <td>
+      <!-- 商品类总额2 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell62,r_cell63)">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell62" name="r_cell62" #r_cell62="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell63" name="r_cell63" #r_cell63="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell64" name="r_cell64" #r_cell64="ngModel">
+    </td>
+  </tr>
+  <tr>
+    <td>三、按地域分</td>
+    <td>—</td>
+    <td>—</td>
+    <td>—</td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td>1.境内</td>
+    <td>
+      <!-- 总额 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell72,r_cell73,r_cell74)">
+    </td>
+    <td>
+      <!-- 商品类总额2 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell72,r_cell73)">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell72" name="r_cell72" #r_cell72="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell73" name="r_cell73" #r_cell73="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell74" name="r_cell74" #r_cell74="ngModel">
+    </td>
+  </tr>
+  <tr>
+    <td>2.境外（跨境电子商务交易）</td>
+    <td>
+      <!-- 总额 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell82,r_cell83,r_cell84)">
+    </td>
+    <td>
+      <!-- 商品类总额2 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell82,r_cell83)">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             (input)="cellChangeZerofill(r_cell82 , [r_cell82,r_cell83,r_cell84])"
+             [(ngModel)]="yearObj.r_cell82" name="r_cell82" #r_cell82="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             (input)="cellChangeZerofill(r_cell83 , [r_cell82,r_cell83,r_cell84])"
+             [(ngModel)]="yearObj.r_cell83" name="r_cell83" #r_cell83="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             (input)="cellChangeZerofill(r_cell84 , [r_cell82,r_cell83,r_cell84])"
+             [(ngModel)]="yearObj.r_cell84" name="r_cell84" #r_cell84="ngModel">
+    </td>
+  </tr>
+  <tr>
+    <td>进口</td>
+    <td>
+      <!-- 总额 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell92,r_cell93,r_cell94)">
+    </td>
+    <td>
+      <!-- 商品类总额2 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell92,r_cell93)">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell92" name="r_cell92" #r_cell92="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell93" name="r_cell93" #r_cell93="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell94" name="r_cell94" #r_cell94="ngModel">
+    </td>
+  </tr>
+  <tr>
+    <td>出口</td>
+    <td>
+      <!-- 总额 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell102,r_cell103,r_cell104)">
+    </td>
+    <td>
+      <!-- 商品类总额2 -->
+      <input type="number" class="form-control" readonly
+             [value]="getCount(r_cell102,r_cell103)">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell102" name="r_cell102" #r_cell102="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell103" name="r_cell103" #r_cell103="ngModel">
+    </td>
+    <td>
+      <input type="number" class="form-control"
+             [(ngModel)]="yearObj.r_cell104" name="r_cell104" #r_cell104="ngModel">
+    </td>
+  </tr>
+  </tbody>
+</table>

@@ -26,8 +26,10 @@ export class YearDetailComponent implements OnInit {
     this.yearService.updateYear(this.yearObj).then((result) => {
       if (result.updated) {
         this.router.navigate(['report/year/list']);
+      } else if (result.message) {
+        alert(result.message);
       } else {
-        alert('更新失败');
+        alert('修改报表失败');
       }
     });
   }

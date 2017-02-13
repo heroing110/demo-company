@@ -7,17 +7,19 @@ import {responseHandler} from "../util";
 @Injectable()
 export class UserService {
   private userInfo: UserInfo = null;
+  private loginPromise: Promise<boolean>;
 
   constructor(private http: Http) {
   }
 
-  login(username, password) {
+  login(username, password): Promise<{login, user}> {
     return this.http.post('/api/users/login', {username, password}).toPromise()
       .then(responseHandler)
       .then((data) => {
         if (data['login']) {
-          this.setUserInfo(data['user']);
+          this.userInfo = data['user'];
         }
+        return data;
       });
   }
 
@@ -27,15 +29,9 @@ export class UserService {
       .then(responseHandler);
   }
 
-  setUserInfo(userInfo: UserInfo) {
-    this.userInfo = userInfo;
-  }
-
-  getUserInfo() {
+  getUserInfo(): UserInfo {
     return this.userInfo;
   }
-
-  private loginPromise: Promise<boolean>;
 
   isLogin(): Promise<boolean> {
     if (this.userInfo && this.userInfo.id) {
@@ -50,7 +46,7 @@ export class UserService {
           this.loginPromise = null;
           const user = <UserInfo>data['user'];
           if (user && user.id) {
-            this.setUserInfo(user);
+            this.userInfo = user;
             return true;
           } else {
             return false;

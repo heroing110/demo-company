@@ -4,29 +4,29 @@ import {SeasonService} from "../season.service";
 import {Router} from "@angular/router";
 
 @Component({
-    selector: 'app-season-add',
-    templateUrl: './season-add.component.html',
-    styleUrls: ['./season-add.component.css']
+  selector: 'app-season-add',
+  templateUrl: './season-add.component.html',
+  styleUrls: ['./season-add.component.css']
 })
 export class SeasonAddComponent implements OnInit {
-    season: Season = new Season();
+  season: Season = new Season();
 
-    constructor(private seasonService: SeasonService, private router: Router) {
+  constructor(private seasonService: SeasonService, private router: Router) {
 
-    }
+  }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+  }
 
-    save() {
-        this.seasonService.addSeason(this.season).then((result) => {
-            if (result && result.inserted) {
-                this.router.navigate(['report/season/list']);
-            } else if(result && result.exist){
-                alert('本年度已存在该季度数据');
-            } else{
-                alert('添加失败');
-            }
-        });
-    }
+  save() {
+    this.seasonService.addSeason(this.season).then((result) => {
+      if (result.inserted) {
+        this.router.navigate(['report/season/list']);
+      } else if (result.message) {
+        alert(result.message);
+      } else {
+        alert('添加报表失败');
+      }
+    });
+  }
 }

@@ -24,8 +24,14 @@ export class SeasonDetailComponent implements OnInit {
   }
 
   save() {
-    this.seasonService.updateSeason(this.season).then((res) => {
-      this.router.navigate(['report/season/list']);
+    this.seasonService.updateSeason(this.season).then((result) => {
+      if (result.updated) {
+        this.router.navigate(['report/season/list']);
+      } else if (result.message) {
+        alert(result.message);
+      }else{
+        alert('修改报表失败')
+      }
     });
   }
 

@@ -11,7 +11,7 @@ export class Year {
     cell37: string = '';
     cell38: string = '';
     city: string = '';
-    industry: string[]|string = [];
+    industry: string = ''; // #fix 此处不再支持多选方式，所以修改为字符串类型
     sale: string[]|string = [];
     cell41: string = '';
     cell42: string = '';

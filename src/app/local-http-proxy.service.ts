@@ -28,6 +28,6 @@ export class LocalHttpProxyService extends Http {
     if (body) {
       console.debug('URL : ', url, 'BODY : ', body);
     }
-    return super.get('/assets/api-resource/' + url + '.json', options);
+    return super.get('/assets/api-resource' + url + '.json', options);
   }
 }

@@ -28,11 +28,11 @@ export class SeasonService {
     return this.http.get('/api/season/detail', {search}).toPromise().then(responseHandler);
   }
 
-  addSeason(season: Season) {
+  addSeason(season: Season): Promise<{inserted, message}> {
     return this.http.post('/api/season/insert', season).toPromise().then(responseHandler);
   }
 
-  updateSeason(season: Season) {
+  updateSeason(season: Season): Promise<{updated, message}> {
     return this.http.put('/api/season/update', season).toPromise().then(responseHandler);
   }
 
