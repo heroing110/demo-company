@@ -33,7 +33,7 @@ export interface UsersServiceInterface {
    * method = PUT
    * path = '/insert'
    */
-  insert(): {/* 创建完成情况 */inserted: boolean}
+  insert(user: UserInfo): {/* 创建完成情况 */inserted: boolean}
 
   /**
    * 删除用户
