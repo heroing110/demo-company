@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Year} from "../../../../entity/year";
-import {TemplateCommonCtrl} from "../template-common-ctrl";
+import {TemplateCommonCtrl} from "../../template-common-ctrl";
 
 
 //////// 电子商务应用企业

@@ -2,13 +2,14 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Season} from "../../../entity/season";
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
+import {TemplateCommonCtrl} from "../template-common-ctrl";
 
 @Component({
   selector: 'app-season-template',
   templateUrl: './season-template.component.html',
   styleUrls: ['./season-template.component.css']
 })
-export class SeasonTemplateComponent {
+export class SeasonTemplateComponent extends TemplateCommonCtrl{
   datePickerOption = {
     singleDatePicker: true,
     "drops": "up"
@@ -22,6 +23,7 @@ export class SeasonTemplateComponent {
   private showError: boolean = false;
 
   constructor( private router: Router) {
+    super();
   }
 
   ngOnInit(){

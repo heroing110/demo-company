@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Report} from "../../../entity/report";
 import {Season} from "../../../entity/season";
 import {SeasonService} from "../season.service";
 
@@ -33,7 +32,7 @@ export class SeasonChartComponent implements OnInit {
       let i = 0;
       years.forEach((year) => {
         let datas = seasons.filter(item => item.year == year);
-        datas.forEach((data: Report & Season) => {
+        datas.forEach((data: Season) => {
           const datas = series.filter(seaie => seaie.stack == data.season);
           datas[0].data[i] = parseInt(data.cell12) + parseInt(data.cell13);
           datas[1].data[i] = parseInt(data.cell14);

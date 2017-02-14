@@ -20,10 +20,8 @@ export class YearListComponent implements OnInit {
     this.query(null);
   }
 
-  query(companyName:string) {
-    this.yearService.getYearList(companyName).then((years: Year[]) => {
-      this.yearList = years;
-    });
+  query(companyName: string) {
+    this.yearService.getYearList(companyName).then(years => this.yearList = years);
   }
 
 }

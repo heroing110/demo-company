@@ -24,8 +24,12 @@ export class UserService {
   }
 
   logout() {
-    return this.http.get('/api/destroyUser')
-      .toPromise()
+    return this.http.get('/api/destroyUser').toPromise()
+      .then(responseHandler);
+  }
+
+  changePwd(update): Promise<{message, updated}> {
+    return this.http.post('/api/users/changePwd', {userId: this.userInfo.id, update}).toPromise()
       .then(responseHandler);
   }
 

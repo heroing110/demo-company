@@ -61,5 +61,5 @@ export interface UsersServiceInterface {
    * method = PUT
    * path = '/changePwd'
    */
-  changePwd(userId: string, update: {oldPwd: string, newPwd: string}): {/* 错误描述 */message: string, /* 更新完成情况 */updated: boolean}
+  changePwd(userId: string, update: {oldPwd: string, newPwd: string, confirmPwd: string}): {/* 错误描述 */message: string, /* 更新完成情况 */updated: boolean}
 }

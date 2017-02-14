@@ -2,10 +2,14 @@
   年报表查看
 </h4>
 
-单位详细名称:
-<input type="text" [(ngModel)]="companyNameQueryParams">
+<div class="form-inline margin-bottom">
+  <div class="form-group">
+    <label>单位详细名称:</label>
+    <input type="text" class="form-control" [(ngModel)]="companyNameQueryParams">
+  </div>
 
-<button class="btn" (click)="query(companyNameQueryParams)" >查询</button>
+  <button class="btn btn-default" (click)="query(companyNameQueryParams)">查询</button>
+</div>
 
 <table class="table table-bordered table-hover table-condensed">
   <thead>
@@ -19,7 +23,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let year of yearList;let i = index">
-    <td>{{i+1}}</td>
+    <td>{{index+1}}</td>
     <td>{{year.year}}</td>
     <td>{{year.companyName}}</td>
     <td>{{year.companyName}}</td>

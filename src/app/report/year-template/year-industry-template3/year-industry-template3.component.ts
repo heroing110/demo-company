@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Year} from "../../../../entity/year";
-import {TemplateCommonCtrl} from "../template-common-ctrl";
+import {TemplateCommonCtrl} from "../../template-common-ctrl";
 
 @Component({
   selector: 'app-year-industry-template3',

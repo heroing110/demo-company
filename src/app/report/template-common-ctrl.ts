@@ -1,6 +1,6 @@
 // Created by baihuibo on 2017/2/13.
 import {NgModel} from "@angular/forms";
-import {Year} from "../../../entity/year";
+import {Year} from "../../entity/year";
 
 export class TemplateCommonCtrl {
   yearObj: Year;

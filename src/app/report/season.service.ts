@@ -10,7 +10,7 @@ export class SeasonService {
   constructor(private http: Http, private userService: UserService) {
   }
 
-  getSeasonList(companyName: string) {
+  getSeasonList(companyName: string): Promise<Season[]> {
     const user: UserInfo = this.userService.getUserInfo();
     const search = new URLSearchParams();
 
@@ -22,13 +22,16 @@ export class SeasonService {
     return this.http.get('/api/season', {search}).toPromise().then(responseHandler);
   }
 
-  getSeasonDetail(seasonId: string) {
+  getSeasonDetail(seasonId: string): Promise<Season> {
     const search = new URLSearchParams();
     search.append('seasonId', seasonId);
     return this.http.get('/api/season/detail', {search}).toPromise().then(responseHandler);
   }
 
   addSeason(season: Season): Promise<{inserted, message}> {
+    const user: UserInfo = this.userService.getUserInfo();
+    season.userId = user.id;
+    season.permission = user.permission;
     return this.http.post('/api/season/insert', season).toPromise().then(responseHandler);
   }
 
@@ -36,7 +39,7 @@ export class SeasonService {
     return this.http.put('/api/season/update', season).toPromise().then(responseHandler);
   }
 
-  queryChart() {
+  queryChart(): Promise<Season[]> {
     return this.http.get('/api/season/chart').toPromise().then(responseHandler);
   }
 }

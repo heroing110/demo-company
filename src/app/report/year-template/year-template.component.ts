@@ -2,13 +2,14 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Year} from "../../../entity/year";
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
+import {TemplateCommonCtrl} from "../template-common-ctrl";
 
 @Component({
   selector: 'app-year-template',
   templateUrl: './year-template.component.html',
   styleUrls: ['./year-template.component.css']
 })
-export class YearTemplateComponent implements OnInit {
+export class YearTemplateComponent extends TemplateCommonCtrl implements OnInit {
   @Input() yearObj: Year;
 
   @Output() save = new EventEmitter<Year>();
@@ -33,6 +34,7 @@ export class YearTemplateComponent implements OnInit {
   checkbox3 = false;
 
   constructor(private router: Router) {
+    super();
   }
 
   ngOnInit() {
@@ -43,7 +45,7 @@ export class YearTemplateComponent implements OnInit {
       this.checkbox2 = true;
     }
 
-    if (this.yearObj.crossCountry.length>0) {
+    if (this.yearObj.crossCountry.length > 0) {
       this.checkbox3 = true;
     }
   }

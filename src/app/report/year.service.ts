@@ -10,7 +10,7 @@ export class YearService {
   constructor(private http: Http, private userService: UserService) {
   }
 
-  getYearList(companyName: string) {
+  getYearList(companyName: string): Promise<Year[]> {
     const search = new URLSearchParams();
     const user: UserInfo = this.userService.getUserInfo();
 
@@ -22,13 +22,16 @@ export class YearService {
     return this.http.get('/api/year', {search}).toPromise().then(responseHandler);
   }
 
-  getYear(yearId: string) {
+  getYear(yearId: string): Promise<Year> {
     const search = new URLSearchParams();
     search.append('yearId', yearId);
     return this.http.get('/api/year/detail', {search}).toPromise().then(responseHandler);
   }
 
   addYear(year: Year): Promise<{inserted, message}> {
+    const user: UserInfo = this.userService.getUserInfo();
+    year.userId = user.id;
+    year.permission = user.permission;
     return this.http.post('/api/year/insert', year).toPromise().then(responseHandler);
   }
 
