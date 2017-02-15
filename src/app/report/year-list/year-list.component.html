@@ -22,8 +22,8 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let year of yearList;let i = index">
-    <td>{{index+1}}</td>
+  <tr *ngFor="let year of yearList | paginate:{itemsPerPage: 10, currentPage: p};let i = index">
+    <td>{{i+1}}</td>
     <td>{{year.year}}</td>
     <td>{{year.companyName}}</td>
     <td>{{year.companyName}}</td>
@@ -35,3 +35,5 @@
   </tr>
   </tbody>
 </table>
+
+<pagination-controls (pageChange)="p = $event" style="text-align: center"></pagination-controls>

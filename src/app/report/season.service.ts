@@ -32,6 +32,7 @@ export class SeasonService {
     const user: UserInfo = this.userService.getUserInfo();
     season.userId = user.id;
     season.permission = user.permission;
+    season.cityId = user.cityid;
     return this.http.post('/api/season/insert', season).toPromise().then(responseHandler);
   }
 

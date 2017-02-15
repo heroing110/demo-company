@@ -34,6 +34,7 @@ export class Year {
 
   permission: string = '';
   userId: string = '';
+  cityId: string = '';
 
   //报表数据
   r_cell11: string = '';

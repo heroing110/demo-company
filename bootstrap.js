@@ -68,9 +68,17 @@ function proxy(req, res, invoke) {
   });
 
   console.log('******  PROXY URI ****** : ', host + path);
+  console.log('******  PROXY QUERY ****** : ', req.query);
+  console.log('******  PROXY BODY ****** : ', req.body);
+  console.log('******  PROXY METHOD ****** : ', req.method);
 
   invoke && invoke(promise);
-  promise.then(result => res.send(result), error => res.send(error));
+  promise.then(result => {
+    console.log('******  PROXY RESULT ****** : ', result);
+    res.send(result);
+  }, error => {
+    res.send(error);
+  });
 }
 
 const port = process.env.PORT || 4000;

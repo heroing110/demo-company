@@ -32,6 +32,7 @@ export class YearService {
     const user: UserInfo = this.userService.getUserInfo();
     year.userId = user.id;
     year.permission = user.permission;
+    year.cityId = user.cityid;
     return this.http.post('/api/year/insert', year).toPromise().then(responseHandler);
   }
 

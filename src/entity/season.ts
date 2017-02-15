@@ -4,9 +4,7 @@ export class Season {
   cell112: string = '';
   cell113: string = '';
   cell114: string = '';
-  o2oRadio: string = '';
   cell121: string = '';
-  mobileRadio: string = '';
   cell131: string = '';
   cell141: string = '';
   cell142: string = '';
@@ -70,9 +68,12 @@ export class Season {
   cell104: string = '';
   cell105: string = '';
 
+  o2oRadio: string = '';
+  mobileRadio: string = '';
   companyName: string = '';
   year: string = '';
   season: string = '';
   userId: string = '';
+  cityId: string = '';
   permission: string = '';
 }
