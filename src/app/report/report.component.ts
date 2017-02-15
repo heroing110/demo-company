@@ -9,14 +9,26 @@ import {Router} from "@angular/router";
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
-  private user: UserInfo;
-  private pwd = {oldPwd: '', newPwd: '', confirmPwd: ''};
+  user: UserInfo;
+  pwd = {oldPwd: '', newPwd: '', confirmPwd: ''};
 
-  constructor(private userService: UserService, private router: Router) {
+  navList = [
+    {name: '添加季报表', router: 'season/add', permission: ["1", "2"]},
+    {name: '季报表列表', router: 'season/list', permission: ["1", "2", "0"]},
+    {name: '添加年报表', router: 'year/add', permission: ["1", "2"]},
+    {name: '年报表列表', router: 'year/list', permission: ["1", "2", "0"]},
+    {name: '用户管理', router: 'users', permission: ["1", "0"]}
+  ];
+
+  constructor(private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit() {
     this.user = this.userService.getUserInfo();
+
+    // 根据权限设置菜单
+    this.navList = this.navList.filter(nav => nav.permission.includes(this.user.permission))
   }
 
   logout() {

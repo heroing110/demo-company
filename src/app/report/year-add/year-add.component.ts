@@ -1,8 +1,8 @@
-import {Component, OnInit, PlatformRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Year} from "../../../entity/year";
 import {YearService} from "../year.service";
 import {Router} from "@angular/router";
-import {NgForm, Validator, Validators} from "@angular/forms";
+import {UserService} from "../../share/user.service";
 
 @Component({
   selector: 'app-year-add',
@@ -10,13 +10,17 @@ import {NgForm, Validator, Validators} from "@angular/forms";
   styleUrls: ['./year-add.component.css']
 })
 export class YearAddComponent implements OnInit {
-  private yearObj: Year;
+  yearObj: Year = new Year();
 
-  constructor(private yearService: YearService, private router: Router) {
-    this.yearObj = new Year();
+  constructor(private yearService: YearService,
+              private router: Router,
+              private userService: UserService) {
   }
 
   ngOnInit() {
+    const user = this.userService.getUserInfo();
+    this.yearObj.companyName = user.companyName || '未设置单位名称'; // 单位名称
+    this.yearObj.cell71 = user.usernamecn;// 填表人
   }
 
   save() {

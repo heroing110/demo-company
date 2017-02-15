@@ -24,7 +24,7 @@ const routes: Routes = [
                     {path: 'welcome', component: WelcomeComponent},
                     {path: 'season/add', component: SeasonAddComponent},
                     {path: 'season/list', component: SeasonListComponent},
-                    {path: 'season/detail/:id', component: SeasonDetailComponent},
+                    {path: 'season/detail/:seasonId', component: SeasonDetailComponent},
                     {path: 'season/chart', component: SeasonChartComponent},
                     {path: 'year/detail/:yearId', component: YearDetailComponent},
                     {path: 'year/add', component: YearAddComponent},

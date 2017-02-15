@@ -1,22 +1,27 @@
-<form #seasonForm="ngForm" [class.showError]="showError">
-  <div class="form-inline">
+<form #seasonForm="ngForm" [class.show-error]="showError">
+  <div class="form-inline" style="padding: 1em;" [class.not-allow-modify]="modify">
     <label>单位详细名称</label>
-    <input type="text" class="form-control" [(ngModel)]="season.companyName" name="companyName" placeholder="单位详细名称"
-           required>
+    <input type="text" class="form-control"
+           [value]="season.companyName" name="companyName" readonly>
     <label class="text-right">年度</label>
-    <input type="text" class="form-control" [(ngModel)]="season.year" name="year" pattern="^2\d{3}$"
-           placeholder="2016" #year="ngModel" [readonly]="editFlag" required>
+    <input type="text" class="form-control"
+           [(ngModel)]="season.year" name="year" pattern="^2\d{3}$"
+           placeholder="2016" #year="ngModel" [readonly]="modify" required>
     <span class="text-danger" *ngIf="year.invalid && ((year.touched || year.dirty) || showError)">*请输入正确的年份</span>
     <label style="width: 100px;"></label>
     <label class="text-left">季度</label>
-    <span *ngIf="!editFlag">
-          <input type="radio" value="1" name="season" [(ngModel)]="season.season" required>第一季度
-          <input type="radio" value="2" name="season" [(ngModel)]="season.season" required>第二季度
-          <input type="radio" value="3" name="season" [(ngModel)]="season.season" required>第三季度
-          <input type="radio" value="4" name="season" [(ngModel)]="season.season" required>第四季度
+    <span *ngIf="!modify">
+          <input type="radio" value="1" name="season"
+                 [(ngModel)]="season.season" required> 第一季度
+          <input type="radio" value="2" name="season"
+                 [(ngModel)]="season.season" required> 第二季度
+          <input type="radio" value="3" name="season"
+                 [(ngModel)]="season.season" required> 第三季度
+          <input type="radio" value="4" name="season"
+                 [(ngModel)]="season.season" required> 第四季度
           <span class="text-danger" *ngIf="!season.season && showError">请选择季度</span>
         </span>
-    <span *ngIf="editFlag">
+    <span *ngIf="modify">
             <input type="hidden" class="form-control" [(ngModel)]="season.season" name="season">
             <label>第{{season.season}}季度</label>
         </span>
@@ -436,7 +441,8 @@
 
   <div class="form-inline">
     <div class="form-group" style="margin-left:25px;">
-      填表人：<input type="text" class="form-control" [(ngModel)]="season.cell161" name="cell161" required>
+      填表人：<input type="text" class="form-control"
+                 [value]="season.cell161" name="cell161" readonly>
     </div>
     <div class="form-group" style="margin-left:25px;">
       职务：<input type="text" class="form-control" [(ngModel)]="season.cell162" name="cell162" required>

@@ -11,7 +11,7 @@ export class YearListComponent implements OnInit {
 
   yearList: Year[];
 
-  companyNameQueryParams: string;
+  companyName: string;
 
   constructor(private yearService: YearService) {
   }

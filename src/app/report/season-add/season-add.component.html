@@ -1,5 +1,7 @@
 <h2 class="text-center">企业交易情况(季报)</h2>
 
-<app-season-template [season]="season"
-                     (save)="save($event)" [editFlag]="false">
+<app-season-template *ngIf="seasonObj"
+                     [season]="seasonObj"
+                     (save)="save($event)"
+                     [modify]="false">
 </app-season-template>

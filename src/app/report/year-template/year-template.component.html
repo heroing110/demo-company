@@ -1,21 +1,23 @@
-<form #yearForm="ngForm" [class.showError]="showError">
+<form #yearForm="ngForm" [class.show-error]="showError">
   <div class="form-inline" style="padding: 1em;">
     <div class="form-group margin-right">
       <label>单位详细名称</label>
-      <input type="text" class="form-control input-sm" [(ngModel)]="yearObj.companyName" name="companyName" required>
+      <input type="text" class="form-control input-sm"
+             [value]="yearObj.companyName" name="companyName" readonly>
     </div>
 
     <div class="form-group margin-right">
       <label class="text-right">年度</label>
-      <input type="number" class="form-control input-sm" [(ngModel)]="yearObj.year"
-             name="year" pattern="^2\d{3}$" required #year="ngModel">
+      <input type="number" class="form-control input-sm"
+             [(ngModel)]="yearObj.year" name="year" pattern="^2\d{3}$"
+             [readonly]="modify" required #year="ngModel">
       <span class="text-danger" *ngIf="year.invalid && ((year.touched || year.dirty) || showError)">*请输入正确的年份</span>
     </div>
 
     <div class="form-group">
       <label class="text-right">行业类别</label>
-      <select class="form-control input-sm" required name="industry" title="请选择行业"
-              [(ngModel)]="yearObj.industry">
+      <select class="form-control input-sm" [class.not-allow-modify]="modify"
+              [(ngModel)]="yearObj.industry" name="industry" required>
         <option value="">请选择行业类别</option>
         <option value="电子商务应用企业">电子商务应用企业</option>
         <option value="电子商务服务企业">电子商务服务企业</option>
@@ -234,7 +236,7 @@
     <div class="form-group margin-right">
       填表人：
       <input type="text" class="form-control input-sm"
-             [(ngModel)]="yearObj.cell71" name="cell71" required>
+             [value]="yearObj.cell71" name="cell71" readonly>
     </div>
     <div class="form-group margin-right">
       职务：

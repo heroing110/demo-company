@@ -1,33 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 
 .margin-top {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .margin-bottom {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .margin-left {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .margin-right {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
-form.showError input.ng-invalid {
-    outline: 1px solid #9E3F3F;
+form.show-error input.ng-invalid {
+  outline: 1px solid #9E3F3F;
 }
 
-form{
-    background-color: #F7F7F7;
-}
-
-.disabled-all-input{
+.not-allow-modify {
+  background-color: #eee;
   pointer-events: none;
 }
 
-.disabled-all-input input{
+form {
+  background-color: #F7F7F7;
+}
+
+.disabled-all-input {
+  pointer-events: none;
+}
+
+.disabled-all-input input {
   background-color: #e6e6e6;
 }

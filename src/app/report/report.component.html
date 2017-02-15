@@ -15,12 +15,14 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li routerLinkActive="active"><a routerLink="welcome">欢迎</a></li>
-        <li *ngIf="user.id!=1" routerLinkActive="active"><a routerLink="season/add">添加季报表</a></li>
-        <li routerLinkActive="active"><a routerLink="season/list">季报表列表</a></li>
-        <li *ngIf="user.id!=1" routerLinkActive="active"><a routerLink="year/add">添加年报表</a></li>
-        <li routerLinkActive="active"><a routerLink="year/list">年报表列表</a></li>
-        <li *ngIf="user.id!=1" routerLinkActive="active"><a routerLink="season/chart">统计分析</a></li>
+        <li routerLinkActive="active">
+          <a routerLink="welcome">欢迎</a>
+        </li>
+
+        <!-- 导航支持 -->
+        <li *ngFor="let nav of navList" routerLinkActive="active">
+          <a [routerLink]="nav.router">{{nav.name}}</a>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">

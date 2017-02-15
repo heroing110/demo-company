@@ -10,14 +10,14 @@ import {TemplateCommonCtrl} from "../template-common-ctrl";
   styleUrls: ['./season-template.component.css']
 })
 export class SeasonTemplateComponent extends TemplateCommonCtrl{
+  @Input() season: Season;
+  @Input() modify: boolean;
+  @Output() save = new EventEmitter<Season>();
+
   datePickerOption = {
     singleDatePicker: true,
     "drops": "up"
   };
-
-  @Input() season: Season;
-  @Input() editFlag: boolean;
-  @Output() save = new EventEmitter<Season>();
 
   checkbox1 = false;
   private showError: boolean = false;

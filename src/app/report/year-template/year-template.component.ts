@@ -13,21 +13,15 @@ export class YearTemplateComponent extends TemplateCommonCtrl implements OnInit 
   @Input() yearObj: Year;
 
   @Output() save = new EventEmitter<Year>();
-
-  private showError: boolean = false;
+  
+  @Input() modify: boolean;
 
   datePickerOption = {
     singleDatePicker: true,
     "drops": "up"
   };
 
-  yearDatePickerOption = {
-    singleDatePicker: true,
-    "drops": "down",
-    locale: {
-      "format": "YYYY"
-    }
-  };
+  showError = false;
 
   checkbox1 = false;
   checkbox2 = false;

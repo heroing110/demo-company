@@ -8,4 +8,5 @@ export class UserInfo {
   password: string = '';
   permission: string = ''; // 0省管理员，1市管理员，2企业用户
   usernamecn: string = '';
+  companyName: string = '';// 单位名称
 }

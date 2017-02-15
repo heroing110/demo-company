@@ -10,7 +10,7 @@ import {Season} from "../../../entity/season";
 })
 export class SeasonDetailComponent implements OnInit {
 
-  private season: Season;
+  private seasonObj: Season;
 
   constructor(private activatedRoute: ActivatedRoute,
               private seasonService: SeasonService,
@@ -20,11 +20,11 @@ export class SeasonDetailComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params
       .switchMap((params: Params) => this.seasonService.getSeasonDetail(params['seasonId']))
-      .subscribe((season: Season) => this.season = season);
+      .subscribe((season: Season) => this.seasonObj = season);
   }
 
   save() {
-    this.seasonService.updateSeason(this.season).then((result) => {
+    this.seasonService.updateSeason(this.seasonObj).then((result) => {
       if (result.updated) {
         this.router.navigate(['report/season/list']);
       } else if (result.message) {
