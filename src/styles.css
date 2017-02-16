@@ -25,6 +25,14 @@ form.show-error input.ng-invalid {
   pointer-events: none;
 }
 
+.readonly-all {
+  pointer-events: none;
+}
+
+.readonly-all input, .readonly-all select {
+  background-color: #eee;
+}
+
 form {
   background-color: #F7F7F7;
 }

@@ -4,5 +4,6 @@
 <app-year-template *ngIf="yearObj"
                    [yearObj]="yearObj"
                    (save)="save($event)"
+                   [readonlyAll]="readonlyAll"
                    [modify]="true">
 </app-year-template>

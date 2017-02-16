@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {YearService} from "../year.service";
 import {Year} from "../../../entity/year";
+import {UserService} from "../../share/user.service";
 
 @Component({
   selector: 'app-year-detail',
@@ -10,16 +11,23 @@ import {Year} from "../../../entity/year";
 })
 export class YearDetailComponent implements OnInit {
 
-  private yearObj: Year;
+  yearObj: Year;
+  readonlyAll = false;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private yearService: YearService, private router: Router) {
+              private yearService: YearService,
+              private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit() {
     this.activatedRoute.params
       .switchMap((params: Params) => this.yearService.getYear(params['yearId']))
       .subscribe((year: Year) => this.yearObj = year);
+
+    if (this.userService.getUserInfo().permission == '2') {
+      this.readonlyAll = true;
+    }
   }
 
   save() {

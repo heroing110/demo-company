@@ -1,5 +1,5 @@
 <form #seasonForm="ngForm" [class.show-error]="showError">
-  <div class="form-inline" style="padding: 1em;" [class.not-allow-modify]="modify">
+  <div class="form-inline" style="padding: 1em;" [class.readonly-all]="readonlyAll" [class.not-allow-modify]="modify">
     <label>单位详细名称</label>
     <input type="text" class="form-control"
            [value]="season.companyName" name="companyName" readonly>
@@ -27,7 +27,7 @@
         </span>
   </div>
 
-  <table class="table table-bordered table-hover margin-top">
+  <table [class.readonly-all]="readonlyAll" class="table table-bordered table-hover margin-top">
     <thead>
     <tr>
       <th colspan="7">一、电子商务交易情况</th>
@@ -60,19 +60,19 @@
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell12" name="cell12" #cell12="ngModel">
+               [(ngModel)]="season.cell12" name="cell12" #cell12="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell13" name="cell13" #cell13="ngModel">
+               [(ngModel)]="season.cell13" name="cell13" #cell13="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell14" name="cell14" #cell14="ngModel">
+               [(ngModel)]="season.cell14" name="cell14" #cell14="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell15" name="cell15" #cell15="ngModel">
+               [(ngModel)]="season.cell15" name="cell15" #cell15="ngModel" required>
       </td>
     </tr>
     <tr>
@@ -98,19 +98,19 @@
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell22" name="cell22" #cell22="ngModel">
+               [(ngModel)]="season.cell22" name="cell22" #cell22="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell23" name="cell23" #cell23="ngModel">
+               [(ngModel)]="season.cell23" name="cell23" #cell23="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell24" name="cell24" #cell24="ngModel">
+               [(ngModel)]="season.cell24" name="cell24" #cell24="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell25" name="cell25" #cell25="ngModel">
+               [(ngModel)]="season.cell25" name="cell25" #cell25="ngModel" required>
       </td>
     </tr>
     <tr>
@@ -127,19 +127,19 @@
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell32" name="cell32" #cell32="ngModel">
+               [(ngModel)]="season.cell32" name="cell32" #cell32="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell33" name="cell33" #cell33="ngModel">
+               [(ngModel)]="season.cell33" name="cell33" #cell33="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell34" name="cell34" #cell34="ngModel">
+               [(ngModel)]="season.cell34" name="cell34" #cell34="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell35" name="cell35" #cell35="ngModel">
+               [(ngModel)]="season.cell35" name="cell35" #cell35="ngModel" required>
       </td>
     </tr>
     <tr>
@@ -165,19 +165,19 @@
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell42" name="cell42" #cell42="ngModel">
+               [(ngModel)]="season.cell42" name="cell42" #cell42="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell43" name="cell43" #cell43="ngModel">
+               [(ngModel)]="season.cell43" name="cell43" #cell43="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell44" name="cell44" #cell44="ngModel">
+               [(ngModel)]="season.cell44" name="cell44" #cell44="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell45" name="cell45" #cell45="ngModel">
+               [(ngModel)]="season.cell45" name="cell45" #cell45="ngModel" required>
       </td>
     </tr>
     <tr>
@@ -194,19 +194,19 @@
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell52" name="cell52" #cell52="ngModel">
+               [(ngModel)]="season.cell52" name="cell52" #cell52="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell53" name="cell53" #cell53="ngModel">
+               [(ngModel)]="season.cell53" name="cell53" #cell53="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell54" name="cell54" #cell54="ngModel">
+               [(ngModel)]="season.cell54" name="cell54" #cell54="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell55" name="cell55" #cell55="ngModel">
+               [(ngModel)]="season.cell55" name="cell55" #cell55="ngModel" required>
       </td>
     </tr>
     <tr>
@@ -223,19 +223,19 @@
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell62" name="cell62" #cell62="ngModel">
+               [(ngModel)]="season.cell62" name="cell62" #cell62="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell63" name="cell63" #cell63="ngModel">
+               [(ngModel)]="season.cell63" name="cell63" #cell63="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell64" name="cell64" #cell64="ngModel">
+               [(ngModel)]="season.cell64" name="cell64" #cell64="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell65" name="cell65" #cell65="ngModel">
+               [(ngModel)]="season.cell65" name="cell65" #cell65="ngModel" required>
       </td>
     </tr>
     <tr>
@@ -261,19 +261,19 @@
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell72" name="cell72" #cell72="ngModel">
+               [(ngModel)]="season.cell72" name="cell72" #cell72="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell73" name="cell73" #cell73="ngModel">
+               [(ngModel)]="season.cell73" name="cell73" #cell73="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell74" name="cell74" #cell74="ngModel">
+               [(ngModel)]="season.cell74" name="cell74" #cell74="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell75" name="cell75" #cell75="ngModel">
+               [(ngModel)]="season.cell75" name="cell75" #cell75="ngModel" required>
       </td>
     </tr>
     <tr>
@@ -290,19 +290,19 @@
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell82" name="cell82" #cell82="ngModel">
+               [(ngModel)]="season.cell82" name="cell82" #cell82="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell83" name="cell83" #cell83="ngModel">
+               [(ngModel)]="season.cell83" name="cell83" #cell83="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell84" name="cell84" #cell84="ngModel">
+               [(ngModel)]="season.cell84" name="cell84" #cell84="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell85" name="cell85" #cell85="ngModel">
+               [(ngModel)]="season.cell85" name="cell85" #cell85="ngModel" required>
       </td>
     </tr>
     <tr>
@@ -319,19 +319,19 @@
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell92" name="cell92" #cell92="ngModel">
+               [(ngModel)]="season.cell92" name="cell92" #cell92="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell93" name="cell93" #cell93="ngModel">
+               [(ngModel)]="season.cell93" name="cell93" #cell93="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell94" name="cell94" #cell94="ngModel">
+               [(ngModel)]="season.cell94" name="cell94" #cell94="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell95" name="cell95" #cell95="ngModel">
+               [(ngModel)]="season.cell95" name="cell95" #cell95="ngModel" required>
       </td>
     </tr>
     <tr>
@@ -348,19 +348,19 @@
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell102" name="cell102" #cell102="ngModel">
+               [(ngModel)]="season.cell102" name="cell102" #cell102="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell103" name="cell103" #cell103="ngModel">
+               [(ngModel)]="season.cell103" name="cell103" #cell103="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell104" name="cell104" #cell104="ngModel">
+               [(ngModel)]="season.cell104" name="cell104" #cell104="ngModel" required>
       </td>
       <td>
         <input type="number" class="form-control"
-               [(ngModel)]="season.cell105" name="cell105" #cell105="ngModel">
+               [(ngModel)]="season.cell105" name="cell105" #cell105="ngModel" required>
       </td>
     </tr>
     <tr>
@@ -428,32 +428,36 @@
       <td colspan="7" style="text-align:left;">
         <input type="checkbox" name="checkbox1" [(ngModel)]="checkbox1">电子商务物流配送情况：
         <span class="form-inline" *ngIf="checkbox1">
-                    自营 占物流配送总额比重 <input type="number" class="form-control" [(ngModel)]="season.cell151" name="cell151"
-                                        placeholder="%" required>
-                    外包 占物流配送总额比重 <input type="number" class="form-control" [(ngModel)]="season.cell152" name="cell152"
-                                        placeholder="%" required>
-                </span>
+          自营 占物流配送总额比重
+          <input type="number" class="form-control"
+                 [(ngModel)]="season.cell151" name="cell151" placeholder="%" required>
+          外包 占物流配送总额比重
+          <input type="number" class="form-control"
+                 [(ngModel)]="season.cell152" name="cell152" placeholder="%" required>
+        </span>
       </td>
     </tr>
     </tbody>
   </table>
 
 
-  <div class="form-inline">
-    <div class="form-group" style="margin-left:25px;">
+  <div [class.readonly-all]="readonlyAll" class="form-inline">
+    <div class="form-group margin-left">
       填表人：<input type="text" class="form-control"
                  [value]="season.cell161" name="cell161" readonly>
     </div>
-    <div class="form-group" style="margin-left:25px;">
+    <div class="form-group margin-left">
       职务：<input type="text" class="form-control" [(ngModel)]="season.cell162" name="cell162" required>
     </div>
-    <div class="form-group" style="margin-left:25px;">
-      联系电话：<input type="number" class="form-control" [(ngModel)]="season.cell163" name="cell163">
+    <div class="form-group margin-left">
+      联系电话：<input type="text" class="form-control"
+                  [(ngModel)]="season.cell163" name="cell163" pattern="^\d{3,4}-\d{7,8}$">
     </div>
-    <div class="form-group" style="margin-left:25px;">
-      手机：<input type="number" class="form-control" [(ngModel)]="season.cell164" name="cell164">
+    <div class="form-group margin-left">
+      手机：<input type="text" class="form-control"
+                [(ngModel)]="season.cell164" name="cell164" pattern="^1\d{10}$" required>
     </div>
-    <div class="form-group margin-top" style="margin-left:25px;">
+    <div class="form-group margin-top margin-left">
       填报日期:
       <input type="text" class="form-control" [(value)]="season.cell165" name="cell165" appDatepicker
              [option]="datePickerOption" required>
@@ -461,7 +465,9 @@
   </div>
   <hr/>
   <div class="row" style="width:1000px; margin:10px auto; text-align:center">
-    <button type="submit" class="btn btn-primary" (click)="saveSeason(seasonForm)">提交</button>
+    <button type="submit" class="btn btn-primary"
+            *ngIf="!readonlyAll"
+            (click)="saveSeason(seasonForm)">提交</button>
     <button type="button" class="btn btn-default" (click)="back()">返回</button>
   </div>
 </form>

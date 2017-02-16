@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1",
+    "usernamecn": "歪",
+    "permission": "1"
+  },
+  {
+    "id": "2",
+    "usernamecn": "不",
+    "permission": "2"
+  },
+  {
+    "id": "3",
+    "usernamecn": "是",
+    "permission": "1"
+  },
+  {
+    "id": "4",
+    "usernamecn": "阿西",
+    "permission": "0"
+  },
+  {
+    "id": "5",
+    "usernamecn": "特",
+    "permission": "1"
+  }
+]

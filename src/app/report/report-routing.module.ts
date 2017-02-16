@@ -10,6 +10,7 @@ import {SeasonDetailComponent} from "./season-detail/season-detail.component";
 import {YearDetailComponent} from "./year-detail/year-detail.component";
 import {SeasonChartComponent} from "./season-chart/season-chart.component";
 import {AuthGuard} from "../auth-guard.service";
+import {UserManagementComponent} from "./user-management/user-management.component";
 
 const routes: Routes = [
     {
@@ -22,6 +23,7 @@ const routes: Routes = [
                 canActivateChild: [AuthGuard],
                 children: [
                     {path: 'welcome', component: WelcomeComponent},
+                    {path: 'user-management', component: UserManagementComponent},
                     {path: 'season/add', component: SeasonAddComponent},
                     {path: 'season/list', component: SeasonListComponent},
                     {path: 'season/detail/:seasonId', component: SeasonDetailComponent},

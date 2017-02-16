@@ -3,5 +3,6 @@
 <app-season-template *ngIf="seasonObj"
                      [season]="seasonObj"
                      (save)="save($event)"
+                     [readonlyAll]="false"
                      [modify]="false">
 </app-season-template>

@@ -1,5 +1,5 @@
 <form #yearForm="ngForm" [class.show-error]="showError">
-  <div class="form-inline" style="padding: 1em;">
+  <div class="form-inline" [class.readonly-all]="readonlyAll" style="padding: 1em;">
     <div class="form-group margin-right">
       <label>单位详细名称</label>
       <input type="text" class="form-control input-sm"
@@ -28,7 +28,7 @@
   </div>
 
   <!-- 根据`行业类别`动态渲染表格，默认禁用所有表格内输入项-->
-  <div [class.disabled-all-input]="!yearObj.industry">
+  <div [class.disabled-all-input]="!yearObj.industry" [class.readonly-all]="readonlyAll">
     <app-year-industry-template1
       *ngIf="yearObj.industry == '电子商务应用企业'"
       [yearObj]="yearObj"></app-year-industry-template1>
@@ -42,7 +42,7 @@
       [yearObj]="yearObj"></app-year-industry-template3>
   </div>
 
-  <table class="table table-bordered table-hover small">
+  <table [class.readonly-all]="readonlyAll" class="table table-bordered table-hover small">
     <colgroup>
       <col style="width: 170px;">
       <col>
@@ -218,21 +218,28 @@
 
           其中：其中商品类
           <input type="text" class="form-control input-sm"
-                 [(ngModel)]="yearObj.cell62" name="cell62" #cell62="ngModel" placeholder="万元" required> <br>
+                 [(ngModel)]="yearObj.cell62" name="cell62" #cell62="ngModel" placeholder="万元" required>
+
+          <br>
+
           服务类
           <input type="text" class="form-control input-sm"
-                 [(ngModel)]="yearObj.cell63" name="cell63" #cell63="ngModel" placeholder="万元" required>（注：电商应用/综合型企业填写）
+                 [(ngModel)]="yearObj.cell63" name="cell63" #cell63="ngModel" placeholder="万元" required>
+          （注：电商应用/综合型企业填写）
+
           <br>
+
           电子商务服务收入
           <input type="text" class="form-control input-sm"
-                 [(ngModel)]="yearObj.cell64" name="cell64" #cell64="ngModel" placeholder="万元" required>（注：电商服务/综合型企业填写）
+                 [(ngModel)]="yearObj.cell64" name="cell64" #cell64="ngModel" placeholder="万元" required>
+          （注：电商服务/综合型企业填写）
         </div>
       </td>
     </tr>
     </tbody>
   </table>
 
-  <div class="form-inline" style="padding: 1em;">
+  <div [class.readonly-all]="readonlyAll" class="form-inline" style="padding: 1em;">
     <div class="form-group margin-right">
       填表人：
       <input type="text" class="form-control input-sm"
@@ -246,7 +253,7 @@
     <div class="form-group margin-right">
       联系电话：
       <input type="text" class="form-control input-sm"
-             [(ngModel)]="yearObj.cell73" name="cell73" required>
+             [(ngModel)]="yearObj.cell73" name="cell73" pattern="^\d{3,4}-\d{7,8}$">
     </div>
 
     <br>
@@ -254,7 +261,7 @@
     <div class="form-group margin-right">
       手机：
       <input type="text" class="form-control input-sm"
-             [(ngModel)]="yearObj.cell74" name="cell74" required>
+             [(ngModel)]="yearObj.cell74" name="cell74" pattern="^1\d{10}$" required>
     </div>
     <div class="form-group">
       填报日期:
@@ -264,7 +271,9 @@
   </div>
   <hr/>
   <div class="text-center">
-    <button type="submit" class="btn btn-primary" (click)="saveYear(yearForm)">提交</button>
+    <button type="submit" class="btn btn-primary"
+            *ngIf="!readonlyAll"
+            (click)="saveYear(yearForm)">提交</button>
     <button type="button" class="btn btn-default" (click)="back()">返回</button>
   </div>
 </form>

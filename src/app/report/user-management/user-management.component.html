@@ -1,0 +1,65 @@
+<h4 class="page-header">
+  用户管理
+</h4>
+
+<div class="form-inline margin-bottom">
+  <div class="form-group">
+    <label>用户名称:</label>
+    <input type="text" class="form-control" [(ngModel)]="usernamecn">
+  </div>
+
+  <div class="form-group">
+    <label>用户类型:</label>
+    <select class="form-control" [(ngModel)]="permission">
+      <option value="">全部</option>
+      <option value="0">超级管理员</option>
+      <option value="1">市管理员</option>
+      <option value="2">企业用户</option>
+    </select>
+  </div>
+
+  <button class="btn btn-default" (click)="query()">查询</button>
+
+  <button class="btn btn-default" (click)="query()">新建用户</button>
+</div>
+
+<table class="table table-bordered table-hover table-condensed">
+  <thead>
+  <tr>
+    <th>序号</th>
+    <th>所属城市</th>
+    <th>用户登陆名</th>
+    <th>用户中文名</th>
+    <th>企业名称</th>
+    <th>用户类型</th>
+    <th style="width: 350px;">操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of userList | paginate:{itemsPerPage: 10, currentPage: p} ;let i = index">
+    <td>{{i+1}}</td>
+    <td>{{user.cityId}}</td>
+    <td>{{user.username}}</td>
+    <td>{{user.usernamecn}}</td>
+    <td>{{user.companyName}}</td>
+    <td>{{user.permission | permission}}</td>
+    <td>
+      <button type="button" class="btn btn-default btn-sm" (click)="modifyUser.open(user)">修改用户信息</button>
+      <button type="button" class="btn btn-default btn-sm" (click)="modifyPassword.open(user)">
+        修改密码
+      </button>
+      <button type="button" class="btn btn-default btn-sm" (click)="deleteUser(user)">删除</button>
+
+      <button type="button" class="btn btn-default btn-sm"
+              *ngIf="user.permission == '2'">
+        查看报表
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<pagination-controls (pageChange)="p = $event" style="text-align: center"></pagination-controls>
+
+<app-modify-user #modifyUser (saveModify)="saveModifyUser($event, modifyUser)"></app-modify-user>
+<app-modify-password #modifyPassword (saveModify)="saveModifyPassword($event, modifyPassword)"></app-modify-password>

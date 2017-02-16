@@ -10,11 +10,10 @@ import {TemplateCommonCtrl} from "../template-common-ctrl";
   styleUrls: ['./year-template.component.css']
 })
 export class YearTemplateComponent extends TemplateCommonCtrl implements OnInit {
+  @Input() readonlyAll: boolean;
   @Input() yearObj: Year;
-
-  @Output() save = new EventEmitter<Year>();
-  
   @Input() modify: boolean;
+  @Output() save = new EventEmitter<Year>();
 
   datePickerOption = {
     singleDatePicker: true,
@@ -39,7 +38,7 @@ export class YearTemplateComponent extends TemplateCommonCtrl implements OnInit 
       this.checkbox2 = true;
     }
 
-    if (this.yearObj.crossCountry.length > 0) {
+    if (this.yearObj.crossCountry && this.yearObj.crossCountry.length > 0) {
       this.checkbox3 = true;
     }
   }

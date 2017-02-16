@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../share/user.service";
 import {UserInfo} from "../../entity/user-info";
 import {Router} from "@angular/router";
+import {MenuItem, MenuList} from "./menu";
+import {ModifyPasswordComponent} from "./user-management/modify-password/modify-password.component";
 
 @Component({
   selector: 'app-report',
@@ -10,15 +12,7 @@ import {Router} from "@angular/router";
 })
 export class ReportComponent implements OnInit {
   user: UserInfo;
-  pwd = {oldPwd: '', newPwd: '', confirmPwd: ''};
-
-  navList = [
-    {name: '添加季报表', router: 'season/add', permission: ["1", "2"]},
-    {name: '季报表列表', router: 'season/list', permission: ["1", "2", "0"]},
-    {name: '添加年报表', router: 'year/add', permission: ["1", "2"]},
-    {name: '年报表列表', router: 'year/list', permission: ["1", "2", "0"]},
-    {name: '用户管理', router: 'users', permission: ["1", "0"]}
-  ];
+  menuList: MenuItem[];
 
   constructor(private userService: UserService,
               private router: Router) {
@@ -27,8 +21,8 @@ export class ReportComponent implements OnInit {
   ngOnInit() {
     this.user = this.userService.getUserInfo();
 
-    // 根据权限设置菜单
-    this.navList = this.navList.filter(nav => nav.permission.includes(this.user.permission))
+    // 根据权限调整菜单
+    this.menuList = MenuList.filter(menu => menu.permission.includes(this.user.permission))
   }
 
   logout() {
@@ -37,18 +31,11 @@ export class ReportComponent implements OnInit {
     });
   }
 
-  initPwd() {
-    this.pwd = {oldPwd: '', newPwd: '', confirmPwd: ''};
-  }
-
-  pwdValid() {
-    return !(this.pwd.oldPwd && this.pwd.newPwd && this.pwd.newPwd === this.pwd.confirmPwd);
-  }
-
-  savePwd() {// 保存修改的密码
-    this.userService.changePwd(this.pwd).then(data => {
+  savePwd(pwd, modifyPassword: ModifyPasswordComponent) {// 保存修改的密码
+    this.userService.changePwd(pwd).then(data => {
       if (data.updated) {
         alert('修改成功，请重新登录');
+        modifyPassword.close();
         this.logout();
       } else if (data.message) {
         alert(data.message);
@@ -57,5 +44,4 @@ export class ReportComponent implements OnInit {
       }
     });
   }
-
 }

@@ -20,6 +20,12 @@ import {Ng2PaginationModule} from "ng2-pagination";
 import {YearIndustryTemplate1Component} from "./year-template/year-industry-template1/year-industry-template1.component";
 import {YearIndustryTemplate2Component} from "./year-template/year-industry-template2/year-industry-template2.component";
 import {YearIndustryTemplate3Component} from "./year-template/year-industry-template3/year-industry-template3.component";
+import {UserManagementComponent} from "./user-management/user-management.component";
+import {UserManagementService} from "./user-management.service";
+import {UserPermissionPipe} from "./user-management/user-permission.pipe";
+import {CityPipe} from "./city.pipe";
+import {ModifyPasswordComponent} from "./user-management/modify-password/modify-password.component";
+import {ModifyUserComponent} from "./user-management/modify-user/modify-user.component";
 
 @NgModule({
   imports: [
@@ -43,11 +49,18 @@ import {YearIndustryTemplate3Component} from "./year-template/year-industry-temp
     YearIndustryTemplate2Component,
     YearIndustryTemplate3Component,
 
-    SeasonChartComponent
+    SeasonChartComponent,
+
+    UserManagementComponent,
+    ModifyPasswordComponent,
+    ModifyUserComponent,
+    UserPermissionPipe,
+    CityPipe
   ],
   providers: [
     SeasonService,
-    YearService
+    YearService,
+    UserManagementService
   ]
 })
 export class ReportModule {

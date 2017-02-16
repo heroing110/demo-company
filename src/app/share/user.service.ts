@@ -33,6 +33,10 @@ export class UserService {
       .then(responseHandler);
   }
 
+  getAllCity(): Promise<{[cityId: string]: string}> {
+    return this.http.get('/api/users/allCity').toPromise().then(responseHandler);
+  }
+
   getUserInfo(): UserInfo {
     return this.userInfo;
   }

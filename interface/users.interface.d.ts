@@ -1,7 +1,6 @@
 // Created by baihuibo on 2017/1/31.
 
 import {UserInfo} from "../src/entity/user-info";
-import {City} from "../src/entity/city";
 
 // path = '/api/users'
 export interface UsersServiceInterface {
@@ -70,5 +69,5 @@ export interface UsersServiceInterface {
    * method = GET
    * path = '/allCity'
    */
-  allCity(): City[]
+  allCity(): {[cityId: string]: string}
 }
