@@ -1,6 +1,7 @@
 // Created by baihuibo on 2017/1/31.
 
 import {UserInfo} from "../src/entity/user-info";
+import {City} from "../src/entity/city";
 
 // path = '/api/users'
 export interface UsersServiceInterface {
@@ -62,4 +63,12 @@ export interface UsersServiceInterface {
    * path = '/changePwd'
    */
   changePwd(userId: string, update: {oldPwd: string, newPwd: string, confirmPwd: string}): {/* 错误描述 */message: string, /* 更新完成情况 */updated: boolean}
+
+  /**
+   * 获取所有城市
+   *
+   * method = GET
+   * path = '/allCity'
+   */
+  allCity(): City[]
 }

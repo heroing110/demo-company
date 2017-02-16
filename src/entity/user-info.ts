@@ -10,3 +10,10 @@ export class UserInfo {
   usernamecn: string = '';
   companyName: string = '';// 单位名称
 }
+
+
+export enum PERMISSION{
+  "省管理员" = 0,
+  "市管理员" = 1,
+  "企业用户" = 2
+}
