@@ -1,5 +1,5 @@
 // Created by baihuibo on 2017/2/16.
-import {Component, Output, EventEmitter} from '@angular/core';
+import {Component, Output, EventEmitter, Input} from '@angular/core';
 import {UserInfo} from "../../../../entity/user-info";
 
 @Component({
@@ -8,6 +8,7 @@ import {UserInfo} from "../../../../entity/user-info";
 })
 export class ModifyPasswordComponent {
 
+  @Input() hideOldPwd: boolean;
   @Output() saveModify = new EventEmitter();
   user: UserInfo;
   modalId = 'modify_' + Date.now();
@@ -33,6 +34,9 @@ export class ModifyPasswordComponent {
   }
 
   valid() {
-    return !(this.pwd.oldPwd && this.pwd.newPwd && this.pwd.newPwd === this.pwd.confirmPwd);
+    if (this.hideOldPwd) {
+      return this.pwd.newPwd === this.pwd.confirmPwd;
+    }
+    return this.pwd.oldPwd && this.pwd.newPwd && this.pwd.newPwd === this.pwd.confirmPwd;
   }
 }

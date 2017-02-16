@@ -8,7 +8,7 @@
     <input type="text" class="form-control" [(ngModel)]="usernamecn">
   </div>
 
-  <div class="form-group">
+  <div class="form-group" *ngIf="currentUser.permission == '0'">
     <label>用户类型:</label>
     <select class="form-control" [(ngModel)]="permission">
       <option value="">全部</option>
@@ -20,7 +20,7 @@
 
   <button class="btn btn-default" (click)="query()">查询</button>
 
-  <button class="btn btn-default" (click)="query()">新建用户</button>
+  <button class="btn btn-default" (click)="newUser.open({})">新建用户</button>
 </div>
 
 <table class="table table-bordered table-hover table-condensed">
@@ -61,5 +61,12 @@
 
 <pagination-controls (pageChange)="p = $event" style="text-align: center"></pagination-controls>
 
-<app-modify-user #modifyUser (saveModify)="saveModifyUser($event, modifyUser)"></app-modify-user>
-<app-modify-password #modifyPassword (saveModify)="saveModifyPassword($event, modifyPassword)"></app-modify-password>
+<app-modify-user [title]="'创建用户'" #newUser
+                 (saveModify)="saveNewUser($event, newUser)"></app-modify-user>
+
+<app-modify-user [title]="'修改用户'" #modifyUser
+                 (saveModify)="saveModifyUser($event, modifyUser)"></app-modify-user>
+
+<app-modify-password #modifyPassword
+                     [hideOldPwd]="true"
+                     (saveModify)="saveModifyPassword($event, modifyPassword)"></app-modify-password>

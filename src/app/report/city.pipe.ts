@@ -2,18 +2,23 @@
 
 import {PipeTransform, Pipe} from "@angular/core";
 import {UserService} from "../share/user.service";
+import {City} from "../../entity/city";
 
 @Pipe({
   name: 'city'
 })
 export class CityPipe implements PipeTransform {
-  private cityMap: {[cityId: string]: string};
+  private citys: City[];
 
   constructor(private userService: UserService) {
-    userService.getAllCity().then(cityMap => this.cityMap = cityMap);
+    userService.getAllCity().then(citys => this.citys = citys);
   }
 
   transform(cityId: any): any {
-    return this.cityMap[cityId] || cityId;
+    const city = this.citys.find(city => city.id == cityId);
+    if (city) {
+      return city.name;
+    }
+    return '[pipe : city not found]';
   }
 }

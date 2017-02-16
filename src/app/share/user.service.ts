@@ -1,8 +1,9 @@
 import {Injectable} from "@angular/core";
 import {UserInfo} from "../../entity/user-info";
-import {Http} from "@angular/http";
+import {Http, URLSearchParams} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
 import {responseHandler} from "../util";
+import {City} from "../../entity/city";
 
 @Injectable()
 export class UserService {
@@ -28,13 +29,28 @@ export class UserService {
       .then(responseHandler);
   }
 
-  changePwd(update): Promise<{message, updated}> {
-    return this.http.post('/api/users/changePwd', {userId: this.userInfo.id, update}).toPromise()
+  changePwd(pwd): Promise<{message, updated}> {
+    const search = new URLSearchParams();
+    search.append('userId', this.userInfo.id);
+    return this.http.post('/api/users/changePwd', pwd, {search}).toPromise()
       .then(responseHandler);
   }
 
-  getAllCity(): Promise<{[cityId: string]: string}> {
-    return this.http.get('/api/users/allCity').toPromise().then(responseHandler);
+  private citys: City[];
+
+  getAllCity(): Promise<City[]> {
+    if (this.citys) {
+      return Promise.resolve(this.citys);
+    }
+    return this.http.get('/api/users/allCity').toPromise()
+      .then(responseHandler)
+      .then((res: {[cityId: string]: string}) => {
+        const citys: City[] = [];
+        for (let id in res) {
+          citys.push({id, name: res[id]});
+        }
+        return this.citys = citys;
+      });
   }
 
   getUserInfo(): UserInfo {

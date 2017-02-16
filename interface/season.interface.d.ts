@@ -13,7 +13,7 @@ export interface SeasonServiceInterface {
   queryDetail(seasonId: string): Season
 
   // GET path = '/chart'
-  queryChart(): Season[]
+  queryChart(userId: string): Season[]
 
   // POST path = '/insert'
   insert(season: Season): {/* 错误描述 */message: string, /* 创建完成情况 */inserted: boolean}

@@ -2,28 +2,36 @@ import {Injectable} from "@angular/core";
 import {Http, URLSearchParams} from "@angular/http";
 import {responseHandler} from "../util";
 import {UserInfo} from "../../entity/user-info";
+import {UserService} from "../share/user.service";
 
 @Injectable()
 export class UserManagementService {
-  constructor(private http: Http) {
+  constructor(private http: Http,
+              private userService: UserService) {
   }
 
   /**
    * 查询全部用户
-   * @param usernamecn 可选，根据用户中文名，过滤查询结果
-   * @param permission 可选，根据用户类型，过滤查询结果
+   * @param q_usernamecn 可选，根据用户中文名，过滤查询结果
+   * @param q_permission 可选，根据用户类型，过滤查询结果
    *
    * method = GET
    * path = '/queryAll'
    */
-  queryAll(usernamecn: string,
-           permission: string): Promise<UserInfo[]> {
+  queryAll(q_usernamecn: string,
+           q_permission: string): Promise<UserInfo[]> {
+
+    const user = this.userService.getUserInfo();
     const search = new URLSearchParams();
 
-    search.append('usernamecn', usernamecn);
-    search.append('permission', permission);
+    search.append('q_usernamecn', q_usernamecn);
+    search.append('q_permission', q_permission);
 
-    return this.http.get('/api/users/queryAll', {search}).toPromise().then(responseHandler);
+    search.append('cityId', user.cityid);
+    search.append('permission', user.permission);
+
+    return this.http.get('/api/users/queryAll', {search}).toPromise()
+      .then(responseHandler);
   }
 
   /**
@@ -33,7 +41,8 @@ export class UserManagementService {
    * path = '/insert'
    */
   insert(user: UserInfo): Promise<{message, inserted}> {
-    return this.http.put('/api/users/insert', user).toPromise().then(responseHandler);
+    return this.http.put('/api/users/insert', user).toPromise()
+      .then(responseHandler);
   }
 
   /**
@@ -48,7 +57,8 @@ export class UserManagementService {
 
     search.append('userId', userId);
 
-    return this.http.delete('/api/users/delete', {search}).toPromise().then(responseHandler);
+    return this.http.delete('/api/users/delete', {search}).toPromise()
+      .then(responseHandler);
   }
 
   /**
@@ -59,7 +69,8 @@ export class UserManagementService {
    * path = '/update'
    */
   update(user: UserInfo): Promise<{message, updated}> {
-    return this.http.post('/api/users/update', user).toPromise().then(responseHandler);
+    return this.http.post('/api/users/update', user).toPromise()
+      .then(responseHandler);
   }
 
   /**
@@ -75,6 +86,7 @@ export class UserManagementService {
 
     search.append('userId', userId);
 
-    return this.http.put('/api/users/changePwd', update, {search}).toPromise().then(responseHandler);
+    return this.http.put('/api/users/changePwd', update, {search}).toPromise()
+      .then(responseHandler);
   }
 }

@@ -17,13 +17,18 @@ export interface UsersServiceInterface {
 
   /**
    * 查询全部用户
-   * @param usernamecn 可选，根据用户中文名，过滤查询结果
-   * @param permission 可选，根据用户类型，过滤查询结果
+   * @param q_usernamecn 可选，根据用户中文名，过滤查询结果
+   * @param q_permission 可选，根据用户类型，过滤查询结果
+   *
+   * @param cityId 当前用户的城市
+   * @param permission 当前用户的权限
    *
    * method = GET
    * path = '/queryAll'
    */
-  queryAll(usernamecn: string,
+  queryAll(q_usernamecn: string,
+           q_permission: string,
+           cityId: string,
            permission: string): UserInfo[]
 
   /**
