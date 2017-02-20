@@ -38,7 +38,7 @@
   <tbody>
   <tr *ngFor="let user of userList | paginate:{itemsPerPage: 10, currentPage: p} ;let i = index">
     <td>{{i+1}}</td>
-    <td>{{user.cityId}}</td>
+    <td>{{user.cityid | city}}</td>
     <td>{{user.username}}</td>
     <td>{{user.usernamecn}}</td>
     <td>{{user.companyName}}</td>
