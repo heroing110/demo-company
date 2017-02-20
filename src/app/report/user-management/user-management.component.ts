@@ -34,6 +34,7 @@ export class UserManagementComponent implements OnInit {
     this.userManagementService.insert(user).then(res => {
       if (res.inserted) {
         newUserComponent.close();
+        alert(res.message || '新建用户成功!');
         this.query();
       } else {
         alert(res.message);
