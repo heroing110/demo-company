@@ -61,7 +61,7 @@
 
 <pagination-controls (pageChange)="p = $event" style="text-align: center"></pagination-controls>
 
-<app-modify-user [title]="'创建用户'" #newUser
+<app-modify-user [title]="'创建用户'" #newUser [create]="true"
                  (saveModify)="saveNewUser($event, newUser)"></app-modify-user>
 
 <app-modify-user [title]="'修改用户'" #modifyUser

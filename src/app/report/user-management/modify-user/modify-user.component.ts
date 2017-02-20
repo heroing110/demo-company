@@ -13,6 +13,7 @@ import {UserService} from "../../../share/user.service";
 export class ModifyUserComponent implements OnInit {
 
   @Input() title: string;
+  @Input() create: boolean;
   @Output() saveModify = new EventEmitter();
   user: UserInfo = new UserInfo();
   modalId = 'modify_' + Date.now();
