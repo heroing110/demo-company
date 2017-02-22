@@ -68,11 +68,11 @@ export class Season {
   cell104: string = '';
   cell105: string = '';
 
-  o2oRadio: string = '';
-  mobileRadio: string = '';
+  o2oRadio: string = '2';// 1：是，2：否
+  mobileRadio: string = '2';// 1：是，2：否
   companyName: string = '';
   year: string = '';
-  season: string = '';
+  season: string = '1';
   userId: string = '';
   cityId: string = '';
   permission: string = '';

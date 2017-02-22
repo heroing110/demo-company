@@ -12,7 +12,7 @@ import {TemplateCommonCtrl} from "../template-common-ctrl";
 export class SeasonTemplateComponent extends TemplateCommonCtrl{
   @Input() season: Season;
   @Input() readonlyAll: boolean;
-  @Input() modify: boolean;
+  @Input() modifyMode: boolean;
   @Output() save = new EventEmitter<Season>();
 
   datePickerOption = {
