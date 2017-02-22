@@ -10,13 +10,13 @@
       <label class="text-right">年度</label>
       <input type="number" class="form-control input-sm"
              [(ngModel)]="yearObj.year" name="year" pattern="^2\d{3}$"
-             [readonly]="modify" required #year="ngModel">
+             [readonly]="modifyMode" required #year="ngModel">
       <span class="text-danger" *ngIf="year.invalid && ((year.touched || year.dirty) || showError)">*请输入正确的年份</span>
     </div>
 
     <div class="form-group">
       <label class="text-right">行业类别</label>
-      <select class="form-control input-sm" [class.not-allow-modify]="modify"
+      <select class="form-control input-sm" [class.not-allow-modify]="modifyMode"
               [(ngModel)]="yearObj.industry" name="industry" required>
         <option value="">请选择行业类别</option>
         <option value="电子商务应用企业">电子商务应用企业</option>

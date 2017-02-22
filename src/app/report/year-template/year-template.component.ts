@@ -12,7 +12,7 @@ import {TemplateCommonCtrl} from "../template-common-ctrl";
 export class YearTemplateComponent extends TemplateCommonCtrl implements OnInit {
   @Input() readonlyAll: boolean;
   @Input() yearObj: Year;
-  @Input() modify: boolean;
+  @Input() modifyMode: boolean;
   @Output() save = new EventEmitter<Year>();
 
   datePickerOption = {
