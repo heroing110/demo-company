@@ -1,5 +1,5 @@
 <h4 class="page-header">
-    季报表查看
+  季报表查看
 </h4>
 
 <div class="form-inline margin-bottom">
@@ -12,30 +12,33 @@
 </div>
 
 <table class="table table-bordered table-hover table-condensed">
-    <thead>
-    <tr>
-        <th>序号</th>
-        <th>年度</th>
-        <th>季度</th>
-        <th>单位详细名称</th>
-        <th>填报人</th>
-        <th>操作</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let season of seasonList | paginate:{itemsPerPage: 10, currentPage: p} ;let i = index">
-        <td>{{i+1}}</td>
-        <td>{{season.year}}</td>
-        <td>{{season.season}}</td>
-        <td>{{season.companyName}}</td>
-        <td>{{season.cell161}}</td>
-        <td>
-            <button type="button" class="btn btn-default btn-sm"
-                    [routerLink]="['../detail' , season.id]">详情
-            </button>
-        </td>
-    </tr>
-    </tbody>
+  <thead>
+  <tr>
+    <th>序号</th>
+    <th>年度</th>
+    <th>季度</th>
+    <th>单位详细名称</th>
+    <th>填报人</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let season of seasonList | paginate:{itemsPerPage: 10, currentPage: p} ;let i = index">
+    <td>{{i+1}}</td>
+    <td>{{season.year}}</td>
+    <td>{{season.season}}</td>
+    <td>{{season.companyName}}</td>
+    <td>{{season.cell161}}</td>
+    <td>
+      <button type="button" class="btn btn-default btn-sm"
+              [routerLink]="['../detail' , season.id]">详情
+      </button>
+      <button type="button" class="btn btn-default btn-sm"
+              [routerLink]="['../chart' , season.id]">报表
+      </button>
+    </td>
+  </tr>
+  </tbody>
 </table>
 
 <pagination-controls (pageChange)="p = $event" style="text-align: center"></pagination-controls>

@@ -11,13 +11,13 @@ export class YearListComponent implements OnInit {
 
   yearList: Year[];
 
-  companyName: string;
+  companyName: string = "";
 
   constructor(private yearService: YearService) {
   }
 
   ngOnInit() {
-    this.query(null);
+    this.query("");
   }
 
   query(companyName: string) {

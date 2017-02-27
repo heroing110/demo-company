@@ -40,7 +40,13 @@ export class SeasonService {
     return this.http.put('/api/season/update', season).toPromise().then(responseHandler);
   }
 
-  queryChart(): Promise<Season[]> {
-    return this.http.get('/api/season/chart').toPromise().then(responseHandler);
+  queryChart(seasonId: string): Promise<Season[]> {
+    const user: UserInfo = this.userService.getUserInfo();
+
+    const search = new URLSearchParams();
+    search.append('userId', user.id);
+    search.append('seasonId', seasonId);
+
+    return this.http.get('/api/season/chart', {search}).toPromise().then(responseHandler);
   }
 }

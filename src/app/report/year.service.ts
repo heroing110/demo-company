@@ -17,7 +17,9 @@ export class YearService {
     search.append('cityId', user.cityid);
     search.append('userId', user.id);
     search.append('permission', user.permission);
-    search.append('companyName', companyName);
+    if (companyName) {
+      search.append('companyName', companyName);
+    }
 
     return this.http.get('/api/year', {search}).toPromise().then(responseHandler);
   }

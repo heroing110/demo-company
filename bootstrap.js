@@ -4,7 +4,7 @@ const {urlencoded, json} = require("body-parser");
 const cookieSession = require('cookie-session');
 const express = require("express");
 const httpRequest = require('request-promise');
-const host = 'http://localhost:8801';
+const host = 'http://192.168.31.239:8801';
 
 const app = express();
 

@@ -12,20 +12,18 @@ export class ModifyPasswordComponent {
   @Output() saveModify = new EventEmitter();
   user: UserInfo;
   modalId = 'modify_' + Date.now();
-  pwd: any = {};
+  pwd: {oldPwd, newPwd, confirmPwd} = {oldPwd: '', newPwd: '', confirmPwd: ''};
 
   constructor() {
   }
 
-  open(user?: UserInfo) {
+  open(user: UserInfo) {
     this.pwd = {oldPwd: '', newPwd: '', confirmPwd: ''};
     this.user = user;
     $('#' + this.modalId).modal('show');
   }
 
   close() {
-    this.pwd = {};
-    this.user = null;
     $('#' + this.modalId).modal('hide');
   }
 

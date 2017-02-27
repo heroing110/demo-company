@@ -7,7 +7,7 @@ import {City} from "../../entity/city";
 
 @Injectable()
 export class UserService {
-  private userInfo: UserInfo = null;
+  private userInfo: UserInfo;
   private loginPromise: Promise<boolean>;
 
   constructor(private http: Http) {
@@ -67,7 +67,6 @@ export class UserService {
         .toPromise()
         .then(responseHandler)
         .then(data => {
-          this.loginPromise = null;
           const user = <UserInfo>data['user'];
           if (user && user.id) {
             this.userInfo = user;

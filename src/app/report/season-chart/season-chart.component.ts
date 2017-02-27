@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Season} from "../../../entity/season";
 import {SeasonService} from "../season.service";
+import {ActivatedRoute, Params} from "@angular/router";
 
 @Component({
   selector: 'app-season-chart',
@@ -13,55 +14,67 @@ export class SeasonChartComponent implements OnInit {
   private chartOption3;
   private chartOption4;
 
-  constructor(private seasonService: SeasonService) {
+  constructor(private activatedRoute: ActivatedRoute,
+              private seasonService: SeasonService) {
   }
 
   ngOnInit(): void {
-    this.seasonService.queryChart().then((seasons: Season[]) => {
-      const years = new Set();
+    this.activatedRoute.params
+      .switchMap((params: Params) => this.seasonService.queryChart(params['seasonId']))
+      .subscribe((seasons: Season[]) => this.startShowChart(seasons));
+  }
 
-      seasons.sort((a, b) => parseInt(a.year) - parseInt(b.year));
-      seasons.forEach((season: Season) => {
-        years.add(season.year);
-      });
+  startShowChart(seasons: Season[]) {
+    const years = new Set();
 
-      const series = this.getSeries();
-      const series2 = this.getSeries2();
-      const series3 = this.getSeries3();
-      const series4 = this.getSeries4();
-      let i = 0;
-      years.forEach((year) => {
-        let datas = seasons.filter(item => item.year == year);
-        datas.forEach((data: Season) => {
-          const datas = series.filter(seaie => seaie.stack == data.season);
-          datas[0].data[i] = parseInt(data.cell12) + parseInt(data.cell13);
-          datas[1].data[i] = parseInt(data.cell14);
-          datas[2].data[i] = parseInt(data.cell15);
-
-          const datas2 = series2.filter(seaie => seaie.stack == data.season);
-          datas2[0].data[i] = parseInt(data.cell21);
-          datas2[1].data[i] = parseInt(data.cell31);
-
-          const datas3 = series3.filter(seaie => seaie.stack == data.season);
-          datas3[0].data[i] = parseInt(data.cell41);
-          datas3[1].data[i] = parseInt(data.cell51);
-          datas3[2].data[i] = parseInt(data.cell61);
-
-          const datas4 = series4.filter(seaie => seaie.stack == data.season);
-          datas4[0].data[i] = parseInt(data.cell71);
-          datas4[1].data[i] = parseInt(data.cell81);
-        });
-        i++;
-      });
-
-      this.initChartOption({
-        years: Array.from(years),
-        series: series,
-        series2: series2,
-        series3: series3,
-        series4: series4
-      });
+    seasons.sort((a, b) => parseInt(a.year) - parseInt(b.year));
+    seasons.forEach((season: Season) => {
+      years.add(season.year);
     });
+
+    const series = this.getSeries();
+    const series2 = this.getSeries2();
+    const series3 = this.getSeries3();
+    const series4 = this.getSeries4();
+    let i = 0;
+    years.forEach((year) => {
+      let datas = seasons.filter(item => item.year == year);
+      datas.forEach((data: Season) => {
+        const datas = series.filter(seaie => seaie.stack == data.season);
+        datas[0].data[i] = parseInt(data.cell12) + parseInt(data.cell13);
+        datas[1].data[i] = parseInt(data.cell14);
+        datas[2].data[i] = parseInt(data.cell15);
+
+        const datas2 = series2.filter(seaie => seaie.stack == data.season);
+        //parseInt(data.cell21)
+        datas2[0].data[i] = this.getCount(data, ['cell22', 'cell23', 'cell24', 'cell25']);//cell21 = cell22 + .. cell25
+        datas2[1].data[i] = this.getCount(data, ['cell32', 'cell33', 'cell34', 'cell35']);//cell31 = cell32 + .. cell35
+
+        const datas3 = series3.filter(seaie => seaie.stack == data.season);
+        datas3[0].data[i] = this.getCount(data, ['cell42', 'cell43', 'cell44', 'cell45']);//cell41 = cell42 + .. cell45
+        datas3[1].data[i] = this.getCount(data, ['cell52', 'cell53', 'cell54', 'cell55']);//cell51 = cell52 + .. cell55
+        datas3[2].data[i] = this.getCount(data, ['cell62', 'cell63', 'cell64', 'cell65']);//cell61 = cell62 + .. cell65
+
+        const datas4 = series4.filter(seaie => seaie.stack == data.season);
+        datas4[0].data[i] = this.getCount(data, ['cell72', 'cell73', 'cell74', 'cell75']);//cell71 = cell72 + .. cell75
+        datas4[1].data[i] = this.getCount(data, ['cell82', 'cell83', 'cell84', 'cell85']);//cell81 = cell82 + .. cell85
+      });
+      i++;
+    });
+
+    this.initChartOption({
+      years: Array.from(years),
+      series: series,
+      series2: series2,
+      series3: series3,
+      series4: series4
+    });
+  }
+
+  getCount(season: Season, keys: string[]) {
+    return keys.map((key: string) => {
+      return +season[key] || 0;
+    }).reduce((c, i) => c + i, 0);
   }
 
   initChartOption(params) {
@@ -119,7 +132,7 @@ export class SeasonChartComponent implements OnInit {
 
   }
 
-  getSeries() {
+  getSeries(): Series[] {
     return [{
       name: '商品类交易额',
       type: 'bar',
@@ -183,7 +196,7 @@ export class SeasonChartComponent implements OnInit {
     }]
   }
 
-  getSeries2() {
+  getSeries2(): Series[] {
     return [
       {
         name: '通过自营电子商务平台',
@@ -229,7 +242,7 @@ export class SeasonChartComponent implements OnInit {
     ]
   }
 
-  getSeries3() {
+  getSeries3(): Series[] {
     return [
       {
         name: 'B2B',
@@ -298,7 +311,7 @@ export class SeasonChartComponent implements OnInit {
     ]
   }
 
-  getSeries4() {
+  getSeries4(): Series[] {
     return [
       {
         name: '境内',
@@ -344,4 +357,12 @@ export class SeasonChartComponent implements OnInit {
     ]
   }
 
+}
+
+interface Series {
+  name: string
+  type: string
+  stack: string
+  data: any[]
+  [key: string]: any
 }
