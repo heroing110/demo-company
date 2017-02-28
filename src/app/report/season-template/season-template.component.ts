@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import {Season} from "../../../entity/season";
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
@@ -9,7 +9,7 @@ import {TemplateCommonCtrl} from "../template-common-ctrl";
   templateUrl: './season-template.component.html',
   styleUrls: ['./season-template.component.css']
 })
-export class SeasonTemplateComponent extends TemplateCommonCtrl{
+export class SeasonTemplateComponent extends TemplateCommonCtrl implements OnInit{
   @Input() season: Season;
   @Input() readonlyAll: boolean;
   @Input() modifyMode: boolean;
