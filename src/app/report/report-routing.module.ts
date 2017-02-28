@@ -13,34 +13,29 @@ import {AuthGuard} from "../auth-guard.service";
 import {UserManagementComponent} from "./user-management/user-management.component";
 
 const routes: Routes = [
-    {
-        path: 'report',
-        component: ReportComponent,
-        canActivate: [AuthGuard],
-        children: [
-            {
-                path: '',
-                canActivateChild: [AuthGuard],
-                children: [
-                    {path: 'welcome', component: WelcomeComponent},
-                    {path: 'user-management', component: UserManagementComponent},
-                    {path: 'season/add', component: SeasonAddComponent},
-                    {path: 'season/list', component: SeasonListComponent},
-                    {path: 'season/detail/:seasonId', component: SeasonDetailComponent},
-                    {path: 'season/chart/:seasonId', component: SeasonChartComponent},
-                    {path: 'year/detail/:yearId', component: YearDetailComponent},
-                    {path: 'year/add', component: YearAddComponent},
-                    {path: 'year/list', component: YearListComponent},
-                    {path: '', redirectTo: 'welcome', pathMatch: 'full'},
-                ]
-            }
-        ]
-    }
+  {
+    path: 'report',
+    component: ReportComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    children: [
+      {path: 'welcome', component: WelcomeComponent},
+      {path: 'user-management', component: UserManagementComponent},
+      {path: 'season/add', component: SeasonAddComponent},
+      {path: 'season/list', component: SeasonListComponent},
+      {path: 'season/detail/:seasonId', component: SeasonDetailComponent},
+      {path: 'season/chart/:userId', component: SeasonChartComponent},
+      {path: 'year/detail/:yearId', component: YearDetailComponent},
+      {path: 'year/add', component: YearAddComponent},
+      {path: 'year/list', component: YearListComponent},
+      {path: '', redirectTo: 'welcome', pathMatch: 'full'},
+    ]
+  }
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class ReportRoutingModule {
 }

@@ -20,7 +20,7 @@ export class SeasonChartComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params
-      .switchMap((params: Params) => this.seasonService.queryChart(params['seasonId']))
+      .switchMap((params: Params) => this.seasonService.queryChart(params['userId']))
       .subscribe((seasons: Season[]) => this.startShowChart(seasons));
   }
 
