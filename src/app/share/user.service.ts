@@ -45,9 +45,12 @@ export class UserService {
     return this.http.get('/api/users/allCity').toPromise()
       .then(responseHandler)
       .then((res: {[cityId: string]: string}) => {
-        const citys: City[] = [];
-        for (let id in res) {
-          citys.push({id, name: res[id]});
+        let citys: City[];
+
+        if (Array.isArray(res)) {
+          citys = <City[]>res;
+        } else if (res) {
+          citys = Object.keys(res).map(id => ({id, name: res[id]}));
         }
         return this.citys = citys;
       });
