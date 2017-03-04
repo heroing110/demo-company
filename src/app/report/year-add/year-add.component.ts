@@ -20,7 +20,6 @@ export class YearAddComponent implements OnInit {
   ngOnInit() {
     const user = this.userService.getUserInfo();
     this.yearObj.companyName = user.companyName || '未设置单位名称'; // 单位名称
-    this.yearObj.cell71 = user.usernamecn;// 填表人
   }
 
   save() {

@@ -1,379 +1,74 @@
 <form #seasonForm="ngForm" [class.show-error]="showError">
-  <div class="form-inline" style="padding: 1em;" [class.readonly-all]="readonlyAll" [class.not-allow-modify]="modifyMode">
+  <div class="form-inline" style="padding: 1em;" [class.readonly-all]="readonlyAll"
+       [class.not-allow-modify]="modifyMode">
     <label>单位详细名称</label>
-    <input type="text" class="form-control"
+    <input type="text" class="form-control" style="width: 120px;"
            [value]="season.companyName" name="companyName" readonly>
+
     <label class="text-right">年度</label>
-    <input type="text" class="form-control"
+    <input type="text" class="form-control" style="width: 120px;"
            [(ngModel)]="season.year" name="year" pattern="^2\d{3}$"
            placeholder="2016" #year="ngModel" [readonly]="modifyMode" required>
     <span class="text-danger" *ngIf="year.invalid && ((year.touched || year.dirty) || showError)">*请输入正确的年份</span>
-    <label style="width: 100px;"></label>
+
+    <label class="text-right">行业类别</label>
+    <select class="form-control input-sm" style="width: 120px;"
+            [class.not-allow-modify]="modifyMode"
+            [(ngModel)]="season.industry" name="industry" required>
+      <option value="">请选择行业类别</option>
+      <option value="电子商务应用企业">电子商务应用企业</option>
+      <option value="电子商务服务企业">电子商务服务企业</option>
+      <option value="电子商务综合型企业">电子商务综合型企业</option>
+    </select>
+
     <label class="text-left">季度</label>
     <span *ngIf="!modifyMode">
-          <input type="radio" value="1" name="season"
-                 [(ngModel)]="season.season" required> 第一季度
-          <input type="radio" value="2" name="season"
-                 [(ngModel)]="season.season" required> 第二季度
-          <input type="radio" value="3" name="season"
-                 [(ngModel)]="season.season" required> 第三季度
-          <input type="radio" value="4" name="season"
-                 [(ngModel)]="season.season" required> 第四季度
-          <span class="text-danger" *ngIf="!season.season && showError">请选择季度</span>
-        </span>
-    <span *ngIf="modifyMode">
-            <input type="hidden" class="form-control" [(ngModel)]="season.season" name="season">
-            <label>第{{season.season}}季度</label>
-        </span>
+      <input type="radio" value="1" name="season"
+             [(ngModel)]="season.season" required> 第一季度
+      <input type="radio" value="2" name="season"
+             [(ngModel)]="season.season" required> 第二季度
+      <input type="radio" value="3" name="season"
+             [(ngModel)]="season.season" required> 第三季度
+      <input type="radio" value="4" name="season"
+             [(ngModel)]="season.season" required> 第四季度
+      <span class="text-danger" *ngIf="!season.season && showError">请选择季度</span>
+    </span>
+
+    <label *ngIf="modifyMode">第{{season.season}}季度</label>
+  </div>
+
+  <!-- 根据`行业类别`动态渲染表格，默认禁用所有表格内输入项-->
+  <div [class.disabled-all-input]="!season.industry" [class.readonly-all]="readonlyAll">
+    <app-season-industry-template1
+      *ngIf="season.industry == '电子商务应用企业'"
+      [seasonObj]="season"></app-season-industry-template1>
+
+    <app-season-industry-template2
+      *ngIf="season.industry == '电子商务服务企业'"
+      [seasonObj]="season"></app-season-industry-template2>
+
+    <app-season-industry-template3
+      *ngIf="season.industry == '电子商务综合型企业' || !season.industry"
+      [seasonObj]="season"></app-season-industry-template3>
   </div>
 
   <table [class.readonly-all]="readonlyAll" class="table table-bordered table-hover margin-top">
-    <thead>
-    <tr>
-      <th colspan="7">一、电子商务交易情况</th>
-    </tr>
-    <tr>
-      <th rowspan="2">类别</th>
-      <th rowspan="2">总额(万元)</th>
-      <th colspan="3">商品类交易额(万元)</th>
-      <th rowspan="2">服务类交易额(万元)（应用/综合企业填</th>
-      <th rowspan="2">电子商务服务收入（万元）（服务/综合企业填，即第三方）</th>
-    </tr>
-    <tr>
-      <th>商品类交易总额</th>
-      <th>其中：销售额（应用/综合企业填）</th>
-      <th>其中：采购额（应用/综合企业填）</th>
-    </tr>
-    </thead>
     <tbody>
-    <tr>
-      <td>电子商务交易额</td>
-      <td>
-        <!-- 总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell12,cell13,cell14,cell15)">
-      </td>
-      <td>
-        <!-- 商品类交易总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell12,cell13)">
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell12" name="cell12" #cell12="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell13" name="cell13" #cell13="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell14" name="cell14" #cell14="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell15" name="cell15" #cell15="ngModel" required>
-      </td>
-    </tr>
-    <tr>
-      <td>一、按交易平台分</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>1.通过自营电子商务平台</td>
-      <td>
-        <!-- 总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell22,cell23,cell24,cell25)">
-      </td>
-      <td>
-        <!-- 商品类交易总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell22,cell23)">
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell22" name="cell22" #cell22="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell23" name="cell23" #cell23="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell24" name="cell24" #cell24="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell25" name="cell25" #cell25="ngModel" required>
-      </td>
-    </tr>
-    <tr>
-      <td>2.通过第三方电子商务平台</td>
-      <td>
-        <!-- 总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell32,cell33,cell34,cell35)">
-      </td>
-      <td>
-        <!-- 商品类交易总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell32,cell33)">
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell32" name="cell32" #cell32="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell33" name="cell33" #cell33="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell34" name="cell34" #cell34="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell35" name="cell35" #cell35="ngModel" required>
-      </td>
-    </tr>
-    <tr>
-      <td>二、按交易方式分</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>1.B2B</td>
-      <td>
-        <!-- 总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell42,cell43,cell44,cell45)">
-      </td>
-      <td>
-        <!-- 商品类交易总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell42,cell43)">
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell42" name="cell42" #cell42="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell43" name="cell43" #cell43="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell44" name="cell44" #cell44="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell45" name="cell45" #cell45="ngModel" required>
-      </td>
-    </tr>
-    <tr>
-      <td>2.B2C</td>
-      <td>
-        <!-- 总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell52,cell53,cell54,cell55)">
-      </td>
-      <td>
-        <!-- 商品类交易总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell52,cell53)">
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell52" name="cell52" #cell52="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell53" name="cell53" #cell53="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell54" name="cell54" #cell54="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell55" name="cell55" #cell55="ngModel" required>
-      </td>
-    </tr>
-    <tr>
-      <td>3.C2C</td>
-      <td>
-        <!-- 总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell62,cell63,cell64,cell65)">
-      </td>
-      <td>
-        <!-- 商品类交易总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell62,cell63)">
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell62" name="cell62" #cell62="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell63" name="cell63" #cell63="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell64" name="cell64" #cell64="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell65" name="cell65" #cell65="ngModel" required>
-      </td>
-    </tr>
-    <tr>
-      <td>三、按地域分</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>1.境内</td>
-      <td>
-        <!-- 总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell72,cell73,cell74,cell75)">
-      </td>
-      <td>
-        <!-- 商品类交易总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell72,cell73)">
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell72" name="cell72" #cell72="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell73" name="cell73" #cell73="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell74" name="cell74" #cell74="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell75" name="cell75" #cell75="ngModel" required>
-      </td>
-    </tr>
-    <tr>
-      <td>2.境外（跨境电子商务交易）</td>
-      <td>
-        <!-- 总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell82,cell83,cell84,cell85)">
-      </td>
-      <td>
-        <!-- 商品类交易总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell82,cell83)">
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell82" name="cell82" #cell82="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell83" name="cell83" #cell83="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell84" name="cell84" #cell84="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell85" name="cell85" #cell85="ngModel" required>
-      </td>
-    </tr>
-    <tr>
-      <td>进口</td>
-      <td>
-        <!-- 总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell92,cell93,cell94,cell95)">
-      </td>
-      <td>
-        <!-- 商品类交易总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell92,cell93)">
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell92" name="cell92" #cell92="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell93" name="cell93" #cell93="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell94" name="cell94" #cell94="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell95" name="cell95" #cell95="ngModel" required>
-      </td>
-    </tr>
-    <tr>
-      <td>出口</td>
-      <td>
-        <!-- 总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell102,cell103,cell104,cell105)">
-      </td>
-      <td>
-        <!-- 商品类交易总额 -->
-        <input type="number" class="form-control" readonly
-               [value]="getCount(cell102,cell103)">
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell102" name="cell102" #cell102="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell103" name="cell103" #cell103="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell104" name="cell104" #cell104="ngModel" required>
-      </td>
-      <td>
-        <input type="number" class="form-control"
-               [(ngModel)]="season.cell105" name="cell105" #cell105="ngModel" required>
-      </td>
-    </tr>
     <tr>
       <td colspan="7" style="text-align:left;">
         <div class="form-inline">
           <p>补充资料：</p>
           1.电子商务交易商品数 <input type="number" class="form-control" [(ngModel)]="season.cell111" name="cell111"
                              placeholder="(件)" required style="margin-bottom: 5px;"><br/>
-          2.跨境电子商务交易商品数 <input type="number" class="form-control" [(ngModel)]="season.cell112" name="cell112"
-                               placeholder="(件)" required>：
-          进口 <input type="number" class="form-control" [(ngModel)]="season.cell113" name="cell113"
+          2.跨境电子商务交易商品数 <input type="number" class="form-control"
+                               [value]="getCount(cell113 , cell114)" readonly>：
+          进口 <input type="number" class="form-control"
+                    [(ngModel)]="season.cell113"
+                    name="cell113" #cell113
                     placeholder="(件)" required>
-          出口 <input type="number" class="form-control" [(ngModel)]="season.cell114" name="cell114"
+          出口 <input type="number" class="form-control"
+                    [(ngModel)]="season.cell114"
+                    name="cell114" #cell114
                     placeholder="(件)"
                     required>
         </div>
@@ -414,10 +109,14 @@
     <tr>
       <td colspan="7" style="text-align:left;">
         <div class="form-inline">
-          网络支付额占公司总交易额比 <input type="number" class="form-control" [(ngModel)]="season.cell141" name="cell141"
-                               placeholder="%" required>
-          其中移动支付额占网络支付额比 <input type="number" class="form-control" [(ngModel)]="season.cell142" name="cell142"
-                                placeholder="%" required>
+          网络支付额占公司总交易额比 <input type="text" class="form-control"
+                               [(ngModel)]="season.cell141" name="cell141"
+                               pattern="^(\d{1,2}|100)$"
+                               placeholder="请输入0-100之间的数字" required>
+          其中移动支付额占网络支付额比 <input type="text" class="form-control"
+                                [(ngModel)]="season.cell142" name="cell142"
+                                pattern="^(\d{1,2}|100)$"
+                                placeholder="请输入0-100之间的数字" required>
         </div>
       </td>
     </tr>
@@ -444,17 +143,21 @@
   <div [class.readonly-all]="readonlyAll" class="form-inline">
     <div class="form-group margin-left">
       填表人：<input type="text" class="form-control"
-                 [value]="season.cell161" name="cell161" readonly>
+                 [(ngModel)]="season.cell161" name="cell161" required>
     </div>
     <div class="form-group margin-left">
       职务：<input type="text" class="form-control" [(ngModel)]="season.cell162" name="cell162" required>
     </div>
     <div class="form-group margin-left">
       联系电话：<input type="text" class="form-control"
-                  [(ngModel)]="season.cell163" name="cell163" pattern="^\d{3,4}-\d{7,8}$">
+                  [(ngModel)]="season.cell163" name="cell163"
+                  placeholder="0121-12345678"
+                  pattern="^\d{3,4}-\d{7,8}$">
+      <span>座机号码：区号(3-4位) 分隔符(-) 座机号(7-8位)</span>
     </div>
     <div class="form-group margin-left">
       手机：<input type="text" class="form-control"
+                placeholder="请输入11位手机号码"
                 [(ngModel)]="season.cell164" name="cell164" pattern="^1\d{10}$" required>
     </div>
     <div class="form-group margin-top margin-left">
@@ -467,7 +170,8 @@
   <div class="row" style="width:1000px; margin:10px auto; text-align:center">
     <button type="submit" class="btn btn-primary"
             *ngIf="!readonlyAll"
-            (click)="saveSeason(seasonForm)">提交</button>
+            (click)="saveSeason(seasonForm)">提交
+    </button>
     <button type="button" class="btn btn-default" (click)="back()">返回</button>
   </div>
 </form>

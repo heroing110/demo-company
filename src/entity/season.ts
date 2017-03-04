@@ -2,8 +2,8 @@ export class Season {
   id: number = 0;
   cell111: string = '';
   cell112: string = '';
-  cell113: string = '';
-  cell114: string = '';
+  cell113: string = '0';// 进口
+  cell114: string = '0'; // 出口
   cell121: string = '';
   cell131: string = '';
   cell141: string = '';
@@ -58,20 +58,23 @@ export class Season {
   cell84: string = '';
   cell85: string = '';
   cell91: string = '';
-  cell92: string = '';
-  cell93: string = '';
-  cell94: string = '';
-  cell95: string = '';
+
+  cell92: string = '0';
+  cell93: string = '0';
+  cell94: string = '0';
+  cell95: string = '0';
+
   cell101: string = '';
-  cell103: string = '';
-  cell102: string = '';
-  cell104: string = '';
-  cell105: string = '';
+  cell102: string = '0';
+  cell103: string = '0';
+  cell104: string = '0';
+  cell105: string = '0';
 
   o2oRadio: string = '2';// 1：是，2：否
   mobileRadio: string = '2';// 1：是，2：否
   companyName: string = '';
   year: string = '';
+  industry: string = '';
   season: string = '1';
   userId: string = '';
   cityId: string = '';

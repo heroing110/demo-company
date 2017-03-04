@@ -17,9 +17,9 @@ import {YearTemplateComponent} from "./year-template/year-template.component";
 import {YearDetailComponent} from "./year-detail/year-detail.component";
 import {SeasonChartComponent} from "./season-chart/season-chart.component";
 import {Ng2PaginationModule} from "ng2-pagination";
-import {YearIndustryTemplate1Component} from "./year-template/year-industry-template1/year-industry-template1.component";
-import {YearIndustryTemplate2Component} from "./year-template/year-industry-template2/year-industry-template2.component";
-import {YearIndustryTemplate3Component} from "./year-template/year-industry-template3/year-industry-template3.component";
+import {SeasonIndustryTemplate1Component} from "./season-template/season-industry-template1/season-industry-template1.component";
+import {SeasonIndustryTemplate2Component} from "./season-template/season-industry-template2/season-industry-template2.component";
+import {SeasonIndustryTemplate3Component} from "./season-template/season-industry-template3/season-industry-template3.component";
 import {UserManagementComponent} from "./user-management/user-management.component";
 import {UserManagementService} from "./user-management.service";
 import {UserPermissionPipe} from "./user-management/user-permission.pipe";
@@ -45,9 +45,10 @@ import {ModifyUserComponent} from "./user-management/modify-user/modify-user.com
     SeasonTemplateComponent,
 
     YearTemplateComponent,
-    YearIndustryTemplate1Component,
-    YearIndustryTemplate2Component,
-    YearIndustryTemplate3Component,
+
+    SeasonIndustryTemplate1Component,
+    SeasonIndustryTemplate2Component,
+    SeasonIndustryTemplate3Component,
 
     SeasonChartComponent,
 

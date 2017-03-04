@@ -45,7 +45,7 @@ export class UserService {
     return this.http.get('/api/users/allCity').toPromise()
       .then(responseHandler)
       .then((res: {[cityId: string]: string}) => {
-        let citys: City[];
+        let citys: City[] = [];
 
         if (Array.isArray(res)) {
           citys = <City[]>res;

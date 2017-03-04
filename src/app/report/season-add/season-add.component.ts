@@ -20,7 +20,6 @@ export class SeasonAddComponent implements OnInit {
   ngOnInit() {
     const user = this.userService.getUserInfo();
     this.seasonObj.companyName = user.companyName || '未设置单位名称'; // 单位名称
-    this.seasonObj.cell161 = user.usernamecn;// 填表人
   }
 
   save() {

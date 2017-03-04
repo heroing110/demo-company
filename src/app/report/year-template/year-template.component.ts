@@ -31,10 +31,10 @@ export class YearTemplateComponent extends TemplateCommonCtrl implements OnInit 
   }
 
   ngOnInit() {
-    if (this.yearObj.cell41) {
+    if (this.yearObj.cell41a && this.yearObj.cell41b) {
       this.checkbox1 = true;
     }
-    if (this.yearObj.cell42) {
+    if (this.yearObj.cell42a && this.yearObj.cell42b) {
       this.checkbox2 = true;
     }
 

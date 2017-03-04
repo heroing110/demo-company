@@ -7,22 +7,35 @@ export class Year {
   cell33: string = '';
   cell34: string = '';
   cell35: string = '';
-  cell36: string = '';
-  cell37: string = '';
-  cell38: string = '';
+
+  cell36a: string = '';
+  cell36b: string = '';
+  cell37a: string = '';
+  cell37b: string = '';
+  cell38a: string = '';
+  cell38b: string = '';
+
   city: string = '';
   industry: string = ''; // #fix 此处不再支持多选方式，所以修改为字符串类型
   sale: string[]|string = [];
-  cell41: string = '';
-  cell42: string = '';
+  cell41a: string = '';
+  cell41b: string = '';
+  cell42a: string = '';
+  cell42b: string = '';
   cell51: string = '';
   cell52: string = '';
   cell53: string = '';
   cell54: string = '';
+
   cell61: string = '';
+
   cell62: string = '';
   cell63: string = '';
   cell64: string = '';
+
+  cell66: string = '';
+  cell67: string = '';
+
   cell71: string = '';
   cell72: string = '';
   cell73: string = '';

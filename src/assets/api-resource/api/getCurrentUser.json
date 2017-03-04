@@ -3,7 +3,7 @@
     "id": "123",
     "username": "abc",
     "password": "123",
-    "permission": "1",
+    "permission": "2",
     "usernamecn": "测试中文名字"
   }
 }
