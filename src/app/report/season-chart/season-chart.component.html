@@ -1,4 +1,20 @@
-<div style="height: 400px;" appEcharts [option]="chartOption1"></div>
-<div style="height: 400px;" appEcharts [option]="chartOption2"></div>
-<div style="height: 400px;" appEcharts [option]="chartOption3"></div>
-<div style="height: 400px;" appEcharts [option]="chartOption4"></div>
+<div class="modal fade" tabindex="-1" role="dialog" id="chart-modal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+          aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">查看报表</h4>
+      </div>
+      <div class="modal-body" *ngIf="chartOption1">
+        <div style="height: 400px;" appEcharts [option]="chartOption1"></div>
+        <div style="height: 400px;" appEcharts [option]="chartOption2"></div>
+        <div style="height: 400px;" appEcharts [option]="chartOption3"></div>
+        <div style="height: 400px;" appEcharts [option]="chartOption4"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

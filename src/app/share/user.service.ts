@@ -10,6 +10,9 @@ export class UserService {
   private userInfo: UserInfo;
   private loginPromise: Promise<boolean>;
 
+  private citys: City[];
+  private cityPromise: Promise<City[]>;
+
   constructor(private http: Http) {
   }
 
@@ -36,13 +39,11 @@ export class UserService {
       .then(responseHandler);
   }
 
-  private citys: City[];
-
   getAllCity(): Promise<City[]> {
-    if (this.citys) {
-      return Promise.resolve(this.citys);
+    if (this.cityPromise) {
+      return this.cityPromise;
     }
-    return this.http.get('/api/users/allCity').toPromise()
+    return this.cityPromise = this.http.get('/api/users/allCity').toPromise()
       .then(responseHandler)
       .then((res: {[cityId: string]: string}) => {
         let citys: City[] = [];
@@ -61,9 +62,7 @@ export class UserService {
   }
 
   isLogin(): Promise<boolean> {
-    if (this.userInfo && this.userInfo.id) {
-      return Promise.resolve(true);
-    } else if (this.loginPromise) {
+    if (this.loginPromise) {
       return this.loginPromise;
     } else {
       this.loginPromise = this.http.get('/api/getCurrentUser')

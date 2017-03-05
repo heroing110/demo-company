@@ -16,7 +16,6 @@ export class YearDetailComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private yearService: YearService,
-              private userService: UserService,
               private router: Router) {
   }
 
@@ -24,10 +23,6 @@ export class YearDetailComponent implements OnInit {
     this.activatedRoute.params
       .switchMap((params: Params) => this.yearService.getYear(params['yearId']))
       .subscribe((year: Year) => this.yearObj = year);
-
-    if (this.userService.getUserInfo().permission == '2') {
-      this.readonlyAll = true;
-    }
   }
 
   save() {

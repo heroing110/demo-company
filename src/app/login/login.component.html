@@ -1,17 +1,48 @@
-<form name="form1" (submit)="login()" class="basic-grey">
-  <h1>
-    <span>管理员登录</span>
-  </h1>
-  <label>
-    <span>Your Name :</span>
-    <input type="text" [(ngModel)]="username" name="username" required placeholder="Your Name" autocomplete="off"/>
-  </label>
-  <label>
-    <span>Your Password :</span>
-    <input type="password" [(ngModel)]="password" name="password" required placeholder="Your Password" autocomplete="off"/>
-  </label>
-  <label>
-    <span>&nbsp;</span>
-    <button type="submit" class="button">登录</button>
-  </label>
-</form>
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="seal">
+        <h2>电子商务信息管理分析系统</h2>
+        <p>电子商务信息管理分析系统是各级商务主管部门进行电子商务统计监测、信用管理、应用促进、行业管理和服务企业的工作平台，
+          汇集了电子商务发展和应用的各种信息和研究成果。
+          各级商务主管部门和企业用户登陆后可以查询、下载各种信息资源，开展电子商务相关的业务工作。</p>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <form name="form1" (submit)="login()"
+            autocomplete="off"
+            class="basic-grey">
+        <h2 class="message">用户登录</h2>
+        <div class="input-group input-group-lg">
+          <span class="input-group-addon">
+            <i class="glyphicon glyphicon-user"></i>
+          </span>
+          <input type="text"
+                 [(ngModel)]="username"
+                 name="username"
+                 required
+                 autofocus
+                 placeholder="Your Account"
+                 autocomplete="off"
+                 class="form-control">
+        </div>
+        <div class="input-group input-group-lg">
+          <span class="input-group-addon">
+            <i class="glyphicon glyphicon-lock"></i>
+          </span>
+          <input type="password"
+                 [(ngModel)]="password"
+                 name="password"
+                 required
+                 placeholder="Your Password"
+                 autocomplete="off"
+                 class="form-control">
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary btn-lg">登录</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

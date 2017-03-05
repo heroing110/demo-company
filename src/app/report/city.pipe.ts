@@ -8,7 +8,7 @@ import {City} from "../../entity/city";
   name: 'city'
 })
 export class CityPipe implements PipeTransform {
-  private citys: City[];
+  private citys: City[] = [];
 
   constructor(private userService: UserService) {
     userService.getAllCity().then(citys => this.citys = citys);
@@ -19,6 +19,6 @@ export class CityPipe implements PipeTransform {
     if (city) {
       return city.name;
     }
-    return '[pipe : city not found]';
+    return '[cityPipe : city not found]';
   }
 }

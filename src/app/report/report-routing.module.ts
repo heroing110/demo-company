@@ -8,9 +8,9 @@ import {YearAddComponent} from "./year-add/year-add.component";
 import {YearListComponent} from "./year-list/year-list.component";
 import {SeasonDetailComponent} from "./season-detail/season-detail.component";
 import {YearDetailComponent} from "./year-detail/year-detail.component";
-import {SeasonChartComponent} from "./season-chart/season-chart.component";
 import {AuthGuard} from "../auth-guard.service";
 import {UserManagementComponent} from "./user-management/user-management.component";
+import {CityResolve} from "./city-resolve.service";
 
 const routes: Routes = [
   {
@@ -20,11 +20,16 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
     children: [
       {path: 'welcome', component: WelcomeComponent},
-      {path: 'user-management', component: UserManagementComponent},
+      {
+        path: 'user-management',
+        component: UserManagementComponent,
+        resolve: {
+          citys: CityResolve
+        }
+      },
       {path: 'season/add', component: SeasonAddComponent},
       {path: 'season/list', component: SeasonListComponent},
       {path: 'season/detail/:seasonId', component: SeasonDetailComponent},
-      {path: 'season/chart/:userId', component: SeasonChartComponent},
       {path: 'year/detail/:yearId', component: YearDetailComponent},
       {path: 'year/add', component: YearAddComponent},
       {path: 'year/list', component: YearListComponent},
@@ -35,7 +40,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [CityResolve]
 })
 export class ReportRoutingModule {
 }

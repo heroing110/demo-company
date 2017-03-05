@@ -74,7 +74,7 @@ export class Season {
   mobileRadio: string = '2';// 1：是，2：否
   companyName: string = '';
   year: string = '';
-  industry: string = '';
+  industry: string = '电子商务综合型企业';
   season: string = '1';
   userId: string = '';
   cityId: string = '';

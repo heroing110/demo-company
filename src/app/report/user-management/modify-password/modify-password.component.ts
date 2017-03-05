@@ -28,6 +28,9 @@ export class ModifyPasswordComponent {
   }
 
   save() {
+    if (this.hideOldPwd) {
+      delete this.pwd.oldPwd;
+    }
     this.saveModify.next(this.pwd);
   }
 

@@ -18,10 +18,27 @@ export class SeasonChartComponent implements OnInit {
               private seasonService: SeasonService) {
   }
 
+  private dialog: JQuery;
   ngOnInit(): void {
-    this.activatedRoute.params
+    this.dialog = $("#chart-modal");
+
+    this.dialog.on('hide.bs.modal', () => {
+      this.chartOption1 = null;
+      this.chartOption2 = null;
+      this.chartOption3 = null;
+      this.chartOption4 = null;
+    });
+    /*this.activatedRoute.params
       .switchMap((params: Params) => this.seasonService.queryChart(params['userId']))
-      .subscribe((seasons: Season[]) => this.startShowChart(seasons));
+     .subscribe((seasons: Season[]) => this.startShowChart(seasons));*/
+  }
+
+  open(seasonId: string) {
+    this.dialog.modal('show');
+    this.dialog.one('shown.bs.modal', () => {
+      this.seasonService.queryChart(seasonId)
+        .then(seasons => this.startShowChart(seasons));
+    });
   }
 
   startShowChart(seasons: Season[]) {

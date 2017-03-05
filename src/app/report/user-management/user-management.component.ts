@@ -34,20 +34,20 @@ export class UserManagementComponent implements OnInit {
     this.userManagementService.insert(user).then(res => {
       if (res.inserted) {
         newUserComponent.close();
-        alert(res.message || '新建用户成功!');
         this.query();
-      } else {
-        alert(res.message);
       }
+      alert(res.message);
     });
   }
-
 
   // 删除用户
   deleteUser(user: UserInfo) {
     if (confirm('确定删除此用户?')) {
       this.userManagementService.delete(user.id)
-        .then(res => res.removed ? this.query() : alert(res.message));
+        .then(res => {
+          res.removed && this.query();
+          alert(res.message);
+        });
     }
   }
 
@@ -58,9 +58,8 @@ export class UserManagementComponent implements OnInit {
         if (res.updated) {
           this.query();
           modifyPasswordComponent.close();
-        } else {
-          alert(res.message);
         }
+        alert(res.message);
       });
   }
 
@@ -71,9 +70,8 @@ export class UserManagementComponent implements OnInit {
         if (res.updated) {
           this.query();
           modifyUserComponent.close();
-        } else {
-          alert(res.message);
         }
+          alert(res.message);
       });
   }
 }

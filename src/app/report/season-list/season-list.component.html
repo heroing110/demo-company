@@ -2,14 +2,14 @@
   季报表查看
 </h4>
 
-<div class="form-inline margin-bottom">
+<form class="form-inline margin-bottom" (submit)="query(companyName)">
   <div class="form-group">
     <label>单位详细名称:</label>
-    <input type="text" class="form-control" [(ngModel)]="companyName">
+    <input type="text" class="form-control" [(ngModel)]="companyName" name="companyName">
   </div>
 
-  <button class="btn btn-default" (click)="query(companyName)">查询</button>
-</div>
+  <button class="btn btn-default" type="submit">查询</button>
+</form>
 
 <table class="table table-bordered table-hover table-condensed">
   <thead>

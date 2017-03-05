@@ -16,7 +16,6 @@ export class SeasonDetailComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private seasonService: SeasonService,
-              private userService: UserService,
               private router: Router) {
   }
 
@@ -24,10 +23,6 @@ export class SeasonDetailComponent implements OnInit {
     this.activatedRoute.params
       .switchMap((params: Params) => this.seasonService.getSeasonDetail(params['seasonId']))
       .subscribe((season: Season) => this.seasonObj = season);
-
-    if (this.userService.getUserInfo().permission == '2') {// 权限2的用户不允许修改任何内容
-      this.readonlyAll = true;
-    }
   }
 
   save() {

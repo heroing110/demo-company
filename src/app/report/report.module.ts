@@ -26,6 +26,7 @@ import {UserPermissionPipe} from "./user-management/user-permission.pipe";
 import {CityPipe} from "./city.pipe";
 import {ModifyPasswordComponent} from "./user-management/modify-password/modify-password.component";
 import {ModifyUserComponent} from "./user-management/modify-user/modify-user.component";
+import {CityResolve} from "./city-resolve.service";
 
 @NgModule({
   imports: [
@@ -61,7 +62,8 @@ import {ModifyUserComponent} from "./user-management/modify-user/modify-user.com
   providers: [
     SeasonService,
     YearService,
-    UserManagementService
+    UserManagementService,
+    CityResolve
   ]
 })
 export class ReportModule {

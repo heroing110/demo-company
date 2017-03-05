@@ -144,7 +144,8 @@
       </td>
       <td>5. 交易模式(可多选)</td>
       <td>
-        <select appSelectpicker class="form-control input-sm" multiple name="sale" [(ngModel)]="yearObj.sale" required
+        <select appSelectpicker class="form-control input-sm"
+                multiple name="sale" [(ngModel)]="yearObj.sale" required
                 title="请选择交易模式">
           <option value="B2B">B2B</option>
           <option value="B2C">B2C</option>
@@ -155,22 +156,26 @@
     <tr>
       <td>6. 跨境电子商务经营情况</td>
       <td colspan="3">
-        <div class="text-left">
+        <p class="text-left">
           <input type="checkbox" name="checkbox3"
                  [(ngModel)]="checkbox3" value="span_41"/>
           开展跨境电子商务类型(可多选)
-        </div>
-        <div class="text-left" *ngIf="checkbox3">
-          <select appSelectpicker class="form-control input-sm" multiple name="crossCountry"
+          <select appSelectpicker *ngIf="checkbox3"
+                  class="form-control input-sm"
+                  multiple
+                  name="crossCountry"
+                  style="display: inline-block;width: auto;"
                   [(ngModel)]="yearObj.crossCountry"
                   required title="请选择商务类型">
             <option value="进口">进口</option>
             <option value="出口">出口</option>
           </select>
-          <div class="text-left">
+        </p>
+        <div *ngIf="checkbox3">
+          <p>
             开展跨境电子商务业务的主要交易平台：
-          </div>
-          <div class="form-inline text-left">
+          </p>
+          <p class="form-inline text-left">
             自营平台 <input type="checkbox" name="checkbox1" [(ngModel)]="checkbox1" value="span_41"/>
             <span *ngIf="checkbox1" class="form-inline">
       				平台名称及网址
@@ -183,10 +188,11 @@
                      [(ngModel)]="yearObj.cell41b"
                      name="cell41b"
                      placeholder="网址"
+                     style="width: 300px;"
                      required>
       	            </span>
-          </div>
-          <div class="form-inline text-left">
+          </p>
+          <p class="form-inline text-left">
             其他平台 <input type="checkbox" name="checkbox2" [(ngModel)]="checkbox2" value="span_42"/>
             <span *ngIf="checkbox2" class="form-inline">
       				平台名称及网址
@@ -199,9 +205,10 @@
                      [(ngModel)]="yearObj.cell42b"
                      name="cell42b"
                      placeholder="网址"
+                     style="width: 300px;"
                      required>
                     </span>
-          </div>
+          </p>
         </div>
       </td>
     </tr>
@@ -210,16 +217,17 @@
       <td colspan="3">
         <div class="form-inline">
           期末从业人员合计
-          <input type="number" class="form-control input-sm margin-right"
+          <input type="number" class="form-control input-sm margin-right" style="width: 100px;"
                  [value]="getCount(cell52,cell53,cell54)" readonly>
           研究生及以上
-          <input type="number" class="form-control input-sm"
-                 [(ngModel)]="yearObj.cell52" name="cell52" placeholder="人" #cell52="ngModel" required> <br>
+          <input type="number" class="form-control input-sm margin-right" style="width: 100px;"
+                 [(ngModel)]="yearObj.cell52" name="cell52" placeholder="人" #cell52="ngModel" required>
+
           大学本（专）科
-          <input type="number" class="form-control input-sm margin-right"
+          <input type="number" class="form-control input-sm margin-right" style="width: 100px;"
                  [(ngModel)]="yearObj.cell53" name="cell53" placeholder="人" #cell53="ngModel" required>
           高中及以下
-          <input type="number" class="form-control input-sm"
+          <input type="number" class="form-control input-sm" style="width: 100px;"
                  [(ngModel)]="yearObj.cell54" name="cell54" placeholder="人" #cell54="ngModel" required> <br>
         </div>
 
@@ -231,31 +239,35 @@
         <div class="form-inline">
           1、电子商务交易额
           <input type="number" class="form-control input-sm margin-right"
+                 style="width: 100px;"
                  [value]="getCount(cell62,cell63)" readonly>
 
           其中商品类
           <input type="text" class="form-control input-sm"
+                 style="width: 100px;"
                  [(ngModel)]="yearObj.cell62" name="cell62" #cell62="ngModel" placeholder="万元" required>
           服务类
           <input type="text" class="form-control input-sm"
+                 style="width: 100px;"
                  [(ngModel)]="yearObj.cell63" name="cell63" #cell63="ngModel" placeholder="万元" required>
           (注：电子应用/综合型企业填写)
 
-          <br>
+          <p></p>
 
           2、电子商务服务收入
           <input type="text" class="form-control input-sm"
+                 style="width: 100px;"
                  [(ngModel)]="yearObj.cell64" name="cell64" #cell64="ngModel" placeholder="万元" required>
-          <br>
+          <p></p>
 
           3、电子商务网络零售额
-          <input type="text" class="form-control input-sm"
+          <input type="text" class="form-control input-sm" style="width: 100px;"
                  [value]="getCount(cell66,cell67)" readonly>
           其中商品类
-          <input type="text" class="form-control input-sm"
+          <input type="text" class="form-control input-sm" style="width: 100px;"
                  [(ngModel)]="yearObj.cell66" name="cell66" #cell66="ngModel" placeholder="万元" required>
           服务类
-          <input type="text" class="form-control input-sm"
+          <input type="text" class="form-control input-sm" style="width: 100px;"
                  [(ngModel)]="yearObj.cell67" name="cell67" #cell67="ngModel" placeholder="万元" required>
           (注：电商应用/综合型企业)
         </div>
@@ -276,17 +288,6 @@
              [(ngModel)]="yearObj.cell72" name="cell72" required>
     </div>
     <div class="form-group margin-right">
-      联系电话：
-      <input type="text" class="form-control input-sm"
-             [(ngModel)]="yearObj.cell73" name="cell73"
-             placeholder="0121-12345678"
-             pattern="^\d{3,4}-\d{7,8}$">
-      <span>座机号码：区号(3-4位) 分隔符(-) 座机号(7-8位)</span>
-    </div>
-
-    <br>
-
-    <div class="form-group margin-right">
       手机：
       <input type="text" class="form-control input-sm"
              placeholder="请输入11位手机号码"
@@ -296,6 +297,15 @@
       填报日期:
       <input type="text" class="form-control input-sm" appDatepicker
              [(value)]="yearObj.cell75" [option]="datePickerOption" required/>
+    </div>
+    <p></p>
+    <div class="form-group">
+      联系电话：
+      <input type="text" class="form-control input-sm"
+             [(ngModel)]="yearObj.cell73" name="cell73"
+             placeholder="0121-12345678"
+             pattern="^\d{3,4}-\d{7,8}$">
+      <span>座机号码：区号(3-4位) 分隔符(-) 座机号(7-8位)</span>
     </div>
   </div>
   <hr/>
