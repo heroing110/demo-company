@@ -6,6 +6,7 @@ import {ModifyPasswordComponent} from "./modify-password/modify-password.compone
 import {ModifyUserComponent} from "./modify-user/modify-user.component";
 import {UserService} from "../../share/user.service";
 import {City} from "../../../entity/city";
+import {LayerService} from "../../share/layer.service";
 
 @Component({
   templateUrl: 'user-management.component.html'
@@ -17,7 +18,8 @@ export class UserManagementComponent implements OnInit {
   currentUser: UserInfo;
 
   constructor(private userManagementService: UserManagementService,
-              private userService: UserService) {
+              private userService: UserService,
+              private layerService: LayerService) {
   }
 
   ngOnInit() {
@@ -31,28 +33,33 @@ export class UserManagementComponent implements OnInit {
   }
 
   saveNewUser(user: UserInfo, newUserComponent: ModifyUserComponent) {
+    this.layerService.open();
     this.userManagementService.insert(user).then(res => {
       if (res.inserted) {
         newUserComponent.close();
         this.query();
       }
       alert(res.message);
+      this.layerService.close();
     });
   }
 
   // 删除用户
   deleteUser(user: UserInfo) {
     if (confirm('确定删除此用户?')) {
+      this.layerService.open();
       this.userManagementService.delete(user.id)
         .then(res => {
           res.removed && this.query();
           alert(res.message);
+          this.layerService.close();
         });
     }
   }
 
   // 保存修改的密码
   saveModifyPassword(pwd, modifyPasswordComponent: ModifyPasswordComponent) {
+    this.layerService.open();
     this.userManagementService.changePwd(modifyPasswordComponent.user.id, pwd)
       .then(res => {
         if (res.updated) {
@@ -60,18 +67,21 @@ export class UserManagementComponent implements OnInit {
           modifyPasswordComponent.close();
         }
         alert(res.message);
+        this.layerService.close();
       });
   }
 
   // 保存修改的用户
   saveModifyUser(user, modifyUserComponent: ModifyUserComponent) {
+    this.layerService.open();
     this.userManagementService.update(user)
       .then(res => {
         if (res.updated) {
           this.query();
           modifyUserComponent.close();
         }
-          alert(res.message);
+        alert(res.message);
+        this.layerService.close();
       });
   }
 }

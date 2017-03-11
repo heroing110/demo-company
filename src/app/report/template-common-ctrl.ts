@@ -1,9 +1,17 @@
 // Created by baihuibo on 2017/2/13.
 import {NgModel} from "@angular/forms";
 import {Year} from "../../entity/year";
+import {Season} from "../../entity/season";
 
 export class TemplateCommonCtrl {
   yearObj: Year;
+  seasonObj: Season;
+
+  getSeasonPropCount(...props: string[]) {
+    return props.reduce((prev, prop) => {
+      return prev + (+this.seasonObj[prop] || 0);
+    }, 0)
+  }
 
   getCount(...models: NgModel[]) {
     return models.reduce((pre: number, model: NgModel) => {

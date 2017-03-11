@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from "../../share/user.service";
+import {UserInfo} from "../../../entity/user-info";
 
 @Component({
   selector: 'app-welcome',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private userService: UserService) {
   }
 
+  userInfo: UserInfo;
+
+  ngOnInit() {
+    this.userInfo = this.userService.getUserInfo();
+  }
 }

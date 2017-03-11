@@ -9,6 +9,7 @@ import {SelectpickerDirective} from './selectpicker.directive';
 import {EqualSumDirective} from './equal-sum.directive';
 import {TooltipDirective} from './tooltip.directive';
 import {EchartsDirective} from "./echarts.directive";
+import {LayerService} from "./layer.service";
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import {EchartsDirective} from "./echarts.directive";
     HttpModule,
     CommonModule
   ],
-  providers: [UserService],
+  providers: [UserService, LayerService],
   exports: [
     BrowserModule,
     FormsModule,

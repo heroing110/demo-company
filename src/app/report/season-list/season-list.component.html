@@ -26,7 +26,7 @@
   <tr *ngFor="let season of seasonList | paginate:{itemsPerPage: 10, currentPage: p} ;let i = index">
     <td>{{i+1}}</td>
     <td>{{season.year}}</td>
-    <td>{{season.season}}</td>
+    <td>{{season.seasonObj}}</td>
     <td>{{season.companyName}}</td>
     <td>{{season.cell161}}</td>
     <td>

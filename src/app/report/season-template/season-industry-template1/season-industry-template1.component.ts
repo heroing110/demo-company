@@ -1,6 +1,7 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, ViewChild} from '@angular/core';
 import {TemplateCommonCtrl} from "../../template-common-ctrl";
 import {Season} from "../../../../entity/season";
+import {NgForm} from "@angular/forms";
 
 
 //////// 电子商务应用企业
@@ -11,6 +12,7 @@ import {Season} from "../../../../entity/season";
 })
 export class SeasonIndustryTemplate1Component extends TemplateCommonCtrl implements OnInit {
   @Input() seasonObj: Season;
+  @ViewChild(NgForm) form: NgForm;
 
   constructor() {
     super();

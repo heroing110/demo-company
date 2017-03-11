@@ -8,7 +8,7 @@
 
     <div class="form-group margin-right">
       <label class="text-right">年度</label>
-      <input type="number" class="form-control input-sm"
+      <input type="text" class="form-control input-sm" maxlength="4"
              [(ngModel)]="yearObj.year" name="year" pattern="^2\d{3}$"
              [readonly]="modifyMode" required #year="ngModel">
       <span class="text-danger" *ngIf="year.invalid && ((year.touched || year.dirty) || showError)">*请输入正确的年份</span>
@@ -46,7 +46,7 @@
       <td>2. 联系方式（单位负责人）</td>
       <td>
         <input type="text" class="form-control input-sm"
-               placeholder="请输入11位手机号码" pattern="\d{11}"
+               placeholder="请输入11位手机号码" pattern="\d{11}" maxlength="11"
                [(ngModel)]="yearObj.cell21" name="cell21" #cell21="ngModel">
       </td>
     </tr>
@@ -63,7 +63,7 @@
       <td>
         <input type="text" class="form-control input-sm"
                pattern="^\d{6}$"
-               placeholder="请输入6位邮政编码"
+               placeholder="请输入6位邮政编码" maxlength="6"
                [(ngModel)]="yearObj.cell32" name="cell32" #cell32="ngModel" required>
       </td>
     </tr>
@@ -72,7 +72,7 @@
       <td>
         <input type="text" class="form-control input-sm"
                placeholder="0121-12345678"
-               pattern="^\d{3,4}-\d{7,8}$"
+               pattern="^\d{3,4}-\d{7,8}$" maxlength="13"
                [(ngModel)]="yearObj.cell33" name="cell33" #cell33="ngModel">
         <span>座机号码：区号(3-4位) 分隔符(-) 座机号(7-8位)</span>
       </td>
@@ -92,7 +92,7 @@
       <td>
         <input type="text" class="form-control input-sm"
                placeholder="0121-12345678"
-               pattern="^\d{3,4}-\d{7,8}$"
+               pattern="^\d{3,4}-\d{7,8}$" maxlength="13"
                [(ngModel)]="yearObj.cell35" name="cell35" #cell35="ngModel" required>
         <span>座机号码：区号(3-4位) 分隔符(-) 座机号(7-8位)</span>
       </td>
@@ -290,7 +290,7 @@
     <div class="form-group margin-right">
       手机：
       <input type="text" class="form-control input-sm"
-             placeholder="请输入11位手机号码"
+             placeholder="请输入11位手机号码" maxlength="11"
              [(ngModel)]="yearObj.cell74" name="cell74" pattern="^1\d{10}$" required>
     </div>
     <div class="form-group">
@@ -303,7 +303,7 @@
       联系电话：
       <input type="text" class="form-control input-sm"
              [(ngModel)]="yearObj.cell73" name="cell73"
-             placeholder="0121-12345678"
+             placeholder="0121-12345678" maxlength="13"
              pattern="^\d{3,4}-\d{7,8}$">
       <span>座机号码：区号(3-4位) 分隔符(-) 座机号(7-8位)</span>
     </div>

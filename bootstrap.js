@@ -34,6 +34,9 @@ app.use(function (req, res, next) {
 app.use(function (req, res) {
   const path = req.path;
 
+  // 不要缓存所有数据
+  res.setHeader('cache-control', 'no-cache');
+
   if (path.includes('/destroyUser')) {
     console.log('****** call destroyUser');
     req.session.user = null;

@@ -3,18 +3,21 @@
        [class.not-allow-modify]="modifyMode">
     <label>单位详细名称</label>
     <input type="text" class="form-control" style="width: 120px;"
-           [value]="season.companyName" name="companyName" readonly>
+           [value]="seasonObj.companyName" name="companyName" readonly>
 
     <label class="text-right">年度</label>
     <input type="text" class="form-control" style="width: 120px;"
-           [(ngModel)]="season.year" name="year" pattern="^2\d{3}$"
+           [(ngModel)]="seasonObj.year" name="year" pattern="^2\d{3}$" maxlength="4"
            placeholder="2016" #year="ngModel" [readonly]="modifyMode" required>
-    <span class="text-danger" *ngIf="year.invalid && ((year.touched || year.dirty) || showError)">*请输入正确的年份</span>
+    <span class="text-danger"
+          *ngIf="year.invalid && ((year.touched || year.dirty) || showError)">
+      *请输入正确的年份
+    </span>
 
     <label class="text-right">行业类别</label>
     <select class="form-control input-sm" style="width: 150px;"
             [class.not-allow-modify]="modifyMode"
-            [(ngModel)]="season.industry" name="industry" required>
+            [(ngModel)]="seasonObj.industry" name="industry" required>
       <option value="">请选择行业类别</option>
       <option value="电子商务应用企业">电子商务应用企业</option>
       <option value="电子商务服务企业">电子商务服务企业</option>
@@ -24,32 +27,32 @@
     <label class="text-left">季度</label>
     <span *ngIf="!modifyMode">
       <input type="radio" value="1" name="season"
-             [(ngModel)]="season.season" required> 第一季度
+             [(ngModel)]="seasonObj.season" required> 第一季度
       <input type="radio" value="2" name="season"
-             [(ngModel)]="season.season" required> 第二季度
+             [(ngModel)]="seasonObj.season" required> 第二季度
       <input type="radio" value="3" name="season"
-             [(ngModel)]="season.season" required> 第三季度
+             [(ngModel)]="seasonObj.season" required> 第三季度
       <input type="radio" value="4" name="season"
-             [(ngModel)]="season.season" required> 第四季度
-      <span class="text-danger" *ngIf="!season.season && showError">请选择季度</span>
+             [(ngModel)]="seasonObj.season" required> 第四季度
+      <span class="text-danger" *ngIf="!seasonObj.season && showError">请选择季度</span>
     </span>
 
-    <label *ngIf="modifyMode">第{{season.season}}季度</label>
+    <label *ngIf="modifyMode">第{{seasonObj.season}}季度</label>
   </div>
 
   <!-- 根据`行业类别`动态渲染表格，默认禁用所有表格内输入项-->
-  <div [class.disabled-all-input]="!season.industry" [class.readonly-all]="readonlyAll">
+  <div [class.disabled-all-input]="!seasonObj.industry" [class.readonly-all]="readonlyAll">
     <app-season-industry-template1
-      *ngIf="season.industry == '电子商务应用企业'"
-      [seasonObj]="season"></app-season-industry-template1>
+      *ngIf="seasonObj.industry == '电子商务应用企业'"
+      [seasonObj]="seasonObj"></app-season-industry-template1>
 
     <app-season-industry-template2
-      *ngIf="season.industry == '电子商务服务企业'"
-      [seasonObj]="season"></app-season-industry-template2>
+      *ngIf="seasonObj.industry == '电子商务服务企业'"
+      [seasonObj]="seasonObj"></app-season-industry-template2>
 
     <app-season-industry-template3
-      *ngIf="season.industry == '电子商务综合型企业' || !season.industry"
-      [seasonObj]="season"></app-season-industry-template3>
+      *ngIf="seasonObj.industry == '电子商务综合型企业' || !seasonObj.industry"
+      [seasonObj]="seasonObj"></app-season-industry-template3>
   </div>
 
   <table [class.readonly-all]="readonlyAll" class="table table-bordered table-hover margin-top">
@@ -58,19 +61,28 @@
       <td colspan="7" style="text-align:left;">
         <div class="form-inline">
           <p>补充资料：</p>
-          1.电子商务交易商品数 <input type="number" class="form-control" [(ngModel)]="season.cell111" name="cell111"
-                             placeholder="(件)" required style="margin-bottom: 5px;"><br/>
-          2.跨境电子商务交易商品数 <input type="number" class="form-control"
-                               [value]="getCount(cell113 , cell114)" readonly>：
-          进口 <input type="number" class="form-control"
-                    [(ngModel)]="season.cell113"
-                    name="cell113" #cell113
-                    placeholder="(件)" required>
-          出口 <input type="number" class="form-control"
-                    [(ngModel)]="season.cell114"
-                    name="cell114" #cell114
-                    placeholder="(件)"
-                    required>
+          1.电子商务交易商品数
+          <input type="number" class="form-control"
+                 [(ngModel)]="seasonObj.cell111" name="cell111"
+                 placeholder="(件)" required style="margin-bottom: 5px;"><br/>
+          2.跨境电子商务交易商品数
+          <input type="number"
+                 class="form-control"
+                 [value]="getCount(cell113 , cell114)" readonly>：
+          进口
+          <input type="number" class="form-control"
+                 [(ngModel)]="seasonObj.cell113"
+                 name="cell113" #cell113
+                 [readonly]="getSeasonPropCount('cell82','cell83','cell84','cell85') == 0"
+                 placeholder="(件)"
+                 required>
+          出口
+          <input type="number" class="form-control"
+                 [(ngModel)]="seasonObj.cell114"
+                 name="cell114" #cell114
+                 placeholder="(件)"
+                 [readonly]="getSeasonPropCount('cell82','cell83','cell84','cell85') == 0"
+                 required>
         </div>
       </td>
     </tr>
@@ -81,13 +93,13 @@
       <td colspan="7" style="text-align:left;">
         <div class="form-inline">
           是否开展O2O业务：
-          <input type="radio" value="1" name="o2oRadio" [(ngModel)]="season.o2oRadio" required>是
-          <span *ngIf="season.o2oRadio == '1'">
-          占电子商务总交易额比重 <input type="number" class="form-control" [(ngModel)]="season.cell121" name="cell121"
-                             pattern="^(\d{1,2}|100)$"
+          <input type="radio" value="1" name="o2oRadio" [(ngModel)]="seasonObj.o2oRadio" required>是
+          <span *ngIf="seasonObj.o2oRadio == '1'">
+          占电子商务总交易额比重 <input type="number" class="form-control" [(ngModel)]="seasonObj.cell121" name="cell121"
+                             pattern="^(\d{1,2}|100)$" max="100"
                              placeholder="请输入0-100之间的数字" required> %
           </span>
-          <input type="radio" value="2" name="o2oRadio" [(ngModel)]="season.o2oRadio" required>否
+          <input type="radio" value="2" name="o2oRadio" [(ngModel)]="seasonObj.o2oRadio" required>否
         </div>
       </td>
     </tr>
@@ -95,13 +107,16 @@
       <td colspan="7" style="text-align:left;">
         <div class="form-inline">
           是否开展移动电子商务业务：
-          <input type="radio" value="1" name="mobileRadio" [(ngModel)]="season.mobileRadio" required>是
-          <span *ngIf="season.mobileRadio == '1'">
-          占电子商务总交易额比重 <input type="number" class="form-control" [(ngModel)]="season.cell131" name="cell131"
-                             pattern="^(\d{1,2}|100)$"
-                             placeholder="请输入0-100之间的数字" required> %
+          <input type="radio" value="1" name="mobileRadio" max="100"
+                 [(ngModel)]="seasonObj.mobileRadio" required>是
+          <span *ngIf="seasonObj.mobileRadio == '1'">
+          占电子商务总交易额比重
+            <input type="number" class="form-control"
+                   [(ngModel)]="seasonObj.cell131" name="cell131"
+                   pattern="^(\d{1,2}|100)$" max="100"
+                   placeholder="请输入0-100之间的数字" required> %
           </span>
-          <input type="radio" value="2" name="mobileRadio" [(ngModel)]="season.mobileRadio" required>否
+          <input type="radio" value="2" name="mobileRadio" [(ngModel)]="seasonObj.mobileRadio" required>否
         </div>
       </td>
     </tr>
@@ -111,13 +126,13 @@
     <tr>
       <td colspan="7" style="text-align:left;">
         <div class="form-inline">
-          网络支付额占公司总交易额比 <input type="text" class="form-control"
-                               [(ngModel)]="season.cell141" name="cell141"
-                               pattern="^(\d{1,2}|100)$"
+          网络支付额占公司总交易额比 <input type="number" class="form-control"
+                               [(ngModel)]="seasonObj.cell141" name="cell141"
+                               pattern="^(\d{1,2}|100)$" max="100"
                                placeholder="请输入0-100之间的数字" required> %
-          其中移动支付额占网络支付额比 <input type="text" class="form-control"
-                                [(ngModel)]="season.cell142" name="cell142"
-                                pattern="^(\d{1,2}|100)$"
+          其中移动支付额占网络支付额比 <input type="number" class="form-control"
+                                [(ngModel)]="seasonObj.cell142" name="cell142"
+                                pattern="^(\d{1,2}|100)$" max="100"
                                 placeholder="请输入0-100之间的数字" required> %
         </div>
       </td>
@@ -131,13 +146,13 @@
         <span class="form-inline" *ngIf="checkbox1">
           自营 占物流配送总额比重
           <input type="number" class="form-control"
-                 [(ngModel)]="season.cell151" name="cell151"
-                 pattern="^(\d{1,2}|100)$"
+                 [(ngModel)]="seasonObj.cell151" name="cell151"
+                 pattern="^(\d{1,2}|100)$" max="100"
                  placeholder="请输入0-100之间的数字" required> %
           外包 占物流配送总额比重
           <input type="number" class="form-control"
-                 [(ngModel)]="season.cell152" name="cell152"
-                 pattern="^(\d{1,2}|100)$"
+                 [(ngModel)]="seasonObj.cell152" name="cell152"
+                 pattern="^(\d{1,2}|100)$" max="100"
                  placeholder="请输入0-100之间的数字" required> %
         </span>
       </td>
@@ -149,27 +164,27 @@
   <div [class.readonly-all]="readonlyAll" class="form-inline">
     <div class="form-group margin-left">
       填表人：<input type="text" class="form-control"
-                 [(ngModel)]="season.cell161" name="cell161" required>
+                 [(ngModel)]="seasonObj.cell161" name="cell161" required>
     </div>
     <div class="form-group margin-left">
-      职务：<input type="text" class="form-control" [(ngModel)]="season.cell162" name="cell162" required>
+      职务：<input type="text" class="form-control" [(ngModel)]="seasonObj.cell162" name="cell162" required>
     </div>
     <div class="form-group margin-left">
       手机：<input type="text" class="form-control"
-                placeholder="请输入11位手机号码"
-                [(ngModel)]="season.cell164" name="cell164" pattern="^1\d{10}$" required>
+                placeholder="请输入11位手机号码" maxlength="11"
+                [(ngModel)]="seasonObj.cell164" name="cell164" pattern="^1\d{10}$" required>
     </div>
     <div class="form-group margin-left">
       填报日期:
       <input type="text" class="form-control"
-             [(value)]="season.cell165" name="cell165" appDatepicker
+             [(value)]="seasonObj.cell165" name="cell165" appDatepicker
              [option]="datePickerOption" required>
     </div>
     <p></p>
     <div class="form-group margin-left">
       联系电话：<input type="text" class="form-control"
-                  [(ngModel)]="season.cell163" name="cell163"
-                  placeholder="0121-12345678"
+                  [(ngModel)]="seasonObj.cell163" name="cell163"
+                  placeholder="0121-12345678" maxlength="13"
                   pattern="^\d{3,4}-\d{7,8}$">
       <span>座机号码：区号(3-4位) 分隔符(-) 座机号(7-8位)</span>
     </div>
@@ -178,7 +193,7 @@
   <div class="row" style="width:1000px; margin:10px auto; text-align:center">
     <button type="submit" class="btn btn-primary"
             *ngIf="!readonlyAll"
-            (click)="saveSeason(seasonForm)">提交
+            (click)="saveSeason(seasonForm , data1 , data2 , data3)">提交
     </button>
     <button type="button" class="btn btn-default" (click)="back()">返回</button>
   </div>

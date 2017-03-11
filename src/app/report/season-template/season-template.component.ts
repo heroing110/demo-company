@@ -1,8 +1,11 @@
-import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit, ViewChild} from '@angular/core';
 import {Season} from "../../../entity/season";
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
 import {TemplateCommonCtrl} from "../template-common-ctrl";
+import {SeasonIndustryTemplate1Component} from "./season-industry-template1/season-industry-template1.component";
+import {SeasonIndustryTemplate2Component} from "./season-industry-template2/season-industry-template2.component";
+import {SeasonIndustryTemplate3Component} from "./season-industry-template3/season-industry-template3.component";
 
 @Component({
   selector: 'app-season-template',
@@ -10,7 +13,7 @@ import {TemplateCommonCtrl} from "../template-common-ctrl";
   styleUrls: ['./season-template.component.css']
 })
 export class SeasonTemplateComponent extends TemplateCommonCtrl implements OnInit{
-  @Input() season: Season;
+  @Input() seasonObj: Season;
   @Input() readonlyAll: boolean;
   @Input() modifyMode: boolean;
   @Output() save = new EventEmitter<Season>();
@@ -28,17 +31,23 @@ export class SeasonTemplateComponent extends TemplateCommonCtrl implements OnIni
   }
 
   ngOnInit(){
-    if (this.season.cell151) {
+    if (this.seasonObj.cell151) {
        this.checkbox1 = true;
     }
   }
 
-  saveSeason(seasonForm: NgForm) {
-    if (seasonForm.form.invalid) {
+  @ViewChild(SeasonIndustryTemplate1Component) data1: SeasonIndustryTemplate1Component;
+  @ViewChild(SeasonIndustryTemplate2Component) data2: SeasonIndustryTemplate2Component;
+  @ViewChild(SeasonIndustryTemplate3Component) data3: SeasonIndustryTemplate3Component;
+
+  saveSeason(formCtrl: NgForm) {
+    const dataTemplate = this.data1 || this.data2 || this.data3;
+    const templateFormCtrl: NgForm = dataTemplate.form;
+    if (formCtrl.form.invalid || templateFormCtrl.form.invalid) {
       this.showError = true;
       return;
     }
-    this.save.next(this.season);
+    this.save.next(this.seasonObj);
   }
 
   back(){

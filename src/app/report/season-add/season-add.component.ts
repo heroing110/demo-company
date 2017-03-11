@@ -3,6 +3,7 @@ import {Season} from "../../../entity/season";
 import {SeasonService} from "../season.service";
 import {Router} from "@angular/router";
 import {UserService} from "../../share/user.service";
+import {LayerService} from "../../share/layer.service";
 
 @Component({
   selector: 'app-season-add',
@@ -14,7 +15,8 @@ export class SeasonAddComponent implements OnInit {
 
   constructor(private seasonService: SeasonService,
               private router: Router,
-              private userService: UserService) {
+              private userService: UserService,
+              private layerService: LayerService) {
   }
 
   ngOnInit() {
@@ -23,14 +25,16 @@ export class SeasonAddComponent implements OnInit {
   }
 
   save() {
+    this.layerService.open();
     this.seasonService.addSeason(this.seasonObj).then((result) => {
       if (result.inserted) {
-        this.router.navigate(['report/season/list']);
+        this.router.navigate(['report/seasonObj/list']);
       } else if (result.message) {
         alert(result.message);
       } else {
         alert('添加报表失败');
       }
+      this.layerService.close();
     });
   }
 }

@@ -3,6 +3,7 @@ import {Year} from "../../../entity/year";
 import {YearService} from "../year.service";
 import {Router} from "@angular/router";
 import {UserService} from "../../share/user.service";
+import {LayerService} from "../../share/layer.service";
 
 @Component({
   selector: 'app-year-add',
@@ -14,7 +15,8 @@ export class YearAddComponent implements OnInit {
 
   constructor(private yearService: YearService,
               private router: Router,
-              private userService: UserService) {
+              private userService: UserService,
+              private layerService: LayerService) {
   }
 
   ngOnInit() {
@@ -23,6 +25,7 @@ export class YearAddComponent implements OnInit {
   }
 
   save() {
+    this.layerService.open();
     this.yearService.addYear(this.yearObj).then((result) => {
       if (result.inserted) {
         this.router.navigate(['report/year/list']);
@@ -31,6 +34,7 @@ export class YearAddComponent implements OnInit {
       } else {
         alert('添加报表失败');
       }
+      this.layerService.close();
     });
   }
 

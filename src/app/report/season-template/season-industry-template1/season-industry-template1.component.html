@@ -1,298 +1,462 @@
-<table class="table table-bordered table-hover small">
-  <thead>
-  <tr>
-    <th colspan="6">一、电子商务交易情况</th>
-  </tr>
-  <tr>
-    <th rowspan="2">类别</th>
-    <th rowspan="2">总额(万元)</th>
-    <th colspan="3">商品类交易额(万元)</th>
-    <th rowspan="2">服务类交易额(万元)（应用/综合企业填</th>
-  </tr>
-  <tr>
-    <th>商品类交易总额</th>
-    <th>其中：销售额（应用/综合企业填）</th>
-    <th>其中：采购额（应用/综合企业填）</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>电子商务交易额</td>
-    <td>
-      <!-- 总额 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell12,cell13,cell14)">
-    </td>
-    <td>
-      <!-- 商品类总额2 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell12,cell13)">
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell12" name="cell12" #cell12="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell13" name="cell13" #cell13="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell14" name="cell14" #cell14="ngModel" required>
-    </td>
-  </tr>
-  <tr>
-    <td>一、按交易平台分</td>
-    <td>—</td>
-    <td>—</td>
-    <td>—</td>
-    <td>—</td>
-    <td>—</td>
-    <td>—</td>
-  </tr>
-  <tr>
-    <td>1.通过自营电子商务平台</td>
-    <td>
-      <!-- 总额 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell22,cell23,cell24)">
-    </td>
-    <td>
-      <!-- 商品类总额2 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell22,cell23)">
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell22" name="cell22" #cell22="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell23" name="cell23" #cell23="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell24" name="cell24" #cell24="ngModel" required>
-    </td>
-  </tr>
-  <tr>
-    <td>2.通过第三方电子商务平台</td>
-    <td>
-      <!-- 总额 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell32,cell33,cell34)">
-    </td>
-    <td>
-      <!-- 商品类总额2 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell32,cell33)">
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell32" name="cell32" #cell32="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell33" name="cell33" #cell33="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell34" name="cell34" #cell34="ngModel" required>
-    </td>
-  </tr>
-  <tr>
-    <td>二、按交易方式分</td>
-    <td>—</td>
-    <td>—</td>
-    <td>—</td>
-    <td>—</td>
-    <td>—</td>
-  </tr>
-  <tr>
-    <td>1.B2B</td>
-    <td>
-      <!-- 总额 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell42,cell43,cell44)">
-    </td>
-    <td>
-      <!-- 商品类总额2 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell42,cell43)">
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell42" name="cell42" #cell42="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell43" name="cell43" #cell43="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell44" name="cell44" #cell44="ngModel" required>
-    </td>
-  </tr>
-  <tr>
-    <td>2.B2C</td>
-    <td>
-      <!-- 总额 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell52,cell53,cell54)">
-    </td>
-    <td>
-      <!-- 商品类总额2 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell52,cell53)">
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell52" name="cell52" #cell52="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell53" name="cell53" #cell53="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell54" name="cell54" #cell54="ngModel" required>
-    </td>
-  </tr>
-  <tr>
-    <td>3.C2C</td>
-    <td>
-      <!-- 总额 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell62,cell63,cell64)">
-    </td>
-    <td>
-      <!-- 商品类总额2 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell62,cell63)">
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell62" name="cell62" #cell62="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell63" name="cell63" #cell63="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell64" name="cell64" #cell64="ngModel" required>
-    </td>
-  </tr>
-  <tr>
-    <td>三、按地域分</td>
-    <td>—</td>
-    <td>—</td>
-    <td>—</td>
-    <td>—</td>
-    <td>—</td>
-  </tr>
-  <tr>
-    <td>1.境内</td>
-    <td>
-      <!-- 总额 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell72,cell73,cell74)">
-    </td>
-    <td>
-      <!-- 商品类总额2 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell72,cell73)">
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell72" name="cell72" #cell72="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell73" name="cell73" #cell73="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell74" name="cell74" #cell74="ngModel" required>
-    </td>
-  </tr>
-  <tr>
-    <td>2.境外（跨境电子商务交易）</td>
-    <td>
-      <!-- 总额 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell82,cell83,cell84)">
-    </td>
-    <td>
-      <!-- 商品类总额2 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell82,cell83)">
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             (input)="cellChangeZerofill(cell82 , [cell82,cell83,cell84])"
-             [(ngModel)]="seasonObj.cell82" name="cell82" #cell82="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             (input)="cellChangeZerofill(cell83 , [cell82,cell83,cell84])"
-             [(ngModel)]="seasonObj.cell83" name="cell83" #cell83="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             (input)="cellChangeZerofill(cell84 , [cell82,cell83,cell84])"
-             [(ngModel)]="seasonObj.cell84" name="cell84" #cell84="ngModel" required>
-    </td>
-  </tr>
-  <tr>
-    <td>进口</td>
-    <td>
-      <!-- 总额 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell92,cell93,cell94)">
-    </td>
-    <td>
-      <!-- 商品类总额2 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell92,cell93)">
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell92" name="cell92" #cell92="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell93" name="cell93" #cell93="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell94" name="cell94" #cell94="ngModel" required>
-    </td>
-  </tr>
-  <tr>
-    <td>出口</td>
-    <td>
-      <!-- 总额 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell102,cell103,cell104)">
-    </td>
-    <td>
-      <!-- 商品类总额2 -->
-      <input type="number" class="form-control" readonly
-             [value]="getCount(cell102,cell103)">
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell102" name="cell102" #cell102="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell103" name="cell103" #cell103="ngModel" required>
-    </td>
-    <td>
-      <input type="number" class="form-control"
-             [(ngModel)]="seasonObj.cell104" name="cell104" #cell104="ngModel" required>
-    </td>
-  </tr>
-  </tbody>
-</table>
+<form #form="ngForm">
+  <table class="table table-bordered table-hover small">
+    <thead>
+    <tr>
+      <th colspan="6">一、电子商务交易情况</th>
+    </tr>
+    <tr>
+      <th rowspan="2">类别</th>
+      <th rowspan="2">总额(万元)</th>
+      <th colspan="3">商品类交易额(万元)</th>
+      <th rowspan="2">服务类交易额(万元)（应用/综合企业填</th>
+    </tr>
+    <tr>
+      <th>商品类交易总额</th>
+      <th>其中：销售额（应用/综合企业填）</th>
+      <th>其中：采购额（应用/综合企业填）</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>电子商务交易额</td>
+      <td>
+        <!-- 总额 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell12,cell13,cell14)">
+      </td>
+      <td>
+        <!-- 商品类总额2 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell12,cell13)">
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell12"
+               name="cell12"
+               #cell12="ngModel"
+               appEqualSum=""
+               [equalSum]="[
+              [cell22, cell32],
+              [cell42, cell52, cell62],
+              [cell72, cell82, cell92, cell102]
+             ]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell13"
+               name="cell13"
+               #cell13="ngModel"
+               appEqualSum=""
+               [equalSum]="[
+              [cell23, cell33],
+              [cell43, cell53, cell63],
+              [cell73, cell83, cell93, cell103]
+             ]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell14"
+               name="cell14"
+               #cell14="ngModel"
+               appEqualSum=""
+               [equalSum]="[
+              [cell24, cell34],
+              [cell44, cell54, cell64],
+              [cell74, cell84, cell94, cell104]
+             ]"
+               required>
+      </td>
+    </tr>
+    <tr>
+      <td>一、按交易平台分</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>1.通过自营电子商务平台</td>
+      <td>
+        <!-- 总额 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell22,cell23,cell24)">
+      </td>
+      <td>
+        <!-- 商品类总额2 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell22,cell23)">
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell22"
+               name="cell22"
+               #cell22="ngModel"
+               appEqualSum=""
+               [trigger]="[cell12]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell23"
+               name="cell23"
+               #cell23="ngModel"
+               appEqualSum=""
+               [trigger]="[cell13]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell24"
+               name="cell24"
+               #cell24="ngModel"
+               appEqualSum=""
+               [trigger]="[cell14]"
+               required>
+      </td>
+    </tr>
+    <tr>
+      <td>2.通过第三方电子商务平台</td>
+      <td>
+        <!-- 总额 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell32,cell33,cell34)">
+      </td>
+      <td>
+        <!-- 商品类总额2 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell32,cell33)">
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell32"
+               name="cell32"
+               #cell32="ngModel"
+               appEqualSum=""
+               [trigger]="[cell12]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell33"
+               name="cell33"
+               #cell33="ngModel"
+               appEqualSum=""
+               [trigger]="[cell13]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell34"
+               name="cell34"
+               #cell34="ngModel"
+               appEqualSum=""
+               [trigger]="[cell14]"
+               required>
+      </td>
+    </tr>
+    <tr>
+      <td>二、按交易方式分</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>1.B2B</td>
+      <td>
+        <!-- 总额 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell42,cell43,cell44)">
+      </td>
+      <td>
+        <!-- 商品类总额2 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell42,cell43)">
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell42"
+               name="cell42"
+               #cell42="ngModel"
+               appEqualSum=""
+               [trigger]="[cell12]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell43"
+               name="cell43"
+               #cell43="ngModel"
+               appEqualSum=""
+               [trigger]="[cell13]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell44"
+               name="cell44"
+               #cell44="ngModel"
+               appEqualSum=""
+               [trigger]="[cell14]"
+               required>
+      </td>
+    </tr>
+    <tr>
+      <td>2.B2C</td>
+      <td>
+        <!-- 总额 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell52,cell53,cell54)">
+      </td>
+      <td>
+        <!-- 商品类总额2 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell52,cell53)">
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell52"
+               name="cell52"
+               #cell52="ngModel"
+               appEqualSum=""
+               [trigger]="[cell12]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell53"
+               name="cell53"
+               #cell53="ngModel"
+               appEqualSum=""
+               [trigger]="[cell13]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell54"
+               name="cell54"
+               #cell54="ngModel"
+               appEqualSum=""
+               [trigger]="[cell14]"
+               required>
+      </td>
+    </tr>
+    <tr>
+      <td>3.C2C</td>
+      <td>
+        <!-- 总额 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell62,cell63,cell64)">
+      </td>
+      <td>
+        <!-- 商品类总额2 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell62,cell63)">
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell62"
+               name="cell62"
+               #cell62="ngModel"
+               appEqualSum=""
+               [trigger]="[cell12]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell63"
+               name="cell63"
+               #cell63="ngModel"
+               appEqualSum=""
+               [trigger]="[cell13]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell64"
+               name="cell64"
+               #cell64="ngModel"
+               appEqualSum=""
+               [trigger]="[cell14]"
+               required>
+      </td>
+    </tr>
+    <tr>
+      <td>三、按地域分</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>1.境内</td>
+      <td>
+        <!-- 总额 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell72,cell73,cell74)">
+      </td>
+      <td>
+        <!-- 商品类总额2 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell72,cell73)">
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell72"
+               name="cell72"
+               #cell72="ngModel"
+               appEqualSum=""
+               [trigger]="[cell12]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell73"
+               name="cell73"
+               #cell73="ngModel"
+               appEqualSum=""
+               [trigger]="[cell13]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell74"
+               name="cell74"
+               #cell74="ngModel"
+               appEqualSum=""
+               [trigger]="[cell14]"
+               required>
+      </td>
+    </tr>
+    <tr>
+      <td>2.境外（跨境电子商务交易）</td>
+      <td>
+        <!-- 总额 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell82,cell83,cell84)">
+      </td>
+      <td>
+        <!-- 商品类总额2 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell82,cell83)">
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               (input)="cellChangeZerofill(cell82 , [cell82,cell83,cell84])"
+               [(ngModel)]="seasonObj.cell82"
+               name="cell82"
+               #cell82="ngModel"
+               appEqualSum=""
+               [trigger]="[cell12]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               (input)="cellChangeZerofill(cell83 , [cell82,cell83,cell84])"
+               [(ngModel)]="seasonObj.cell83"
+               name="cell83"
+               #cell83="ngModel"
+               appEqualSum=""
+               [trigger]="[cell13]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               (input)="cellChangeZerofill(cell84 , [cell82,cell83,cell84])"
+               [(ngModel)]="seasonObj.cell84"
+               name="cell84"
+               #cell84="ngModel"
+               appEqualSum=""
+               [trigger]="[cell14]"
+               required>
+      </td>
+    </tr>
+    <tr>
+      <td>进口</td>
+      <td>
+        <!-- 总额 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell92,cell93,cell94)">
+      </td>
+      <td>
+        <!-- 商品类总额2 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell92,cell93)">
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell92"
+               name="cell92"
+               #cell92="ngModel"
+               appEqualSum=""
+               [trigger]="[cell12]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell93"
+               name="cell93"
+               #cell93="ngModel"
+               appEqualSum=""
+               [trigger]="[cell13]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell94"
+               name="cell94"
+               #cell94="ngModel"
+               appEqualSum=""
+               [trigger]="[cell14]"
+               required>
+      </td>
+    </tr>
+    <tr>
+      <td>出口</td>
+      <td>
+        <!-- 总额 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell102,cell103,cell104)">
+      </td>
+      <td>
+        <!-- 商品类总额2 -->
+        <input type="number" class="form-control" readonly
+               [value]="getCount(cell102,cell103)">
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell102"
+               name="cell102"
+               #cell102="ngModel"
+               appEqualSum=""
+               [trigger]="[cell12]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell103"
+               name="cell103"
+               #cell103="ngModel"
+               appEqualSum=""
+               [trigger]="[cell13]"
+               required>
+      </td>
+      <td>
+        <input type="number" class="form-control"
+               [(ngModel)]="seasonObj.cell104"
+               name="cell104"
+               #cell104="ngModel"
+               appEqualSum=""
+               [trigger]="[cell14]"
+               required>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</form>
