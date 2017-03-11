@@ -35,7 +35,9 @@ app.use(function (req, res) {
   const path = req.path;
 
   // 不要缓存所有数据
-  res.setHeader('cache-control', 'no-cache');
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+  res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+  res.setHeader("Expires", "0"); // Proxies.
 
   if (path.includes('/destroyUser')) {
     console.log('****** call destroyUser');
