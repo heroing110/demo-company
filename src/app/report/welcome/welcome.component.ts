@@ -12,9 +12,9 @@ export class WelcomeComponent implements OnInit {
   constructor(private userService: UserService) {
   }
 
-  userInfo: UserInfo;
+  compUser: boolean = false;
 
   ngOnInit() {
-    this.userInfo = this.userService.getUserInfo();
+    this.compUser = this.userService.getUserInfo().permission == '2'
   }
 }

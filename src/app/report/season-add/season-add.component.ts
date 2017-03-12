@@ -28,7 +28,7 @@ export class SeasonAddComponent implements OnInit {
     this.layerService.open();
     this.seasonService.addSeason(this.seasonObj).then((result) => {
       if (result.inserted) {
-        this.router.navigate(['report/seasonObj/list']);
+        this.router.navigate(['report/season/list']);
       } else if (result.message) {
         alert(result.message);
       } else {

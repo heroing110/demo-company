@@ -36,7 +36,7 @@ export class SeasonDetailComponent implements OnInit {
     this.layerService.open();
     this.seasonService.updateSeason(this.seasonObj).then((result) => {
       if (result.updated) {
-        this.router.navigate(['report/seasonObj/list']);
+        this.router.navigate(['report/season/list']);
       } else if (result.message) {
         alert(result.message);
       } else {
