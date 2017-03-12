@@ -1,16 +1,19 @@
-import {Directive, OnInit, ElementRef} from '@angular/core';
-
-const plugin = 'tooltip';
+import {Directive, OnInit, ElementRef, OnDestroy} from '@angular/core';
 
 @Directive({
   selector: '[appTooltip]'
 })
-export class TooltipDirective implements OnInit {
+export class TooltipDirective implements OnInit,OnDestroy {
 
   constructor(private element: ElementRef) {
   }
 
   ngOnInit() {
-    $(this.element.nativeElement)[plugin]();
+    $(this.element.nativeElement).tooltip();
   }
+
+  ngOnDestroy(){
+    $(this.element.nativeElement).tooltip('destroy')
+  }
+
 }

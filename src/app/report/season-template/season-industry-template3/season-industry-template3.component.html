@@ -37,11 +37,12 @@
                #cell12="ngModel"
                appEqualSum=""
                [equalSum]="[
-              [cell22, cell32],
-              [cell42, cell52, cell62],
-              [cell72, cell82, cell92, cell102]
-             ]"
-               required>
+                [cell22, cell32],
+                [cell42, cell52, cell62],
+                [cell72, cell82, cell92, cell102]
+               ]"
+               required
+               appTooltip="" title="此列值，需同时等于 [一、按交易平台分]、[二、按交易方式分]、[三、按地域分]的对应列总和">
       </td>
       <td>
         <input type="number" class="form-control"
@@ -50,11 +51,12 @@
                #cell13="ngModel"
                appEqualSum=""
                [equalSum]="[
-              [cell23, cell33],
-              [cell43, cell53, cell63],
-              [cell73, cell83, cell93, cell103]
-             ]"
-               required>
+                [cell23, cell33],
+                [cell43, cell53, cell63],
+                [cell73, cell83, cell93, cell103]
+               ]"
+               required
+               appTooltip="" title="此列值，需同时等于 [一、按交易平台分]、[二、按交易方式分]、[三、按地域分]的对应列总和">
       </td>
       <td>
         <input type="number" class="form-control"
@@ -63,11 +65,12 @@
                #cell14="ngModel"
                appEqualSum=""
                [equalSum]="[
-              [cell24, cell34],
-              [cell44, cell54, cell64],
-              [cell74, cell84, cell94, cell104]
-             ]"
-               required>
+                [cell24, cell34],
+                [cell44, cell54, cell64],
+                [cell74, cell84, cell94, cell104]
+               ]"
+               required
+               appTooltip="" title="此列值，需同时等于 [一、按交易平台分]、[二、按交易方式分]、[三、按地域分]的对应列总和">
       </td>
       <td>
         <input type="number" class="form-control"
@@ -76,11 +79,12 @@
                #cell15="ngModel"
                appEqualSum=""
                [equalSum]="[
-              [cell25, cell35],
-              [cell45, cell55, cell65],
-              [cell75, cell85, cell95, cell105]
-             ]"
-               required>
+                [cell25, cell35],
+                [cell45, cell55, cell65],
+                [cell75, cell85, cell95, cell105]
+               ]"
+               required
+               appTooltip="" title="此列值，需同时等于 [一、按交易平台分]、[二、按交易方式分]、[三、按地域分]的对应列总和">
       </td>
     </tr>
     <tr>
@@ -110,8 +114,8 @@
                name="cell22"
                #cell22="ngModel"
                appEqualSum=""
-               [trigger]="[cell12]"
-               required>
+               [trigger]="[cell12]" required
+               appTooltip="" title="[一、按交易平台分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
@@ -119,8 +123,8 @@
                name="cell23"
                #cell23="ngModel"
                appEqualSum=""
-               [trigger]="[cell13]"
-               required>
+               [trigger]="[cell13]" required
+               appTooltip="" title="[一、按交易平台分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
@@ -128,8 +132,8 @@
                name="cell24"
                #cell24="ngModel"
                appEqualSum=""
-               [trigger]="[cell14]"
-               required>
+               [trigger]="[cell14]" required
+               appTooltip="" title="[一、按交易平台分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
@@ -137,8 +141,8 @@
                name="cell25"
                #cell25="ngModel"
                appEqualSum=""
-               [trigger]="[cell15]"
-               required>
+               [trigger]="[cell15]" required
+               appTooltip="" title="[一、按交易平台分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     <tr>
@@ -158,28 +162,32 @@
                [(ngModel)]="seasonObj.cell32"
                appEqualSum=""
                [trigger]="[cell12]"
-               name="cell32" #cell32="ngModel" required>
+               name="cell32" #cell32="ngModel" required
+               appTooltip="" title="[一、按交易平台分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell33"
                appEqualSum=""
                [trigger]="[cell13]"
-               name="cell33" #cell33="ngModel" required>
+               name="cell33" #cell33="ngModel" required
+               appTooltip="" title="[一、按交易平台分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell34"
                appEqualSum=""
                [trigger]="[cell14]"
-               name="cell34" #cell34="ngModel" required>
+               name="cell34" #cell34="ngModel" required
+               appTooltip="" title="[一、按交易平台分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell35"
                appEqualSum=""
                [trigger]="[cell15]"
-               name="cell35" #cell35="ngModel" required>
+               name="cell35" #cell35="ngModel" required
+               appTooltip="" title="[一、按交易平台分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     <tr>
@@ -208,28 +216,32 @@
                [(ngModel)]="seasonObj.cell42"
                appEqualSum=""
                [trigger]="[cell12]"
-               name="cell42" #cell42="ngModel" required>
+               name="cell42" #cell42="ngModel" required
+               appTooltip="" title="[二、按交易方式分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell43"
                appEqualSum=""
                [trigger]="[cell13]"
-               name="cell43" #cell43="ngModel" required>
+               name="cell43" #cell43="ngModel" required
+               appTooltip="" title="[二、按交易方式分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell44"
                appEqualSum=""
                [trigger]="[cell14]"
-               name="cell44" #cell44="ngModel" required>
+               name="cell44" #cell44="ngModel" required
+               appTooltip="" title="[二、按交易方式分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell45"
                appEqualSum=""
                [trigger]="[cell15]"
-               name="cell45" #cell45="ngModel" required>
+               name="cell45" #cell45="ngModel" required
+               appTooltip="" title="[二、按交易方式分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     <tr>
@@ -249,28 +261,32 @@
                [(ngModel)]="seasonObj.cell52"
                appEqualSum=""
                [trigger]="[cell12]"
-               name="cell52" #cell52="ngModel" required>
+               name="cell52" #cell52="ngModel" required
+               appTooltip="" title="[二、按交易方式分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell53"
                appEqualSum=""
                [trigger]="[cell13]"
-               name="cell53" #cell53="ngModel" required>
+               name="cell53" #cell53="ngModel" required
+               appTooltip="" title="[二、按交易方式分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell54"
                appEqualSum=""
                [trigger]="[cell14]"
-               name="cell54" #cell54="ngModel" required>
+               name="cell54" #cell54="ngModel" required
+               appTooltip="" title="[二、按交易方式分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell55"
                appEqualSum=""
                [trigger]="[cell15]"
-               name="cell55" #cell55="ngModel" required>
+               name="cell55" #cell55="ngModel" required
+               appTooltip="" title="[二、按交易方式分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     <tr>
@@ -290,28 +306,32 @@
                [(ngModel)]="seasonObj.cell62"
                appEqualSum=""
                [trigger]="[cell12]"
-               name="cell62" #cell62="ngModel" required>
+               name="cell62" #cell62="ngModel" required
+               appTooltip="" title="[二、按交易方式分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell63"
                appEqualSum=""
                [trigger]="[cell13]"
-               name="cell63" #cell63="ngModel" required>
+               name="cell63" #cell63="ngModel" required
+               appTooltip="" title="[二、按交易方式分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell64"
                appEqualSum=""
                [trigger]="[cell14]"
-               name="cell64" #cell64="ngModel" required>
+               name="cell64" #cell64="ngModel" required
+               appTooltip="" title="[二、按交易方式分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell65"
                appEqualSum=""
                [trigger]="[cell15]"
-               name="cell65" #cell65="ngModel" required>
+               name="cell65" #cell65="ngModel" required
+               appTooltip="" title="[二、按交易方式分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     <tr>
@@ -340,28 +360,32 @@
                [(ngModel)]="seasonObj.cell72"
                appEqualSum=""
                [trigger]="[cell12]"
-               name="cell72" #cell72="ngModel" required>
+               name="cell72" #cell72="ngModel" required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell73"
                appEqualSum=""
                [trigger]="[cell13]"
-               name="cell73" #cell73="ngModel" required>
+               name="cell73" #cell73="ngModel" required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell74"
                appEqualSum=""
                [trigger]="[cell14]"
-               name="cell74" #cell74="ngModel" required>
+               name="cell74" #cell74="ngModel" required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell75"
                appEqualSum=""
                [trigger]="[cell15]"
-               name="cell75" #cell75="ngModel" required>
+               name="cell75" #cell75="ngModel" required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     <tr>
@@ -382,7 +406,8 @@
                [(ngModel)]="seasonObj.cell82"
                appEqualSum=""
                [trigger]="[cell12]"
-               name="cell82" #cell82="ngModel" required>
+               name="cell82" #cell82="ngModel" required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
@@ -390,7 +415,8 @@
                [(ngModel)]="seasonObj.cell83"
                appEqualSum=""
                [trigger]="[cell13]"
-               name="cell83" #cell83="ngModel" required>
+               name="cell83" #cell83="ngModel" required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
@@ -398,7 +424,8 @@
                [(ngModel)]="seasonObj.cell84"
                appEqualSum=""
                [trigger]="[cell14]"
-               name="cell84" #cell84="ngModel" required>
+               name="cell84" #cell84="ngModel" required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
@@ -406,7 +433,8 @@
                [(ngModel)]="seasonObj.cell85"
                appEqualSum=""
                [trigger]="[cell15]"
-               name="cell85" #cell85="ngModel" required>
+               name="cell85" #cell85="ngModel" required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     <tr>
@@ -426,28 +454,32 @@
                [(ngModel)]="seasonObj.cell92"
                appEqualSum=""
                [trigger]="[cell12]"
-               name="cell92" #cell92="ngModel" required>
+               name="cell92" #cell92="ngModel" required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell93"
                appEqualSum=""
                [trigger]="[cell13]"
-               name="cell93" #cell93="ngModel" required>
+               name="cell93" #cell93="ngModel" required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell94"
                appEqualSum=""
                [trigger]="[cell14]"
-               name="cell94" #cell94="ngModel" required>
+               name="cell94" #cell94="ngModel" required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell95"
                appEqualSum=""
                [trigger]="[cell15]"
-               name="cell95" #cell95="ngModel" required>
+               name="cell95" #cell95="ngModel" required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     <tr>
@@ -467,28 +499,32 @@
                [(ngModel)]="seasonObj.cell102"
                appEqualSum=""
                [trigger]="[cell12]"
-               name="cell102" #cell102="ngModel" required>
+               name="cell102" #cell102="ngModel" required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell103"
                appEqualSum=""
                [trigger]="[cell13]"
-               name="cell103" #cell103="ngModel" required>
+               name="cell103" #cell103="ngModel" required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell104"
                appEqualSum=""
                [trigger]="[cell14]"
-               name="cell104" #cell104="ngModel" required>
+               name="cell104" #cell104="ngModel" required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
       <td>
         <input type="number" class="form-control"
                [(ngModel)]="seasonObj.cell105"
                appEqualSum=""
                [trigger]="[cell15]"
-               name="cell105" #cell105="ngModel" required>
+               name="cell105" #cell105="ngModel" required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     </tbody>

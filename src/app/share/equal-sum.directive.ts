@@ -5,14 +5,24 @@ import {Validators, AbstractControl, ValidatorFn, NG_VALIDATORS, Validator, NgMo
 export function equalSumValidator(ctrls: any[]): ValidatorFn {
   return (control: AbstractControl): {[key: string]: any} => {
     const value = control.value;
-    let yes = false;
     if (Array.isArray(ctrls[0])) {
-      yes = ctrls.map(sum).every(total => value == total);
+      ctrls.map((models: NgModel[]) => {
+        const total = sum(models);
+        setModelsValid(models, total === value);
+      });
     } else {
-      yes = value == sum(ctrls);
+      setModelsValid(ctrls, sum(ctrls) === value);
     }
-    return yes ? {} : {'equalSum': {name: value}};
+    return {};
   }
+}
+
+function setModelsValid(models: NgModel[], valid) {
+  models.forEach(model => {
+    model.control['customValid'] = !valid;
+    model.control.updateValueAndValidity();
+    delete model.control['customValid'];
+  });
 }
 
 function equalSumTriggerParent(parent: NgModel[]) {
@@ -63,6 +73,11 @@ export class EqualSumDirective implements Validator, OnChanges {
   }
 
   validate(control: AbstractControl): {[key: string]: any} {
+    if (control['customValid'] === true) {
+      return {equalSum: true};
+    } else if (control['customValid'] === false) {
+      return {};
+    }
     return this.valFn(control);
   }
 }

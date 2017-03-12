@@ -24,11 +24,12 @@
                name="cell15"
                appEqualSum=""
                [equalSum]="[
-              [cell25, cell35],
-              [cell45, cell55, cell65],
-              [cell75, cell85, cell95, cell105]
-             ]"
-               #cell15="ngModel" required>
+                [cell25, cell35],
+                [cell45, cell55, cell65],
+                [cell75, cell85, cell95, cell105]
+               ]"
+               #cell15="ngModel" required
+               appTooltip="" title="此列值，需同时等于 [一、按交易平台分]、[二、按交易方式分]、[三、按地域分]的对应列总和">
       </td>
     </tr>
     <tr>
@@ -49,7 +50,8 @@
                name="cell25"
                appEqualSum
                [trigger]="[cell15]"
-               #cell25="ngModel" required>
+               #cell25="ngModel" required
+               appTooltip="" title="[一、按交易平台分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     <tr>
@@ -65,7 +67,8 @@
                name="cell35"
                appEqualSum
                [trigger]="[cell15]"
-               #cell35="ngModel" required>
+               #cell35="ngModel" required
+               appTooltip="" title="[一、按交易平台分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     <tr>
@@ -87,7 +90,8 @@
                #cell45="ngModel"
                appEqualSum
                [trigger]="[cell15]"
-               required>
+               required
+               appTooltip="" title="[二、按交易方式分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     <tr>
@@ -104,7 +108,8 @@
                #cell55="ngModel"
                appEqualSum
                [trigger]="[cell15]"
-               required>
+               required
+               appTooltip="" title="[二、按交易方式分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     <tr>
@@ -121,7 +126,8 @@
                #cell65="ngModel"
                appEqualSum
                [trigger]="[cell15]"
-               required>
+               required
+               appTooltip="" title="[二、按交易方式分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     <tr>
@@ -143,7 +149,8 @@
                #cell75="ngModel"
                appEqualSum
                [trigger]="[cell15]"
-               required>
+               required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     <tr>
@@ -160,7 +167,8 @@
                #cell85="ngModel"
                appEqualSum
                [trigger]="[cell15]"
-               required>
+               required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     <tr>
@@ -177,7 +185,8 @@
                #cell95="ngModel"
                appEqualSum
                [trigger]="[cell15]"
-               required>
+               required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     <tr>
@@ -194,7 +203,8 @@
                #cell105="ngModel"
                appEqualSum
                [trigger]="[cell15]"
-               required>
+               required
+               appTooltip="" title="[三、按地域分] 此列的和必须等于电商交易额对应列值">
       </td>
     </tr>
     </tbody>

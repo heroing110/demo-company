@@ -10,8 +10,8 @@
       <label class="text-right">年度</label>
       <input type="text" class="form-control input-sm" maxlength="4"
              [(ngModel)]="yearObj.year" name="year" pattern="^2\d{3}$"
-             [readonly]="modifyMode" required #year="ngModel">
-      <span class="text-danger" *ngIf="year.invalid && ((year.touched || year.dirty) || showError)">*请输入正确的年份</span>
+             [readonly]="modifyMode" required #year="ngModel"
+             appTooltip="" title="年度格式为4位的数字如: 2016">
     </div>
 
     <div class="form-group">
@@ -39,7 +39,10 @@
       <td>1. 法定代表人（单位负责人）</td>
       <td>
         <input type="text" class="form-control input-sm" [(ngModel)]="yearObj.cell11"
-               name="cell11" required pattern="^[\u4E00-\u9FFF]+$" #cell11="ngModel" maxlength="10">
+               name="cell11" required pattern="^[\u4E00-\u9FFF]+$"
+               #cell11="ngModel"
+               maxlength="10"
+               appTooltip="" title="法人代表名称只能是中文">
         <span class="text-danger"
               *ngIf="cell11.invalid && ((cell11.touched || cell11.dirty) || showError)">法人只能填写汉字</span>
       </td>
@@ -47,7 +50,8 @@
       <td>
         <input type="text" class="form-control input-sm"
                placeholder="请输入11位手机号码" pattern="\d{11}" maxlength="11"
-               [(ngModel)]="yearObj.cell21" name="cell21" #cell21="ngModel">
+               [(ngModel)]="yearObj.cell21" name="cell21" #cell21="ngModel"
+               appTooltip="" title="手机号码的格式为1开头的11位数字">
       </td>
     </tr>
     <tr>
@@ -64,7 +68,8 @@
         <input type="text" class="form-control input-sm"
                pattern="^\d{6}$"
                placeholder="请输入6位邮政编码" maxlength="6"
-               [(ngModel)]="yearObj.cell32" name="cell32" #cell32="ngModel" required>
+               [(ngModel)]="yearObj.cell32" name="cell32" #cell32="ngModel" required
+               appTooltip="" title="邮政编码是一个6位的纯数字如:000001">
       </td>
     </tr>
     <tr>
@@ -73,7 +78,8 @@
         <input type="text" class="form-control input-sm"
                placeholder="0121-12345678"
                pattern="^\d{3,4}-\d{7,8}$" maxlength="13"
-               [(ngModel)]="yearObj.cell33" name="cell33" #cell33="ngModel">
+               [(ngModel)]="yearObj.cell33" name="cell33" #cell33="ngModel"
+               appTooltip="" title="电话号码格式为(\d{3,4}-\d{7,8})">
         <span>座机号码：区号(3-4位) 分隔符(-) 座机号(7-8位)</span>
       </td>
       <td>3.4 手机号码</td>
@@ -81,7 +87,8 @@
         <input type="text" class="form-control input-sm"
                [(ngModel)]="yearObj.cell34" name="cell34"
                placeholder="请输入11位手机号码"
-               #cell34="ngModel" pattern="\d{11}" required maxlength="11">
+               #cell34="ngModel" pattern="\d{11}" required maxlength="11"
+               appTooltip="" title="手机号码的格式为1开头的11位数字">
         <span class="text-danger" *ngIf="cell34.invalid && ((cell34.touched || cell34.dirty) || showError)">
           手机号为11位数字
         </span>
@@ -93,8 +100,9 @@
         <input type="text" class="form-control input-sm"
                placeholder="0121-12345678"
                pattern="^\d{3,4}-\d{7,8}$" maxlength="13"
-               [(ngModel)]="yearObj.cell35" name="cell35" #cell35="ngModel" required>
-        <span>座机号码：区号(3-4位) 分隔符(-) 座机号(7-8位)</span>
+               [(ngModel)]="yearObj.cell35" name="cell35" #cell35="ngModel" required
+               appTooltip="" title="传真号码格式为(\d{3,4}-\d{7,8})">
+        <span>传真号码：区号(3-4位) 分隔符(-) 座机号(7-8位)</span>
       </td>
       <td>3.6 企业网站名称及网址</td>
       <td class="form-inline">
@@ -291,7 +299,8 @@
       手机：
       <input type="text" class="form-control input-sm"
              placeholder="请输入11位手机号码" maxlength="11"
-             [(ngModel)]="yearObj.cell74" name="cell74" pattern="^1\d{10}$" required>
+             [(ngModel)]="yearObj.cell74" name="cell74" pattern="^1\d{10}$" required
+             appTooltip="" title="手机号码的格式为1开头的11位数字">
     </div>
     <div class="form-group">
       填报日期:
@@ -304,7 +313,8 @@
       <input type="text" class="form-control input-sm"
              [(ngModel)]="yearObj.cell73" name="cell73"
              placeholder="0121-12345678" maxlength="13"
-             pattern="^\d{3,4}-\d{7,8}$">
+             pattern="^\d{3,4}-\d{7,8}$"
+             appTooltip="" title="座机号码格式为(\d{3,4}-\d{7,8})">
       <span>座机号码：区号(3-4位) 分隔符(-) 座机号(7-8位)</span>
     </div>
   </div>
