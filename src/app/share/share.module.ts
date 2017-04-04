@@ -10,6 +10,8 @@ import {EqualSumDirective} from './equal-sum.directive';
 import {TooltipDirective} from './tooltip.directive';
 import {EchartsDirective} from "./echarts.directive";
 import {LayerService} from "./layer.service";
+import {MinDirective} from "./min.directive";
+import {MaxDirective} from "./max.directive";
 
 
 @NgModule({
@@ -29,9 +31,10 @@ import {LayerService} from "./layer.service";
     EqualSumDirective,
     SelectpickerDirective,
     TooltipDirective,
-    EchartsDirective
+    EchartsDirective,
+    MinDirective, MaxDirective
   ],
-  declarations: [DatepickerDirective , EchartsDirective, SelectpickerDirective, EqualSumDirective, TooltipDirective]
+  declarations: [DatepickerDirective, EchartsDirective, SelectpickerDirective, EqualSumDirective, TooltipDirective, MinDirective, MaxDirective]
 })
 export class ShareModule {
 }

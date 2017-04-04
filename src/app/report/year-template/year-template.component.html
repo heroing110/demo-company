@@ -228,14 +228,14 @@
           <input type="number" class="form-control input-sm margin-right" style="width: 100px;"
                  [value]="getCount(cell52,cell53,cell54)" readonly>
           研究生及以上
-          <input type="number" class="form-control input-sm margin-right" style="width: 100px;"
+          <input type="number" class="form-control input-sm margin-right" style="width: 100px;" min="0"
                  [(ngModel)]="yearObj.cell52" name="cell52" placeholder="人" #cell52="ngModel" required>
 
           大学本（专）科
-          <input type="number" class="form-control input-sm margin-right" style="width: 100px;"
+          <input type="number" class="form-control input-sm margin-right" style="width: 100px;" min="0"
                  [(ngModel)]="yearObj.cell53" name="cell53" placeholder="人" #cell53="ngModel" required>
           高中及以下
-          <input type="number" class="form-control input-sm" style="width: 100px;"
+          <input type="number" class="form-control input-sm" style="width: 100px;" min="0"
                  [(ngModel)]="yearObj.cell54" name="cell54" placeholder="人" #cell54="ngModel" required> <br>
         </div>
 
@@ -251,31 +251,31 @@
                  [value]="getCount(cell62,cell63)" readonly>
 
           其中商品类
-          <input type="text" class="form-control input-sm"
-                 style="width: 100px;"
+          <input type="number" class="form-control input-sm"
+                 style="width: 100px;" min="0"
                  [(ngModel)]="yearObj.cell62" name="cell62" #cell62="ngModel" placeholder="万元" required>
           服务类
-          <input type="text" class="form-control input-sm"
-                 style="width: 100px;"
+          <input type="number" class="form-control input-sm"
+                 style="width: 100px;" min="0"
                  [(ngModel)]="yearObj.cell63" name="cell63" #cell63="ngModel" placeholder="万元" required>
           (注：电子应用/综合型企业填写)
 
           <p></p>
 
           2、电子商务服务收入
-          <input type="text" class="form-control input-sm"
-                 style="width: 100px;"
+          <input type="number" class="form-control input-sm"
+                 style="width: 100px;" min="0"
                  [(ngModel)]="yearObj.cell64" name="cell64" #cell64="ngModel" placeholder="万元" required>
           <p></p>
 
           3、电子商务网络零售额
-          <input type="text" class="form-control input-sm" style="width: 100px;"
+          <input type="number" class="form-control input-sm" style="width: 100px;"
                  [value]="getCount(cell66,cell67)" readonly>
           其中商品类
-          <input type="text" class="form-control input-sm" style="width: 100px;"
+          <input type="number" class="form-control input-sm" style="width: 100px;" min="0"
                  [(ngModel)]="yearObj.cell66" name="cell66" #cell66="ngModel" placeholder="万元" required>
           服务类
-          <input type="text" class="form-control input-sm" style="width: 100px;"
+          <input type="number" class="form-control input-sm" style="width: 100px;" min="0"
                  [(ngModel)]="yearObj.cell67" name="cell67" #cell67="ngModel" placeholder="万元" required>
           (注：电商应用/综合型企业)
         </div>

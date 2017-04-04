@@ -59,7 +59,7 @@
         <div class="form-inline">
           <p>补充资料：</p>
           1.电子商务交易商品数
-          <input type="number" class="form-control"
+          <input type="number" class="form-control" min="0"
                  [(ngModel)]="seasonObj.cell111" name="cell111"
                  placeholder="(件)" required style="margin-bottom: 5px;"><br/>
           2.跨境电子商务交易商品数
@@ -69,14 +69,14 @@
           进口
           <input type="number" class="form-control"
                  [(ngModel)]="seasonObj.cell113"
-                 name="cell113" #cell113
+                 name="cell113" #cell113 min="0"
                  [readonly]="getSeasonPropCount('cell82','cell83','cell84','cell85') == 0"
                  placeholder="(件)"
                  required>
           出口
           <input type="number" class="form-control"
                  [(ngModel)]="seasonObj.cell114"
-                 name="cell114" #cell114
+                 name="cell114" #cell114 min="0"
                  placeholder="(件)"
                  [readonly]="getSeasonPropCount('cell82','cell83','cell84','cell85') == 0"
                  required>
@@ -93,7 +93,7 @@
           <input type="radio" value="1" name="o2oRadio" [(ngModel)]="seasonObj.o2oRadio" required>是
           <span *ngIf="seasonObj.o2oRadio == '1'">
           占电子商务总交易额比重 <input type="number" class="form-control" [(ngModel)]="seasonObj.cell121" name="cell121"
-                             pattern="^(\d{1,2}|100)$" max="100"
+                             max="100" min="0"
                              placeholder="请输入0-100之间的数字" required
                              appTooltip="" title="比重范围 0~100"> %
           </span>
@@ -111,7 +111,7 @@
           占电子商务总交易额比重
             <input type="number" class="form-control"
                    [(ngModel)]="seasonObj.cell131" name="cell131"
-                   pattern="^(\d{1,2}|100)$" max="100"
+                   min="0" max="100"
                    placeholder="请输入0-100之间的数字" required
                    appTooltip="" title="比重范围 0~100"> %
           </span>
@@ -127,12 +127,12 @@
         <div class="form-inline">
           网络支付额占公司总交易额比 <input type="number" class="form-control"
                                [(ngModel)]="seasonObj.cell141" name="cell141"
-                               pattern="^(\d{1,2}|100)$" max="100"
+                               min="0" max="100"
                                placeholder="请输入0-100之间的数字" required
                                appTooltip="" title="额比范围 0~100"> %
           其中移动支付额占网络支付额比 <input type="number" class="form-control"
                                 [(ngModel)]="seasonObj.cell142" name="cell142"
-                                pattern="^(\d{1,2}|100)$" max="100"
+                                min="0" max="100"
                                 placeholder="请输入0-100之间的数字" required
                                 appTooltip="" title="额比范围 0~100"> %
         </div>
@@ -148,13 +148,13 @@
           自营 占物流配送总额比重
           <input type="number" class="form-control"
                  [(ngModel)]="seasonObj.cell151" name="cell151"
-                 pattern="^(\d{1,2}|100)$" max="100"
+                 min="0" max="100"
                  placeholder="请输入0-100之间的数字" required
                  appTooltip="" title="比重值范围 0~100"> %
           外包 占物流配送总额比重
           <input type="number" class="form-control"
                  [(ngModel)]="seasonObj.cell152" name="cell152"
-                 pattern="^(\d{1,2}|100)$" max="100"
+                 min="0" max="100"
                  placeholder="请输入0-100之间的数字" required
                  appTooltip="" title="比重值范围 0~100"> %
         </span>
