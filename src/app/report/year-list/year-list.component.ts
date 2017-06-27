@@ -11,17 +11,30 @@ export class YearListComponent implements OnInit {
 
   yearList: Year[];
 
-  companyName: string = "";
+  companyName: string = '';
 
   constructor(private yearService: YearService) {
   }
 
   ngOnInit() {
-    this.query("");
+    this.query('');
   }
 
   query(companyName: string) {
     this.yearService.getYearList(companyName).then(years => this.yearList = years);
+  }
+
+  removeYear(yearId: string) {
+    if (confirm('确定删除此报表？')) {
+      this.yearService.removeYear(yearId).then((result) => {
+        if (result.removed) {
+          alert('删除成功');
+          this.query(this.companyName);
+        } else {
+          alert(result.message);
+        }
+      });
+    }
   }
 
 }

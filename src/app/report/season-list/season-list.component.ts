@@ -26,4 +26,17 @@ export class SeasonListComponent implements OnInit {
     });
   }
 
+  removeSeason(seasonId: string) {
+    if (confirm('确定删除此报表？')) {
+      this.seasonService.removeSeason(seasonId).then((result) => {
+        if (result.removed) {
+          alert('删除成功');
+          this.query(this.companyName);
+        } else {
+          alert(result.message);
+        }
+      });
+    }
+  }
+
 }

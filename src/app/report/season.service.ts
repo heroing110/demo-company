@@ -40,6 +40,12 @@ export class SeasonService {
     return this.http.put('/api/season/update', season).toPromise().then(responseHandler);
   }
 
+  removeSeason(seasonId: string): Promise<{removed, message}> {
+    const search = new URLSearchParams();
+    search.append('seasonId' , seasonId);
+    return this.http.get('/api/season/remove', {search}).toPromise().then(responseHandler);
+  }
+
   queryChart(userId: string): Promise<Season[]> {
     const search = new URLSearchParams();
     search.append('userId', userId);

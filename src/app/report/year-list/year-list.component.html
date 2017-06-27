@@ -31,6 +31,9 @@
       <button type="button" class="btn btn-default btn-sm"
               [routerLink]="['../detail' , year.id]">查看
       </button>
+      <button type="button" class="btn btn-default btn-sm"
+              (click)="removeYear(year.id)">删除
+      </button>
     </td>
   </tr>
   </tbody>

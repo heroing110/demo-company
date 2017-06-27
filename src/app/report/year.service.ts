@@ -41,4 +41,10 @@ export class YearService {
   updateYear(year: Year): Promise<{updated, message}> {
     return this.http.put('/api/year/update', year).toPromise().then(responseHandler);
   }
+
+  removeYear(yearId: string): Promise<{removed, message}> {
+    const search = new URLSearchParams();
+    search.append('yearId' , yearId);
+    return this.http.get('/api/year/remove', {search}).toPromise().then(responseHandler);
+  }
 }
