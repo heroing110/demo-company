@@ -38,6 +38,8 @@
       </button>
       <a [attr.href]="'/api/export/downSeason?seasonId=' + season.id" target="_blank"
          class="btn btn-link btn-sm">导出</a>
+      <a [attr.href]="'/api/export/downSeasonBefore?seasonId=' + season.id" target="_blank"
+         class="btn btn-link btn-sm">导出同比</a>
     </td>
   </tr>
   </tbody>
