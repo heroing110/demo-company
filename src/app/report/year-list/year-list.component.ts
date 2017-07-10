@@ -21,7 +21,10 @@ export class YearListComponent implements OnInit {
   }
 
   query(companyName: string) {
-    this.yearService.getYearList(companyName).then(years => this.yearList = years);
+    this.yearService.getYearList(companyName).then((years) => {
+      this.yearList = years;
+      this.yearList.sort((a, b) => +a.cityId - +b.cityId);
+    });
   }
 
   removeYear(yearId: string) {

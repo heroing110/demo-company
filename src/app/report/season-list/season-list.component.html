@@ -26,7 +26,7 @@
   <tr *ngFor="let season of seasonList | paginate:{itemsPerPage: 10, currentPage: p} ;let i = index">
     <td>{{i+1}}</td>
     <td>{{season.year}}</td>
-    <td>{{season.seasonObj}}</td>
+    <td>{{season.season}}</td>
     <td>{{season.companyName}}</td>
     <td>{{season.cell161}}</td>
     <td>
@@ -34,8 +34,10 @@
               [routerLink]="['../detail' , season.id]">详情
       </button>
       <button type="button" class="btn btn-default btn-sm"
-              (click)="removeSeason(year.id)">删除
+              (click)="removeSeason(season.id)">删除
       </button>
+      <a [attr.href]="'/api/export/downSeason?seasonId=' + season.id" target="_blank"
+         class="btn btn-link btn-sm">导出</a>
     </td>
   </tr>
   </tbody>

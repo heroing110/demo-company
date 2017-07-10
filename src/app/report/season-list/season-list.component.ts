@@ -11,7 +11,7 @@ export class SeasonListComponent implements OnInit {
 
   seasonList: Season[];
 
-  companyName:string;
+  companyName: string = '';
 
   constructor(private seasonService: SeasonService) {
   }
@@ -23,6 +23,7 @@ export class SeasonListComponent implements OnInit {
   query(companyName?) {
     this.seasonService.getSeasonList(companyName).then((seasons: Season[]) => {
       this.seasonList = seasons;
+      this.seasonList.sort((a, b) => +a.cityId - +b.cityId);
     });
   }
 
