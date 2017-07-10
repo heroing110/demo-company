@@ -4,6 +4,7 @@ const {urlencoded, json} = require("body-parser");
 const cookieSession = require('cookie-session');
 const express = require("express");
 const httpRequest = require('request-promise');
+const request = require('request');
 const host = 'http://192.168.31.239:8801';
 
 const app = express();
@@ -55,6 +56,11 @@ app.use(function (req, res) {
         req.session.user = result.user;
       });
     });
+  } else if (path.includes('/api/export')) {
+    console.log('****** call /api/export');
+    res.setHeader("Content-Type", "application/octet-stream");
+    res.setHeader("Content-Disposition", "attachment");
+    request.get(host + req.url).pipe(res);
   } else {
     proxy(req, res);
   }
