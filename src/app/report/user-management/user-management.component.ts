@@ -29,7 +29,10 @@ export class UserManagementComponent implements OnInit {
 
   query() {
     this.userManagementService.queryAll(this.usernamecn, this.permission)
-      .then(userList => this.userList = userList);
+      .then(userList => {
+        this.userList = userList;
+        this.userList.sort((a, b) => +a.cityid - +b.cityid);
+      });
   }
 
   saveNewUser(user: UserInfo, newUserComponent: ModifyUserComponent) {
