@@ -12,5 +12,6 @@ export const MenuList: MenuItem[] = [
   {name: '季报表列表', router: 'season/list', permission: ["0", "1", "2"]},
   {name: '添加年报表', router: 'year/add', permission: ["2"]},
   {name: '年报表列表', router: 'year/list', permission: ["0", "1", "2"]},
-  {name: '用户管理', router: 'user-management', permission: ["0", "1"]}
+  {name: '用户管理', router: 'user-management', permission: ["0", "1"]},
+  {name: '批量季报表导出', router: 'reportBatchExport', permission: ["0"]}
 ];

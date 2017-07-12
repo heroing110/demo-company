@@ -27,6 +27,7 @@ import {CityPipe} from "./city.pipe";
 import {ModifyPasswordComponent} from "./user-management/modify-password/modify-password.component";
 import {ModifyUserComponent} from "./user-management/modify-user/modify-user.component";
 import {CityResolve} from "./city-resolve.service";
+import {ReportBatchExportComponent} from "./report-batch-export/report-batch-export.component";
 
 @NgModule({
   imports: [
@@ -52,6 +53,8 @@ import {CityResolve} from "./city-resolve.service";
     SeasonIndustryTemplate3Component,
 
     SeasonChartComponent,
+
+    ReportBatchExportComponent,
 
     UserManagementComponent,
     ModifyPasswordComponent,

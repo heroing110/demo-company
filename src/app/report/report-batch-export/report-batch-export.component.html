@@ -1,0 +1,54 @@
+<h4 class="page-header">
+  季报表批量导出
+</h4>
+
+<form class="form-horizontal margin-bottom clearfix" #ngForm="ngForm">
+  <div class="form-group col-sm-6">
+    <label class="col-sm-2 control-label">月份:</label>
+    <div class="col-sm-9">
+      <input type="number" class="form-control"
+             placeholder="如：2月则输入2"
+             [(ngModel)]="season" name="season" required>
+    </div>
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="col-sm-2 control-label">城市:</label>
+    <div class="col-sm-9">
+      <select class="form-control" [(ngModel)]="cityId" name="cityId" required>
+        <option [value]="city.id" *ngFor="let city of citys">{{city.name}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="col-sm-2 control-label">年:</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control"
+             placeholder="如：2017"
+             [(ngModel)]="year" name="year" required>
+    </div>
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="col-sm-2 control-label">行业:</label>
+    <div class="col-sm-9">
+      <select class="form-control" [(ngModel)]="industry" name="industry" required>
+        <option value="">请选择行业类别</option>
+        <option value="电子商务应用企业">电子商务应用企业</option>
+        <option value="电子商务服务企业">电子商务服务企业</option>
+        <option value="电子商务综合型企业">电子商务综合型企业</option>
+      </select>
+    </div>
+  </div>
+
+</form>
+
+<div class="alert alert-info">
+  请将表单输入完整
+</div>
+
+<div class="text-center">
+  <a
+    [href]="'/api/export/downSeasonIndustry?industry=' + industry + '&year=' + year+ '&season=' +season+ '&cityId=' + cityId"
+    target="_blank"
+    [style.pointer-events]="ngForm.form.valid?'auto':'none'"
+    class="btn btn-default">导出</a>
+</div>

@@ -11,6 +11,7 @@ import {YearDetailComponent} from "./year-detail/year-detail.component";
 import {AuthGuard} from "../auth-guard.service";
 import {UserManagementComponent} from "./user-management/user-management.component";
 import {CityResolve} from "./city-resolve.service";
+import {ReportBatchExportComponent} from "./report-batch-export/report-batch-export.component";
 
 const routes: Routes = [
   {
@@ -20,6 +21,12 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
     children: [
       {path: 'welcome', component: WelcomeComponent},
+      {
+        path: 'reportBatchExport', component: ReportBatchExportComponent,
+        resolve: {
+          citys: CityResolve
+        }
+      },
       {
         path: 'user-management',
         component: UserManagementComponent,

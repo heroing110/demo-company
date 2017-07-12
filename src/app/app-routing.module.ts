@@ -4,17 +4,14 @@ import {LoginComponent} from "./login/login.component";
 import {ReportComponent} from "./report/report.component";
 
 const routes: Routes = [
-    {path: '', redirectTo: '/login', pathMatch: 'full'},
-    {path: 'login', component: LoginComponent},
-    {
-        path: 'report',
-        component: ReportComponent
-    }
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
+  {path: 'report', component: ReportComponent}
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {
 }

@@ -22,7 +22,7 @@ export class ReportComponent implements OnInit {
     this.user = this.userService.getUserInfo();
 
     // 根据权限调整菜单
-    this.menuList = MenuList.filter(menu => menu.permission.includes(this.user.permission))
+    this.menuList = MenuList.filter(menu => menu.permission.includes(this.user.permission));
   }
 
   logout() {
