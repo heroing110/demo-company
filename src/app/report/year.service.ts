@@ -10,15 +10,17 @@ export class YearService {
   constructor(private http: Http, private userService: UserService) {
   }
 
-  getYearList(companyName: string): Promise<Year[]> {
+  getYearList(companyName: string, cityid?: string): Promise<Year[]> {
     const search = new URLSearchParams();
     const user: UserInfo = this.userService.getUserInfo();
 
-    search.append('cityId', user.cityid);
     search.append('userId', user.id);
     search.append('permission', user.permission);
-    if (companyName) {
-      search.append('companyName', companyName);
+    search.append('companyName', companyName);
+    if (user.permission === '0' && cityid) {
+      search.append('cityId', cityid);
+    } else {
+      search.append('cityId', user.cityid);
     }
 
     return this.http.get('/api/year', {search}).toPromise().then(responseHandler);
@@ -30,7 +32,7 @@ export class YearService {
     return this.http.get('/api/year/detail', {search}).toPromise().then(responseHandler);
   }
 
-  addYear(year: Year): Promise<{inserted, message}> {
+  addYear(year: Year): Promise<{ inserted, message }> {
     const user: UserInfo = this.userService.getUserInfo();
     year.userId = user.id;
     year.permission = user.permission;
@@ -38,13 +40,13 @@ export class YearService {
     return this.http.post('/api/year/insert', year).toPromise().then(responseHandler);
   }
 
-  updateYear(year: Year): Promise<{updated, message}> {
+  updateYear(year: Year): Promise<{ updated, message }> {
     return this.http.put('/api/year/update', year).toPromise().then(responseHandler);
   }
 
-  removeYear(yearId: string): Promise<{removed, message}> {
+  removeYear(yearId: string): Promise<{ removed, message }> {
     const search = new URLSearchParams();
-    search.append('yearId' , yearId);
+    search.append('yearId', yearId);
     return this.http.get('/api/year/remove', {search}).toPromise().then(responseHandler);
   }
 }

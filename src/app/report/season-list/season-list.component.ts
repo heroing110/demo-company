@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {SeasonService} from "../season.service";
 import {Season} from "../../../entity/season";
+import {UserService} from "../../share/user.service";
+import {City} from "../../../entity/city";
+
+const firstBy = require('thenby');
 
 @Component({
   selector: 'app-season-list',
@@ -12,18 +16,22 @@ export class SeasonListComponent implements OnInit {
   seasonList: Season[];
 
   companyName: string = '';
+  cityid: string;
+  citys: City[];
 
-  constructor(private seasonService: SeasonService) {
+  constructor(private seasonService: SeasonService,
+              private userService: UserService) {
   }
 
   ngOnInit() {
+    this.userService.getAllCity().then(citys => this.citys = citys);
     this.query();
   }
 
-  query(companyName?) {
-    this.seasonService.getSeasonList(companyName).then((seasons: Season[]) => {
+  query(companyName?, cityid?) {
+    this.seasonService.getSeasonList(companyName, cityid).then((seasons: Season[]) => {
       this.seasonList = seasons;
-      this.seasonList.sort((a, b) => +a.cityId - +b.cityId);
+      this.seasonList.sort(firstBy('cityId').thenBy('season'));
     });
   }
 

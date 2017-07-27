@@ -10,14 +10,18 @@ export class SeasonService {
   constructor(private http: Http, private userService: UserService) {
   }
 
-  getSeasonList(companyName: string): Promise<Season[]> {
+  getSeasonList(companyName: string, cityid?): Promise<Season[]> {
     const user: UserInfo = this.userService.getUserInfo();
     const search = new URLSearchParams();
 
     search.append('companyName', companyName);
-    search.append('cityId', user.cityid);
     search.append('userId', user.id);
     search.append('permission', user.permission);
+    if (user.permission === '0' && cityid) {
+      search.append('cityId', cityid);
+    } else {
+      search.append('cityId', user.cityid);
+    }
 
     return this.http.get('/api/season', {search}).toPromise().then(responseHandler);
   }
@@ -28,7 +32,7 @@ export class SeasonService {
     return this.http.get('/api/season/detail', {search}).toPromise().then(responseHandler);
   }
 
-  addSeason(season: Season): Promise<{inserted, message}> {
+  addSeason(season: Season): Promise<{ inserted, message }> {
     const user: UserInfo = this.userService.getUserInfo();
     season.userId = user.id;
     season.permission = user.permission;
@@ -36,13 +40,13 @@ export class SeasonService {
     return this.http.post('/api/season/insert', season).toPromise().then(responseHandler);
   }
 
-  updateSeason(season: Season): Promise<{updated, message}> {
+  updateSeason(season: Season): Promise<{ updated, message }> {
     return this.http.put('/api/season/update', season).toPromise().then(responseHandler);
   }
 
-  removeSeason(seasonId: string): Promise<{removed, message}> {
+  removeSeason(seasonId: string): Promise<{ removed, message }> {
     const search = new URLSearchParams();
-    search.append('seasonId' , seasonId);
+    search.append('seasonId', seasonId);
     return this.http.get('/api/season/remove', {search}).toPromise().then(responseHandler);
   }
 

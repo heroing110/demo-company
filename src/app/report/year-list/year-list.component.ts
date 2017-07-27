@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Year} from "../../../entity/year";
 import {YearService} from "../year.service";
+import {City} from "../../../entity/city";
+import {UserService} from "../../share/user.service";
+
+const firstBy = require('thenby');
 
 @Component({
   selector: 'app-year-list',
@@ -12,18 +16,22 @@ export class YearListComponent implements OnInit {
   yearList: Year[];
 
   companyName: string = '';
+  cityid: string;
+  citys: City[];
 
-  constructor(private yearService: YearService) {
+  constructor(private yearService: YearService,
+              private userService: UserService) {
   }
 
   ngOnInit() {
-    this.query('');
+    this.userService.getAllCity().then(citys => this.citys = citys);
+    this.query();
   }
 
-  query(companyName: string) {
-    this.yearService.getYearList(companyName).then((years) => {
+  query(companyName?, cityid?) {
+    this.yearService.getYearList(companyName, cityid).then((years) => {
       this.yearList = years;
-      this.yearList.sort((a, b) => +a.cityId - +b.cityId);
+      this.yearList.sort(firstBy('cityId').thenBy('year'));
     });
   }
 

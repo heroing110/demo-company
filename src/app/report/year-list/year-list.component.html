@@ -7,6 +7,13 @@
     <label>单位详细名称:</label>
     <input type="text" class="form-control" [(ngModel)]="companyName" name="companyName">
   </div>
+  <div class="form-group">
+    <label>城市名称:</label>
+    <select [(ngModel)]="cityid" name="cityid" class="form-control">
+      <option value="">请选择城市</option>
+      <option *ngFor="let city of citys" [value]="city.id">{{city.name}}</option>
+    </select>
+  </div>
 
   <button class="btn btn-default" type="submit">查询</button>
 </div>
