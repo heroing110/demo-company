@@ -2,7 +2,7 @@
   年报表查看
 </h4>
 
-<div class="form-inline margin-bottom" (submit)="query(companyName)">
+<form class="form-inline margin-bottom" (submit)="query(companyName , cityid)">
   <div class="form-group">
     <label>单位详细名称:</label>
     <input type="text" class="form-control" [(ngModel)]="companyName" name="companyName">
@@ -16,7 +16,7 @@
   </div>
 
   <button class="btn btn-default" type="submit">查询</button>
-</div>
+</form>
 
 <table class="table table-bordered table-hover table-condensed">
   <thead>

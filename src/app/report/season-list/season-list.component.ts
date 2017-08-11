@@ -31,7 +31,6 @@ export class SeasonListComponent implements OnInit {
   query(companyName?, cityid?) {
     this.seasonService.getSeasonList(companyName, cityid).then((seasons: Season[]) => {
       this.seasonList = seasons;
-      this.seasonList.sort(firstBy('cityId').thenBy('season'));
     });
   }
 

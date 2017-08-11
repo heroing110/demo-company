@@ -19,7 +19,7 @@ export class YearService {
     search.append('companyName', companyName);
     if (user.permission === '0' && cityid) {
       search.append('cityId', cityid);
-    } else {
+    } else if (user.permission != '0') {
       search.append('cityId', user.cityid);
     }
 

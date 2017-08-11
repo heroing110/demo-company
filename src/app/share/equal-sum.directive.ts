@@ -1,10 +1,10 @@
-import {Directive, Input, SimpleChanges, OnChanges} from '@angular/core';
+import {Directive, Input, SimpleChanges, OnChanges, ElementRef} from '@angular/core';
 import {Validators, AbstractControl, ValidatorFn, NG_VALIDATORS, Validator, NgModel} from "@angular/forms";
 
 /** A hero's name can't match the given regular expression */
 export function equalSumValidator(ctrls: any[]): ValidatorFn {
-  return (control: AbstractControl): {[key: string]: any} => {
-    const value = control.value;
+  return (control: AbstractControl): { [key: string]: any } => {
+    const value = parseFloat(control.value) || 0;
     if (Array.isArray(ctrls[0])) {
       ctrls.map((models: NgModel[]) => {
         const total = sum(models);
@@ -14,7 +14,7 @@ export function equalSumValidator(ctrls: any[]): ValidatorFn {
       setModelsValid(ctrls, sum(ctrls) === value);
     }
     return {};
-  }
+  };
 }
 
 function setModelsValid(models: NgModel[], valid) {
@@ -26,7 +26,7 @@ function setModelsValid(models: NgModel[], valid) {
 }
 
 function equalSumTriggerParent(parent: NgModel[]) {
-  return (control: AbstractControl): {[key: string]: any} => {
+  return (control: AbstractControl): { [key: string]: any } => {
     parent.forEach(function (item) {
       item.control.updateValueAndValidity();
     });
@@ -35,8 +35,8 @@ function equalSumTriggerParent(parent: NgModel[]) {
 }
 
 function sum(ctrls: any[]) {
-  return ctrls.map((model: NgModel) => parseFloat(model.value))
-    .reduce((prev, current) => prev + current);
+  return ctrls.map((model: NgModel) => parseFloat(model.value || model.viewModel))
+    .reduce((prev, current) => prev + current, 0);
 }
 
 @Directive({
@@ -50,21 +50,21 @@ export class EqualSumDirective implements Validator, OnChanges {
   private valFn = Validators.nullValidator;
 
   ngOnChanges(changes: SimpleChanges): void {
-    const equalSum = changes['equalSum'];
-    const trigger = changes['trigger'];
+    const childs = changes['equalSum'];
+    const parents = changes['trigger'];
 
-    let equalSumFn, triggerFn;
-    if (equalSum) {
-      equalSumFn = equalSumValidator(equalSum.currentValue);
+    let childsEquelNum, triggerParentFn;
+    if (childs) {
+      childsEquelNum = equalSumValidator(childs.currentValue);
     }
-    if (trigger) {
-      triggerFn = equalSumTriggerParent(trigger.currentValue);
+    if (parents) {
+      triggerParentFn = equalSumTriggerParent(parents.currentValue);
     }
 
-    if (equalSumFn || triggerFn) {
+    if (childsEquelNum || triggerParentFn) {
       this.valFn = function (control: AbstractControl) {
-        const sumRes = equalSumFn && equalSumFn(control) || null;
-        const triggerRes = triggerFn && triggerFn(control) || null;
+        const sumRes = childsEquelNum && childsEquelNum(control) || null;
+        const triggerRes = triggerParentFn && triggerParentFn(control) || null;
         return sumRes || triggerRes;
       };
     } else {
@@ -72,7 +72,7 @@ export class EqualSumDirective implements Validator, OnChanges {
     }
   }
 
-  validate(control: AbstractControl): {[key: string]: any} {
+  validate(control: AbstractControl): { [key: string]: any } {
     if (control['customValid'] === true) {
       return {equalSum: true};
     } else if (control['customValid'] === false) {

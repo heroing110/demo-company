@@ -2,7 +2,7 @@
   季报表查看
 </h4>
 
-<form class="form-inline margin-bottom" (submit)="query(companyName)">
+<form class="form-inline margin-bottom" (submit)="query(companyName ,cityid)">
   <div class="form-group">
     <label>单位详细名称:</label>
     <input type="text" class="form-control" [(ngModel)]="companyName" name="companyName">
@@ -43,9 +43,9 @@
       <button type="button" class="btn btn-default btn-sm"
               (click)="removeSeason(season.id)">删除
       </button>
-      <a [attr.href]="'/api/export/downSeason?seasonId=' + season.id" target="_blank"
+      <a [attr.href]="'/api/export/downSeason?seasonId=' + season.id" download
          class="btn btn-link btn-sm">导出</a>
-      <a [attr.href]="'/api/export/downSeasonBefore?seasonId=' + season.id" target="_blank"
+      <a [attr.href]="'/api/export/downSeasonBefore?seasonId=' + season.id" download
          class="btn btn-link btn-sm">导出同比</a>
     </td>
   </tr>

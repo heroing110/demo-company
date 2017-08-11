@@ -4,7 +4,7 @@
 :host {
   display: block;
   height: 100vh;
-  background: url("./bg.jpg") no-repeat center;
+  background: url("assets/bg.jpg?a=1") no-repeat center;
   font-family: "Microsoft Yahei";
 }
 

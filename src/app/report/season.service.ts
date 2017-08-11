@@ -17,9 +17,9 @@ export class SeasonService {
     search.append('companyName', companyName);
     search.append('userId', user.id);
     search.append('permission', user.permission);
-    if (user.permission === '0' && cityid) {
+    if (user.permission == '0' && cityid) {
       search.append('cityId', cityid);
-    } else {
+    } else if (user.permission != '0') {
       search.append('cityId', user.cityid);
     }
 

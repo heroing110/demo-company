@@ -30,18 +30,4 @@ export class ReportBatchExportComponent implements OnInit {
     this.userService.getAllCity().then(citys => this.citys = citys);
   }
 
-  timer: number = 0;
-
-  disableTime() {
-    this.timer = 5;
-
-    const interval = setInterval(() => {
-      if (!this.timer) {
-        clearInterval(interval);
-      } else {
-        this.timer--;
-      }
-    }, 1000);
-  }
-
 }

@@ -4,10 +4,10 @@
 
 <form class="form-horizontal margin-bottom clearfix" #ngForm="ngForm">
   <div class="form-group col-sm-6">
-    <label class="col-sm-2 control-label">月份:</label>
+    <label class="col-sm-2 control-label">季度:</label>
     <div class="col-sm-9">
       <input type="number" class="form-control"
-             placeholder="如：2月则输入2" [(ngModel)]="season" name="season">
+             placeholder="请输入季度" [(ngModel)]="season" name="season">
     </div>
   </div>
   <div class="form-group col-sm-6">
@@ -42,10 +42,8 @@
 
 <div class="text-center">
   <a
-    [href]="'/api/export/downSeasonIndustry?industry=' + industry + '&year=' + year+ '&season=' +season+ '&cityId=' + cityId"
-    target="_blank"
-    [style.pointer-events]="timer ? 'none' : 'auto'"
-    class="btn btn-default" (click)="disableTime()">
+    [attr.href]="'/api/export/downSeasonIndustry?industry=' + industry + '&year=' + year+ '&season=' +season+ '&cityId=' + cityId"
+    download class="btn btn-default">
     <span *ngIf="timer">技能 cd 冷却中 {{timer}} s</span>
     <span *ngIf="!timer">导出</span>
   </a>

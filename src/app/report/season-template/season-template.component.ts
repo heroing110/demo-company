@@ -12,7 +12,7 @@ import {SeasonIndustryTemplate3Component} from "./season-industry-template3/seas
   templateUrl: './season-template.component.html',
   styleUrls: ['./season-template.component.css']
 })
-export class SeasonTemplateComponent extends TemplateCommonCtrl implements OnInit{
+export class SeasonTemplateComponent extends TemplateCommonCtrl implements OnInit {
   @Input() seasonObj: Season;
   @Input() readonlyAll: boolean;
   @Input() modifyMode: boolean;
@@ -26,13 +26,13 @@ export class SeasonTemplateComponent extends TemplateCommonCtrl implements OnIni
   checkbox1 = false;
   private showError: boolean = false;
 
-  constructor( private router: Router) {
+  constructor(private router: Router) {
     super();
   }
 
-  ngOnInit(){
+  ngOnInit() {
     if (this.seasonObj.cell151) {
-       this.checkbox1 = true;
+      this.checkbox1 = true;
     }
   }
 
@@ -50,7 +50,7 @@ export class SeasonTemplateComponent extends TemplateCommonCtrl implements OnIni
     this.save.next(this.seasonObj);
   }
 
-  back(){
-    this.router.navigate(['report/season/list'])
+  back() {
+    this.router.navigate(['report/season/list']);
   }
 }
