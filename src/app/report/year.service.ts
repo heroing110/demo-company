@@ -10,13 +10,18 @@ export class YearService {
   constructor(private http: Http, private userService: UserService) {
   }
 
-  getYearList(companyName: string, cityid?: string): Promise<Year[]> {
+  getYearList(companyName: string, cityid?: string, year?: string): Promise<Year[]> {
     const search = new URLSearchParams();
     const user: UserInfo = this.userService.getUserInfo();
 
     search.append('userId', user.id);
     search.append('permission', user.permission);
     search.append('companyName', companyName);
+
+    if (year) {
+      search.append('year', year);
+    }
+
     if (user.permission === '0' && cityid) {
       search.append('cityId', cityid);
     } else if (user.permission != '0') {

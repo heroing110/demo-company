@@ -16,6 +16,7 @@ export class YearListComponent implements OnInit {
   yearList: Year[];
 
   companyName: string = '';
+  year: string = '';
   cityid: string;
   citys: City[];
 
@@ -28,8 +29,8 @@ export class YearListComponent implements OnInit {
     this.query();
   }
 
-  query(companyName?, cityid?) {
-    this.yearService.getYearList(companyName, cityid).then((years) => {
+  query(companyName?, cityid?, year?) {
+    this.yearService.getYearList(companyName, cityid, year).then((years) => {
       this.yearList = years;
       this.yearList.sort(firstBy('cityId').thenBy('year'));
     });

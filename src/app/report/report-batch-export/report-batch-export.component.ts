@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {City} from "../../../entity/city";
 import {UserService} from "../../share/user.service";
+import {URLSearchParams} from "@angular/http";
 
 
 @Component({
@@ -30,4 +31,22 @@ export class ReportBatchExportComponent implements OnInit {
     this.userService.getAllCity().then(citys => this.citys = citys);
   }
 
+  getParams() {
+    const search = new URLSearchParams();
+
+    if (this.industry) {
+      search.append('industry', this.industry);
+    }
+    if (this.year) {
+      search.append('year', this.year);
+    }
+    if (this.season) {
+      search.append('season', this.season);
+    }
+    if (this.cityId) {
+      search.append('cityId', this.cityId);
+    }
+
+    return search;
+  }
 }

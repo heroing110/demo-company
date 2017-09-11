@@ -2,7 +2,7 @@
   年报表查看
 </h4>
 
-<form class="form-inline margin-bottom" (submit)="query(companyName , cityid)">
+<form class="form-inline margin-bottom" (submit)="query(companyName , cityid , year)">
   <div class="form-group">
     <label>单位详细名称:</label>
     <input type="text" class="form-control" [(ngModel)]="companyName" name="companyName">
@@ -13,6 +13,10 @@
       <option value="">请选择城市</option>
       <option *ngFor="let city of citys" [value]="city.id">{{city.name}}</option>
     </select>
+  </div>
+  <div class="form-group">
+    <label>年:</label>
+    <input type="text" class="form-control" [(ngModel)]="year" name="year">
   </div>
 
   <button class="btn btn-default" type="submit">查询</button>
@@ -41,6 +45,8 @@
       <button type="button" class="btn btn-default btn-sm"
               (click)="removeYear(year.id)">删除
       </button>
+      <a [attr.href]="'/api/export/downloadYear?yearId=' + year.id" download
+         class="btn btn-link btn-sm">导出</a>
     </td>
   </tr>
   </tbody>

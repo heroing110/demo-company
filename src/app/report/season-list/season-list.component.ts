@@ -16,6 +16,8 @@ export class SeasonListComponent implements OnInit {
   seasonList: Season[];
 
   companyName: string = '';
+  season: string = '';
+  year: string = '';
   cityid: string;
   citys: City[];
 
@@ -28,8 +30,8 @@ export class SeasonListComponent implements OnInit {
     this.query();
   }
 
-  query(companyName?, cityid?) {
-    this.seasonService.getSeasonList(companyName, cityid).then((seasons: Season[]) => {
+  query(companyName?, cityid?, season?, year?) {
+    this.seasonService.getSeasonList(companyName, cityid, season, year).then((seasons: Season[]) => {
       this.seasonList = seasons;
     });
   }

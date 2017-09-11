@@ -42,7 +42,7 @@
 
 <div class="text-center">
   <a
-    [attr.href]="'/api/export/downSeasonIndustry?industry=' + industry + '&year=' + year+ '&season=' +season+ '&cityId=' + cityId"
+    [attr.href]="'/api/export/downSeasonIndustry?' + getParams()"
     download class="btn btn-default">
     <span *ngIf="timer">技能 cd 冷却中 {{timer}} s</span>
     <span *ngIf="!timer">导出</span>

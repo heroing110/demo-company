@@ -10,13 +10,19 @@ export class SeasonService {
   constructor(private http: Http, private userService: UserService) {
   }
 
-  getSeasonList(companyName: string, cityid?): Promise<Season[]> {
+  getSeasonList(companyName: string, cityid?, season?, year?): Promise<Season[]> {
     const user: UserInfo = this.userService.getUserInfo();
     const search = new URLSearchParams();
 
     search.append('companyName', companyName);
     search.append('userId', user.id);
     search.append('permission', user.permission);
+    if (season) {
+      search.append('season', season);
+    }
+    if (year) {
+      search.append('year', year);
+    }
     if (user.permission == '0' && cityid) {
       search.append('cityId', cityid);
     } else if (user.permission != '0') {
